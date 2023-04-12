@@ -6,8 +6,16 @@ db.getCollection("reviews").aggregate(
         {
             $group: {
                 _id: "$activityId",
-                 Mean: {$avg:"$rating"},
-                           
+                mean: {$avg:"$rating"},
+                count: {
+                    $sum: 1
+                },
+                maxRating: {
+                    $max: "$rating"
+                },
+                minRating: {
+                    $min: "$rating"
+                },    
             }
         }
     ],

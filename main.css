@@ -85,6 +85,7 @@ margin-bottom: 0.125rem;
 
 .container {
     display: flex;
+    gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -114,7 +115,13 @@ margin-bottom: 0.125rem;
 }
 
 i {
-    color: black;
+    color: rgba(0, 0, 0, 0.633);
+    align-self: flex-end;
+    font-size: 24px;
+    position: absolute;
+    margin-top: 12px;
+    margin-right: 15px;
+    
 }
 
 .activity>.address {

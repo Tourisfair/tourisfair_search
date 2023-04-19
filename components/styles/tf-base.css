@@ -1,0 +1,7 @@
+* {
+    --tf-primary-main: #E76B2D;
+}
+
+.primary {
+    background-color: var(--tf-primary-main);
+}

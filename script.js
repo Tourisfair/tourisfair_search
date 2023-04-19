@@ -22,7 +22,7 @@ function afficher(activities) {
   container.innerHTML = "";
   activities.forEach((activity) => {
     const activityDiv = document.createElement("div");
-    activityDiv.innerHTML = `
+    activityDiv.innerHTML = html`
     <article class="carte">
         <div class="image">
             <img src="${activity.photos[0].urls}" alt="">
@@ -30,8 +30,11 @@ function afficher(activities) {
         <div class="detail">
             <i class="fa-solid fa-xmark"></i>
             <h2 class="titre">${activity.title.substring(0, 30)}...</h2>
-            <p class="adresse">${activity.meetingPoints[0].address}</p>
-            <p class="budget">${(activity.price.currencySymbol)}</p>
+            <p class="adresse">${activity.meetingPoints[0] 
+              ? activity.meetingPoints[0]?.address
+              : 'Pickup'
+            }</p>
+            <p class="budget">${activity.price.currencySymbol}</p>
             <p class="categories">
                 <span class="chip poi">Churches</span>
                 <span class="chip categorie">History</span>
@@ -40,12 +43,14 @@ function afficher(activities) {
             ${activity.abstract.substring(0, 255)}
             </p>
             <div class="actions">
-                <button class="bouton primaire droite">Book Now</button>
+              <tf-button>
+                Book now
+              </tf-button>
             </div>
         </div>
     </article>
     `;
-    
+
     // activityDiv.classList.add('activity');
 
     // const url = document.createElement('img');

@@ -9,7 +9,7 @@ export class tfBase extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.innerHTML = html`
-      <slot></slot>
+      <link rel="stylesheet" href="/components/styles/tf-base.css" />
     `;
   }
 }

@@ -3,39 +3,35 @@ import { html, css, tfBase } from "./tfBase.js";
 export class tfChip extends tfBase {
   constructor() {
     super();
+    this.shadowRoot.innerHTML += html`
+      <link rel="stylesheet" href="/components/styles/tf-chip.css"/>
+      <span class="activity">
+        <slot></slot>
+      </span>
+    `;
   }
 
   connectedCallback() {
-    this.shadowRoot.innerHTML += html`
-      <link rel="stylesheet" href="/components/styles/tf-chip.css" />
-      <div class="type">
-        <div class="history">History</div>
-        <div class="poi">Churches</div>
-      </div>
-      <slot></slot>
-    `;
+    
   }
 
   static get observedAttributes() {
     return ["type"];
   }
 
-  attributeChangedCallback(name, oldValue, newValue){
-      console.log('attribute changed', name, oldValue, newValue);
-      console.log(this.shadowRoot)
-      const buttonElem = this.shadowRoot.querySelector('div');
-      console.log(buttonElem);
-      if (name === 'type'){
-          buttonElem.classList.remove(oldValue);
-          buttonElem.classList.add(newValue);
-      }
+  attributeChangedCallback(name, oldValue, newValue) {
+    const chipElem = this.shadowRoot.querySelector("span");
+    if (name === "type") {
+      chipElem.classList.remove(oldValue);
+      chipElem.classList.add(newValue);
+    }
   }
 
-//   get priority() {
-//     return this.getAttribute("priority") || "primary";
-//   }
+  get type() {
+    return this.getAttribute("type");
+  }
 
-//   set priority(value) {
-//     this.setAttribute("priority", value);
-//   }
+  set type(value) {
+    this.setAttribute("type", value);
+  }
 }

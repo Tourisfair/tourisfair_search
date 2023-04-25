@@ -1,15 +1,23 @@
 @import url("tf-base.css");
 
-.type {
+span {
     padding: 0.25rem;
     line-height: 0.75rem;
     font-size: 0.625rem;
+    text-align: center;
+    color: var(--tf-onsecondary-main);
+    width: 51.25px;
+    height: 12px;
+    margin-bottom: 20px;
 }
 
 .activity {
     background-color:  var(--tf-secondary-main);
+    margin-left: 0.5rem;
+   
 }
 
 .poi {
     background-color: var(--tf-tertiary-main);
+    
 }

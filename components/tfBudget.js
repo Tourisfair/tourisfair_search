@@ -1,13 +1,13 @@
 import { html, css, tfBase } from "./tfBase.js";
 
-export class tfButton extends tfBase {
+export class tfBudget extends tfBase {
   constructor() {
     super();
     this.shadowRoot.innerHTML += html`
-      <link rel="stylesheet" href="/components/styles/tf-button.css" />
-      <button class="primary">
+      <link rel="stylesheet" href="/components/styles/tf-budget.css" />
+      <div class="cost">
         <slot></slot>
-      </button>
+      </div>
     `;
   }
 
@@ -18,15 +18,15 @@ export class tfButton extends tfBase {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    const buttonElem = this.shadowRoot.querySelector("button");
+    const divElem = this.shadowRoot.querySelector("div");
     if (name === "priority") {
-      buttonElem.classList.remove(oldValue);
-      buttonElem.classList.add(newValue);
+      divElem.classList.remove(oldValue);
+      divElem.classList.add(newValue);
     }
   }
 
   get priority() {
-    return this.getAttribute("priority") || "primary" ;
+    return this.getAttribute("priority") || "cost";
   }
 
   set priority(value) {

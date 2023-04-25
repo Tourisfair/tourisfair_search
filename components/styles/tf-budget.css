@@ -1,0 +1,10 @@
+@import url("tf-base.css");
+
+.cost{
+    color: var(--tf-primary-main);
+    font-weight: bold;
+}
+
+span .budget1 {
+    color: var(--tf-main-disabled);
+}

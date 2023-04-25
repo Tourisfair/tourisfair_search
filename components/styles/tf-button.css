@@ -1,7 +1,70 @@
 button {
-    padding: 0.5rem 1rem;
-    border-radius: 30px;
-    border: #ffffff;
-    color: #ffffff;
-    text-align: center;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  border: #ffffff;
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+  display: block;
+  width: 114px;
+  height: 34px;
+  margin-bottom: 10px;
+}
+
+.primary {
+  background-color: var(--tf-primary-main);
+  color: var(--tf-onprimary-main);
+}
+
+.secondary {
+  background-color: var(--tf-secondary-main);
+  color: var(--tf-onsecondary-main);
+}
+
+.tertiary {
+  background-color: var(--tf-tertiary-main);
+  color: var(--tf-ontertiary-main);
+}
+
+.primary-dark {
+  background-color: var(--tf-primary-dark);
+  color: var(--tf-onprimary-main);
+}
+
+.secondary-dark {
+  background-color: var(--tf-secondary-dark);
+  color: var(--tf-onsecondary-main);
+}
+
+.tertiary-dark {
+  background-color: var(--tf-tertiary-dark);
+  color: var(--tf-ontertiary-main);
+}
+
+.primary-border {
+  border: 3px solid var(--tf-tertiary-dark);
+}
+
+.secondary-border {
+  border: 3px solid var(--tf-tertiary-dark);
+  background-color: var(--tf-secondary-main);
+  color: var(--tf-onsecondary-dark);
+}
+.tertiary-border {
+  border: 3px solid var(--tf-tertiary-washed);
+  background-color: var(--tf-tertiary-main);
+  color: var(--tf-onsecondary-dark);
+}
+
+.primary-washed {
+  background-color: var(--tf-primary-washed);
+}
+
+.secondary-washed {
+  background-color: var(--tf-secondary-washed);
+  color: var(--tf-onsecondary-dark);
+}
+.tertiary-washed {
+  background-color: var(--tf-tertiary-washed);
+  color: var(--tf-onsecondary-dark);
 }

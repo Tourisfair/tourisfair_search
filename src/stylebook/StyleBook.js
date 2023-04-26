@@ -139,7 +139,7 @@ export class StyleComponent extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.innerHTML = html`
       <link rel="stylesheet" href="/stylebook/stylebook.css" />
-      <details class="style-component">
+      <details class="style-component" open>
         <summary><slot name="title"></slot></summary>
         <slot></slot>
       </details>

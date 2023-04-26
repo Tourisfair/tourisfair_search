@@ -26,17 +26,17 @@ button {
   color: var(--tf-ontertiary-main);
 }
 
-.primary-dark {
+.primary.active {
   background-color: var(--tf-primary-dark);
   color: var(--tf-onprimary-main);
 }
 
-.secondary-dark {
+.secondary.active {
   background-color: var(--tf-secondary-dark);
   color: var(--tf-onsecondary-main);
 }
 
-.tertiary-dark {
+.tertiary.active {
   background-color: var(--tf-tertiary-dark);
   color: var(--tf-ontertiary-main);
 }

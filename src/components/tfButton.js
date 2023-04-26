@@ -14,7 +14,7 @@ export class tfButton extends tfBase {
   connectedCallback() {}
 
   static get observedAttributes() {
-    return ['variant'];
+    return ['variant', 'state'];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -23,13 +23,23 @@ export class tfButton extends tfBase {
       buttonElem.classList.remove(oldValue);
       buttonElem.classList.add(newValue);
     }
+    if (name === 'state') {
+      buttonElem.classList.remove(oldValue);
+      buttonElem.classList.add(newValue);
+    }
   }
 
   get variant() {
     return this.getAttribute('variant') || 'primary';
   }
-
   set variant(value) {
     this.setAttribute('variant', value);
+  }
+
+  get state() {
+    return this.getAttribute('state') || 'default';
+  }
+  set state(value) {
+    this.setAttribute('state', value);
   }
 }

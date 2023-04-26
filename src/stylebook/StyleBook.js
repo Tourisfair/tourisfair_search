@@ -1,6 +1,11 @@
 import { html } from '../components/tfBase.js';
+import { styleTfBadge } from './StyleTfBadge.js';
+import { styleTfBudget } from './StyleTfBudget.js';
 import { styleTfButton } from './StyleTfButton.js';
+import { styleTfCardDetails } from './StyleTfCardDetails.js';
+import { styleTfCardHeaderImage } from './StyleTfCardHeaderImage.js';
 import { styleTfChip } from './StyleTfChip.js';
+import { styleTfFavorite } from './StyleTfFavorite.js';
 
 export const getProp = (data) => data || '';
 export const escapeHTML = (str) =>
@@ -263,4 +268,9 @@ window.customElements.define('style-book', StyleBook);
 const styleBook = document.createElement('style-book');
 styleTfButton(styleBook);
 styleTfChip(styleBook);
+styleTfBudget(styleBook);
+styleTfBadge(styleBook);
+styleTfFavorite(styleBook);
+styleTfCardHeaderImage(styleBook);
+styleTfCardDetails(styleBook);
 document.body.appendChild(styleBook);

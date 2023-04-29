@@ -1,5 +1,8 @@
-const defaultBtn = {
+import { StyleBook, StyleComponentProps, StyleVariantProps } from './StyleBook';
+
+const defaultBtn: StyleVariantProps<'tf-button'> = {
   name: 'Small Default Button',
+  tag: 'tf-button',
   description:
     'The default button is small, with no icon, and based on the primary variant.',
   data: {
@@ -9,8 +12,9 @@ const defaultBtn = {
   },
 };
 
-const primaryNone = {
+const primaryNone: StyleVariantProps<'tf-button'> = {
   name: 'Small Primary None',
+  tag: 'tf-button',
   description: '',
   data: {
     variant: 'primary',
@@ -19,8 +23,9 @@ const primaryNone = {
   },
 };
 
-const primaryActive = {
+const primaryActive: StyleVariantProps<'tf-button'> = {
   name: 'Small Primary Active',
+  tag: 'tf-button',
   description: '',
   data: {
     ...primaryNone.data,
@@ -28,8 +33,9 @@ const primaryActive = {
   },
 };
 
-const secondaryNone = {
+const secondaryNone: StyleVariantProps<'tf-button'> = {
   name: 'Small Secondary None',
+  tag: 'tf-button',
   description: '',
   data: {
     variant: 'secondary',
@@ -38,8 +44,9 @@ const secondaryNone = {
   },
 };
 
-const secondaryActive = {
+const secondaryActive: StyleVariantProps<'tf-button'> = {
   name: 'Small Secondary Active',
+  tag: 'tf-button',
   description: '',
   data: {
     ...secondaryNone.data,
@@ -47,8 +54,9 @@ const secondaryActive = {
   },
 };
 
-const tertiaryNone = {
+const tertiaryNone: StyleVariantProps<'tf-button'> = {
   name: 'Small Tertiary None',
+  tag: 'tf-button',
   description: '',
   data: {
     variant: 'tertiary',
@@ -57,8 +65,9 @@ const tertiaryNone = {
   },
 };
 
-const tertiaryActive = {
+const tertiaryActive: StyleVariantProps<'tf-button'> = {
   name: 'Small Tertiary Active',
+  tag: 'tf-button',
   description: '',
   data: {
     ...tertiaryNone.data,
@@ -66,11 +75,11 @@ const tertiaryActive = {
   },
 };
 
-const meta = {
+const meta: StyleComponentProps<'tf-button'> = {
   ref: 'tf-button',
+  tag: 'tf-button',
   description:
     'A generic button with 3 variants: primary, secondary and tertiary.',
-  tag: 'tf-button',
   component: 'Tourisfair Button',
   variants: [
     defaultBtn,
@@ -83,4 +92,5 @@ const meta = {
   ],
 };
 
-export const styleTfButton = (styleBook) => styleBook.addComponent(meta);
+export const styleTfButton = (styleBook: StyleBook) =>
+  styleBook.addComponent(meta);

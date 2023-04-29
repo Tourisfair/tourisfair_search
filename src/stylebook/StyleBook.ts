@@ -7,15 +7,33 @@ import { styleTfCardHeaderImage } from './StyleTfCardHeaderImage.js';
 import { styleTfChip } from './StyleTfChip.js';
 import { styleTfFavorite } from './StyleTfFavorite.js';
 
-export const getProp = (data) => data || '';
-export const escapeHTML = (str) =>
-  str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+export const escapeHTML = (htm: string) =>
+  htm.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-export class StyleVariant extends HTMLElement {
+export type StyleVariantDataProps = Record<string, any>;
+
+export interface StyleVariantProps<K extends keyof HTMLElementTagNameMap> {
+  name: string;
+  description: string;
+  tag: K;
+  data: StyleVariantDataProps | StyleVariantDataProps[];
+}
+
+export interface StyleComponentProps<K extends keyof HTMLElementTagNameMap> {
+  ref: string;
+  description: string;
+  tag: K;
+  component: string;
+  variants: StyleVariantProps<K>[];
+}
+
+export class StyleVariant<
+  K extends keyof HTMLElementTagNameMap
+> extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-    this.shadowRoot.innerHTML = html`
+    this.shadowRoot!.innerHTML = html`
       <link rel="stylesheet" href="/stylebook/stylebook.css" />
       <div class="style-variant-card">
         <slot name="title"></slot>
@@ -34,7 +52,7 @@ export class StyleVariant extends HTMLElement {
     return ['name', 'description', 'data', 'tag'];
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (oldValue !== newValue) {
       name === 'name' && this.updateName();
       name === 'description' && this.updateDescription();
@@ -45,10 +63,10 @@ export class StyleVariant extends HTMLElement {
   updateName() {
     const titleElem = this.querySelector('h3');
     if (titleElem) {
-      titleElem.innerHTML = this.name;
+      titleElem.innerHTML = this.name!;
     } else {
       this.innerHTML += html`
-        <h3 slot="title" style="display: inline;">${this.name}</h3>
+        <h3 slot="title" style="display: inline;">${this.name!}</h3>
       `;
     }
   }
@@ -56,15 +74,18 @@ export class StyleVariant extends HTMLElement {
   updateDescription() {
     const descriptionElem = this.querySelector('p');
     if (descriptionElem) {
-      descriptionElem.innerHTML = this.description;
+      descriptionElem.innerHTML = this.description!;
     } else {
-      this.innerHTML += html` <p slot="description">${this.description}</p> `;
+      this.innerHTML += html` <p slot="description">${this.description!}</p> `;
     }
   }
 
   updateData() {
-    const variant = this.buildVariant();
-    const shouldBe = this.shouldBe(variant);
+    const variant = this.buildVariant(
+      this.tag!,
+      this.data!
+    ) as unknown as HTMLElementTagNameMap[K];
+    const shouldBe = this.shouldBe();
     this.innerHTML += html`
       <div slot="code">
         <pre><code>${escapeHTML(variant.outerHTML)}</code></pre>
@@ -77,11 +98,13 @@ export class StyleVariant extends HTMLElement {
     this.appendChild(variant);
   }
 
-  buildVariant() {
-    const variant = document.createElement(this.tag);
-    const data = JSON.parse(this.data);
-    for (const key in data) {
-      variant[key] = data[key];
+  buildVariant(tag: K, data: string) {
+    const variant = document.createElement(tag);
+    const parsedData: StyleVariantDataProps = JSON.parse(
+      data
+    ) as unknown as StyleVariantDataProps;
+    for (const key in parsedData) {
+      variant[key] = parsedData[key];
     }
     variant.innerHTML += variant.shadowRoot
       ? variant.content || ''
@@ -102,42 +125,52 @@ export class StyleVariant extends HTMLElement {
     );
   }
 
-  setVariantProps(props) {
+  setVariantProps(props: StyleVariantProps<K>) {
     this.name = props.name;
     this.description = props.description;
     this.data = JSON.stringify(props.data);
   }
 
   get name() {
-    return this.getAttribute('name');
+    return this.getAttribute('name')!;
   }
 
-  set name(value) {
+  set name(value: string) {
     this.setAttribute('name', value);
   }
 
   get description() {
-    return this.getAttribute('description');
+    return this.getAttribute('description')!;
   }
 
-  set description(value) {
+  set description(value: string) {
     this.setAttribute('description', value);
   }
 
   get data() {
-    return this.getAttribute('data');
+    return this.getAttribute('data')!;
   }
 
-  set data(value) {
+  set data(value: string) {
     this.setAttribute('data', value);
+  }
+
+  get tag(): HTMLElementTagNameMap[K] {
+    return this.getAttribute('tag') as HTMLElementTagNameMap[K];
+  }
+
+  set tag(value: string) {
+    this.setAttribute('tag', value);
   }
 }
 
-export class StyleComponent extends HTMLElement {
+export class StyleComponent<
+  K extends keyof HTMLElementTagNameMap
+> extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-    this.shadowRoot.innerHTML = html`
+    this.shadowRoot!.innerHTML = html`
       <link rel="stylesheet" href="/stylebook/stylebook.css" />
       <details class="style-component">
         <summary><slot name="title"></slot></summary>
@@ -148,9 +181,9 @@ export class StyleComponent extends HTMLElement {
 
   connectedCallback() {
     this.innerHTML = html`
-      <h2 slot="title" style="display: inline;">${this.component}</h2>
-      <p>${this.description}</p>
-      ${this.innerHTML}
+      <h2 slot="title" style="display: inline;">${this.component!}</h2>
+      <p>${this.description!}</p>
+      ${this.innerHTML!}
     `;
   }
 
@@ -158,93 +191,108 @@ export class StyleComponent extends HTMLElement {
     return ['ref', 'description', 'tag', 'component', 'variants'];
   }
 
-  addVariant(props) {
-    const styleVariant = document.createElement('style-variant');
-    styleVariant.tag = this.tag;
+  addVariant(props: StyleVariantProps<K>) {
+    const styleVariant = document.createElement(
+      'style-variant'
+    ) as StyleVariant<K>;
+    styleVariant.tag = this.tag!;
     styleVariant.setVariantProps(props);
-    this.shadowRoot.querySelector('.style-component').appendChild(styleVariant);
+    this.shadowRoot!.querySelector('.style-component')!.appendChild(
+      styleVariant
+    );
     return this;
   }
 
   get ref() {
-    return this.getAttribute('ref');
+    return this.getAttribute('ref')!;
   }
 
-  set ref(val) {
-    this.setAttribute('ref', val);
+  set ref(value: string) {
+    this.setAttribute('ref', value);
   }
 
   get description() {
-    return this.getAttribute('description');
+    return this.getAttribute('description')!;
   }
 
-  set description(val) {
-    this.setAttribute('description', val);
+  set description(value) {
+    this.setAttribute('description', value);
   }
 
   get tag() {
-    return this.getAttribute('tag');
+    return this.getAttribute('tag')!;
   }
 
-  set tag(val) {
-    this.setAttribute('tag', val);
+  set tag(value) {
+    this.setAttribute('tag', value);
   }
 
   get component() {
-    return this.getAttribute('component');
+    return this.getAttribute('component')!;
   }
 
-  set component(val) {
-    this.setAttribute('component', val);
+  set component(value) {
+    this.setAttribute('component', value);
   }
 
   get variants() {
-    return this.getAttribute('variants');
+    return this.getAttribute('variants')!;
   }
 
-  set variants(val) {
-    this.setAttribute('variants', val);
+  set variants(value) {
+    this.setAttribute('variants', value);
   }
 }
 
 export class StyleBook extends HTMLElement {
+  private _components: StyleComponent<keyof HTMLElementTagNameMap>[] = [];
+
   constructor() {
-    const styleBook = document.querySelector('style-book');
+    const styleBook = document.querySelector(
+      'style-book'
+    ) as unknown as StyleBook;
     if (styleBook) return styleBook;
     super();
     this.attachShadow({ mode: 'open' });
-    this.shadowRoot.innerHTML = html`
+    this.shadowRoot!.innerHTML = html`
       <link rel="stylesheet" href="/stylebook/stylebook.css" />
       <nav class="navbar">
         <ul></ul>
       </nav>
       <div class="style-book"></div>
     `;
-    this._components = [];
   }
 
   connectedCallback() {}
 
-  addComponent(props) {
-    const shadowRoot = this.shadowRoot.querySelector('.style-book');
+  addComponent<K extends keyof HTMLElementTagNameMap>(
+    props: StyleComponentProps<K>
+  ) {
+    const stylebookElem = this.shadowRoot!.querySelector('.style-book')!;
     const component = this.buildComponent(props);
     props.variants?.map((variant) => component.addVariant(variant));
-    shadowRoot.appendChild(component);
+    stylebookElem.appendChild(component);
     return this;
   }
 
-  buildComponent(props) {
+  buildComponent<K extends keyof HTMLElementTagNameMap>(
+    props: StyleComponentProps<K>
+  ) {
     const component = this.getComponentByTag(props.tag);
-    StyleComponent.observedAttributes.forEach((attr) => {
-      component[attr] = props[attr];
-    });
+    component.ref = props.ref;
+    component.description = props.description;
+    component.component = props.component;
+    component.variants = JSON.stringify(props.variants);
+    component.tag = props.tag;
     return component;
   }
 
-  getComponentByTag(tag) {
+  getComponentByTag<K extends keyof HTMLElementTagNameMap>(tag: K) {
     let component = this._components.find((component) => component.tag === tag);
     if (!component) {
-      component = document.createElement('style-component');
+      component = document.createElement(
+        'style-component'
+      ) as StyleComponent<K>;
       component.tag = tag;
       this._components.push(component);
       // TODO : add to nav
@@ -252,8 +300,8 @@ export class StyleBook extends HTMLElement {
     return component;
   }
 
-  addHTML(html) {
-    this.shadowRoot.querySelector('.style-book').innerHTML += html;
+  addHTML(html: string) {
+    this.shadowRoot!.querySelector('.style-book')!.innerHTML += html;
     // TODO : add to nav
   }
 }
@@ -265,7 +313,7 @@ window.customElements.define('style-variant', StyleVariant);
 window.customElements.define('style-component', StyleComponent);
 window.customElements.define('style-book', StyleBook);
 
-const styleBook = document.createElement('style-book');
+const styleBook = document.createElement('style-book') as StyleBook;
 styleTfButton(styleBook);
 styleTfChip(styleBook);
 styleTfBudget(styleBook);

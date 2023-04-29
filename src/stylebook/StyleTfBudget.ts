@@ -1,5 +1,8 @@
-const level1Budget = {
+import { StyleBook, StyleComponentProps, StyleVariantProps } from './StyleBook';
+
+const level1Budget: StyleVariantProps<'tf-budget'> = {
   name: 'Budget level 1',
+  tag: 'tf-budget',
   description: 'Very cheap and afordable budget',
   data: {
     level: '1',
@@ -7,8 +10,9 @@ const level1Budget = {
   },
 };
 
-const level2Budget = {
+const level2Budget: StyleVariantProps<'tf-budget'> = {
   name: 'Budget level 2',
+  tag: 'tf-budget',
   description: 'Cheap budget',
   data: {
     level: '2',
@@ -16,8 +20,9 @@ const level2Budget = {
   },
 };
 
-const level3Budget = {
+const level3Budget: StyleVariantProps<'tf-budget'> = {
   name: 'Budget level 3',
+  tag: 'tf-budget',
   description: 'Medium budget',
   data: {
     level: '3',
@@ -25,8 +30,9 @@ const level3Budget = {
   },
 };
 
-const level4Budget = {
+const level4Budget: StyleVariantProps<'tf-budget'> = {
   name: 'Budget level 4',
+  tag: 'tf-budget',
   description: 'Expensive budget',
   data: {
     level: '4',
@@ -34,8 +40,9 @@ const level4Budget = {
   },
 };
 
-const level5Budget = {
+const level5Budget: StyleVariantProps<'tf-budget'> = {
   name: 'Budget level 5',
+  tag: 'tf-budget',
   description: 'Very expensive budget',
   data: {
     level: '5',
@@ -43,7 +50,7 @@ const level5Budget = {
   },
 };
 
-const meta = {
+const meta: StyleComponentProps<'tf-budget'> = {
   ref: 'tf-budget',
   description:
     'Tourisfair budget component. It is used to show the budget level of an activity.',
@@ -58,4 +65,5 @@ const meta = {
   ],
 };
 
-export const styleTfBudget = (styleBook) => styleBook.addComponent(meta);
+export const styleTfBudget = (styleBook: StyleBook) =>
+  styleBook.addComponent(meta);

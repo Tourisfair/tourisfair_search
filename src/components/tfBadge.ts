@@ -1,9 +1,9 @@
-import { html, css, tfBase } from "./tfBase.js";
+import { html, tfBase } from './tfBase.js';
 
 export class tfBadge extends tfBase {
   constructor() {
     super();
-    this.shadowRoot.innerHTML += html`
+    this.shadowRoot!.innerHTML += html`
       <link rel="stylesheet" href="/components/styles/tf-badge.css" />
       <div>
         <svg

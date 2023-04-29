@@ -28,6 +28,24 @@ const primaryActive = {
   },
 };
 
+const primaryFocus = {
+  name: 'Small Primary Focus',
+  description: '',
+  data: {
+    ...primaryNone.data,
+    state: 'focus',
+  },
+};
+
+const primaryDisabled = {
+  name: 'Small Primary Disabled',
+  description: '',
+  data: {
+    ...primaryNone.data,
+    state: 'disabled',
+  },
+};
+
 const secondaryNone = {
   name: 'Small Secondary None',
   description: '',
@@ -44,6 +62,24 @@ const secondaryActive = {
   data: {
     ...secondaryNone.data,
     state: 'active',
+  },
+};
+
+const secondaryFocus = {
+  name: 'Small Secondary Focus',
+  description: '',
+  data: {
+    ...secondaryNone.data,
+    state: 'focus',
+  },
+};
+
+const secondaryDisabled = {
+  name: 'Small Secondary Disabled',
+  description: '',
+  data: {
+    ...secondaryNone.data,
+    state: 'disabled',
   },
 };
 
@@ -66,6 +102,24 @@ const tertiaryActive = {
   },
 };
 
+const tertiaryFocus = {
+  name: 'Small Tertiary Focus',
+  description: '',
+  data: {
+    ...tertiaryNone.data,
+    state: 'focus',
+  },
+};
+
+const tertiaryDisabled = {
+  name: 'Small Tertiary Disabled',
+  description: '',
+  data: {
+    ...tertiaryNone.data,
+    state: 'disabled',
+  },
+};
+
 const meta = {
   ref: 'tf-button',
   description:
@@ -76,10 +130,16 @@ const meta = {
     defaultBtn,
     primaryNone,
     primaryActive,
+    primaryFocus,
+    primaryDisabled,
     secondaryNone,
     secondaryActive,
+    secondaryFocus,
+    secondaryDisabled,
     tertiaryNone,
     tertiaryActive,
+    tertiaryFocus,
+    tertiaryDisabled, 
   ],
 };
 

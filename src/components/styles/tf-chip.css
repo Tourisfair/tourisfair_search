@@ -6,9 +6,10 @@ span {
     font-size: 0.625rem;
     text-align: center;
     color: var(--tf-onsecondary-main);
-    width: 51.25px;
+    width: 55.25px;
     height: 12px;
     margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .activity {

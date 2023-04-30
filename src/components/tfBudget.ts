@@ -5,13 +5,19 @@ export class tfBudget extends tfBase {
     super();
     this.shadowRoot!.innerHTML += html`
       <link rel="stylesheet" href="/components/styles/tf-budget.css" />
-      <div class="cost">
-        <slot></slot>
-      </div>
+      <span class="level"> </span><span class="budget"> </span>
     `;
+    this._currencySymbol = '€';
   }
 
-  connectedCallback() {}
+  connectedCallback() {
+    this.render();
+  }
+
+  render() {
+    this.innerHTML = `${this.level} ${this._currencySymbol}`;
+    this.style.color = this._color;
+  }
 
   static get observedAttributes() {
     return ['priority'];

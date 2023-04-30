@@ -96,6 +96,7 @@ export class tfBadge extends tfBase {
           </defs>
         </svg>
       </div>
+      
     `;
   }
 }

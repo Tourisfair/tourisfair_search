@@ -33,6 +33,26 @@ const primaryActive: StyleVariantProps<'tf-button'> = {
   },
 };
 
+const primaryFocus: StyleVariantProps<'tf-button'> = {
+  name: 'Small Primary Focus',
+  tag: 'tf-button',
+  description: '',
+  data: {
+    ...primaryNone.data,
+    state: 'focus',
+  },
+};
+
+const primaryDisabled: StyleVariantProps<'tf-button'> = {
+  name: 'Small Primary Disabled',
+  tag: 'tf-button',
+  description: '',
+  data: {
+    ...primaryNone.data,
+    state: 'disabled',
+  },
+};
+
 const secondaryNone: StyleVariantProps<'tf-button'> = {
   name: 'Small Secondary None',
   tag: 'tf-button',
@@ -51,6 +71,26 @@ const secondaryActive: StyleVariantProps<'tf-button'> = {
   data: {
     ...secondaryNone.data,
     state: 'active',
+  },
+};
+
+const secondaryFocus: StyleVariantProps<'tf-button'> = {
+  name: 'Small Secondary Focus',
+  tag: 'tf-button',
+  description: '',
+  data: {
+    ...secondaryNone.data,
+    state: 'focus',
+  },
+};
+
+const secondaryDisabled: StyleVariantProps<'tf-button'> = {
+  name: 'Small Secondary Disabled',
+  tag: 'tf-button',
+  description: '',
+  data: {
+    ...secondaryNone.data,
+    state: 'disabled',
   },
 };
 
@@ -75,6 +115,26 @@ const tertiaryActive: StyleVariantProps<'tf-button'> = {
   },
 };
 
+const tertiaryFocus: StyleVariantProps<'tf-button'> = {
+  name: 'Small Tertiary Focus',
+  tag: 'tf-button',
+  description: '',
+  data: {
+    ...tertiaryNone.data,
+    state: 'focus',
+  },
+};
+
+const tertiaryDisabled: StyleVariantProps<'tf-button'> = {
+  name: 'Small Tertiary Disabled',
+  tag: 'tf-button',
+  description: '',
+  data: {
+    ...tertiaryNone.data,
+    state: 'disabled',
+  },
+};
+
 const meta: StyleComponentProps<'tf-button'> = {
   ref: 'tf-button',
   tag: 'tf-button',
@@ -85,10 +145,16 @@ const meta: StyleComponentProps<'tf-button'> = {
     defaultBtn,
     primaryNone,
     primaryActive,
+    primaryFocus,
+    primaryDisabled,
     secondaryNone,
     secondaryActive,
+    secondaryFocus,
+    secondaryDisabled,
     tertiaryNone,
     tertiaryActive,
+    tertiaryFocus,
+    tertiaryDisabled,
   ],
 };
 

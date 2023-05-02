@@ -35,11 +35,15 @@ export class tfChip extends tfBase {
     return ['type'];
   }
 
-  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+  attributeChangedCallback(
+    name: string,
+    _oldValue: string | null,
+    _newValue: string | null
+  ) {
     const chipElem = this.shadowRoot!.querySelector('span');
     if (name === 'type') {
-      chipElem!.classList.remove(oldValue);
-      chipElem!.classList.add(newValue);
+      chipElem!.classList.remove(_oldValue!);
+      chipElem!.classList.add(_newValue!);
     }
   }
 

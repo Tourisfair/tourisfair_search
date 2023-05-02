@@ -1,4 +1,4 @@
-import { html } from '../components/tfBase.js';
+import { css, html } from '../components/tfBase.js';
 import { styleTfBadge } from './StyleTfBadge.js';
 import { styleTfBudget } from './StyleTfBudget.js';
 import { styleTfButton } from './StyleTfButton.js';
@@ -27,6 +27,82 @@ export interface StyleComponentProps<K extends keyof HTMLElementTagNameMap> {
   variants: StyleVariantProps<K>[];
 }
 
+const style = css`
+  @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+
+  * {
+    --sb-color: 255, 255, 255;
+    --sb-background: rgb(var(--sb-color));
+    --sb-on-color: 32, 32, 32;
+    --sb-on-background: rgb(var(--sb-on-color));
+    --sb-error: #fdd;
+    --sb-on-error: #f00;
+    --sb-alpha-1: 0.1;
+    --sb-alpha-2: 0.2;
+    --sb-alpha-3: 0.3;
+    --sb-alpha-4: 0.4;
+    --sb-alpha-5: 0.5;
+    --sb-alpha-6: 0.6;
+    --sb-alpha-7: 0.7;
+    --sb-alpha-8: 0.8;
+    --sb-alpha-9: 0.9;
+  }
+
+  .style-book {
+    font-family: 'SF Pro Display', 'Arial', Helvetica, sans-serif;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .style-component {
+    background-color: var(--sb-background);
+    border-radius: 0.5rem;
+    color: var(--sb-on-background);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    width: 720px;
+  }
+
+  .style-variant-card {
+    background-color: var(--sb-background);
+    border-radius: 0.5rem;
+    box-shadow: 4px 4px 10px 0 rgba(var(--sb-on-color), var(--sb-alpha-5));
+    margin: 1rem;
+    min-width: 200px;
+    padding: 1rem;
+  }
+
+  h3 {
+    border-bottom: 1px solid rgba(var(--sb-on-color), var(--sb-alpha-2));
+    display: block !important;
+    margin: 0;
+    width: 100%;
+  }
+
+  .style-variant {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.5rem;
+  }
+
+  pre {
+    background-color: var(--sb-on-background);
+    color: var(--sb-background);
+    max-width: 640px;
+    overflow: auto;
+    padding: 0.5rem;
+  }
+
+  pre.error {
+    background-color: var(--sb-error);
+    color: var(--sb-on-error);
+  }
+`;
+
 export class StyleVariant<
   K extends keyof HTMLElementTagNameMap
 > extends HTMLElement {
@@ -34,7 +110,9 @@ export class StyleVariant<
     super();
     this.attachShadow({ mode: 'open' });
     this.shadowRoot!.innerHTML = html`
-      <link rel="stylesheet" href="/stylebook/stylebook.css" />
+      <style>
+        ${style}
+      </style>
       <div class="style-variant-card">
         <slot name="title"></slot>
         <slot name="description"></slot>
@@ -52,8 +130,12 @@ export class StyleVariant<
     return ['name', 'description', 'data', 'tag'];
   }
 
-  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    if (oldValue !== newValue) {
+  attributeChangedCallback(
+    name: string,
+    _oldValue: string | null,
+    _newValue: string | null
+  ) {
+    if (_oldValue !== _newValue) {
       name === 'name' && this.updateName();
       name === 'description' && this.updateDescription();
       name === 'data' && this.updateData();
@@ -115,14 +197,18 @@ export class StyleVariant<
   shouldBe() {
     const data = JSON.parse(this.data);
     const expected = Object.keys(data)
-      .map((key) => (key !== 'content' ? key + '="' + data[key] + '"' : ''))
-      .join(' ')
+      .map((key) => this.checkDataKey(key, data[key]))
+      .join('')
       .trim();
-    return (
-      `<${this.tag} ${expected}>` +
-      (data.content || 'Sample content') +
-      `</${this.tag}>`
-    );
+    return `<${this.tag}${expected ? ' ' : ''}${expected}>${
+      data.content || ''
+    }</${this.tag}>`;
+  }
+
+  checkDataKey(key: string, value: any): string {
+    if (key === 'content') return '';
+    if (typeof value === 'boolean') return value ? ` ${key}=""` : '';
+    return ` ${key}="${value}"`;
   }
 
   setVariantProps(props: StyleVariantProps<K>) {
@@ -171,8 +257,10 @@ export class StyleComponent<
     super();
     this.attachShadow({ mode: 'open' });
     this.shadowRoot!.innerHTML = html`
-      <link rel="stylesheet" href="/stylebook/stylebook.css" />
-      <details class="style-component">
+      <style>
+        ${style}
+      </style>
+      <details class="style-component" open>
         <summary><slot name="title"></slot></summary>
         <slot></slot>
       </details>
@@ -255,7 +343,9 @@ export class StyleBook extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
     this.shadowRoot!.innerHTML = html`
-      <link rel="stylesheet" href="/stylebook/stylebook.css" />
+      <style>
+        ${style}
+      </style>
       <nav class="navbar">
         <ul></ul>
       </nav>

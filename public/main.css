@@ -8,6 +8,7 @@
     box-shadow: 4px 4px 16px #00000040;
 }
 
+
 .carte>.image {
     flex-shrink: 0;
     width: 12rem;

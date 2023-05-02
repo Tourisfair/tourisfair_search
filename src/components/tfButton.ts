@@ -4,8 +4,6 @@ const style = css`
   button {
     padding: 0.5rem 1rem;
     border-radius: 30px;
-    border: #ffffff;
-    color: #ffffff;
     text-align: center;
   }
 `;
@@ -26,14 +24,18 @@ export class tfButton extends tfBase {
   connectedCallback() {}
 
   static get observedAttributes() {
-    return ['variant'];
+    return ['variant', 'state'];
   }
 
-  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+  attributeChangedCallback(
+    name: string,
+    _oldValue: string | null,
+    _newValue: string | null
+  ) {
     const buttonElem = this.shadowRoot!.querySelector('button');
-    if (name === 'variant') {
-      buttonElem!.classList.remove(oldValue);
-      buttonElem!.classList.add(newValue);
+    if (['variant', 'state'].includes(name)) {
+      buttonElem!.classList.remove(_oldValue!);
+      buttonElem!.classList.add(_newValue!);
     }
   }
 
@@ -43,6 +45,13 @@ export class tfButton extends tfBase {
 
   set variant(value) {
     this.setAttribute('variant', value);
+  }
+
+  get state() {
+    return this.getAttribute('state') || 'default';
+  }
+  set state(value) {
+    this.setAttribute('state', value);
   }
 }
 

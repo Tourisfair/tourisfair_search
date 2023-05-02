@@ -2,9 +2,10 @@ import { StyleBook, StyleComponentProps, StyleVariantProps } from './StyleBook';
 
 const defaultCardHeaderImage: StyleVariantProps<'tf-card-header-image'> = {
   name: 'Default Card Header Image',
+  tag: 'tf-card-header-image',
   description: '',
   data: {
-    src: '../Image.png',
+    src: '/assets/image.png',
   },
 };
 

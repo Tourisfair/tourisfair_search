@@ -35,6 +35,8 @@ const style = css`
     --sb-background: rgb(var(--sb-color));
     --sb-on-color: 32, 32, 32;
     --sb-on-background: rgb(var(--sb-on-color));
+    --sb-error: #fdd;
+    --sb-on-error: #f00;
     --sb-alpha-1: 0.1;
     --sb-alpha-2: 0.2;
     --sb-alpha-3: 0.3;
@@ -96,8 +98,8 @@ const style = css`
   }
 
   pre.error {
-    background-color: #fdd;
-    color: #f00;
+    background-color: var(--sb-error);
+    color: var(--sb-on-error);
   }
 `;
 
@@ -128,8 +130,12 @@ export class StyleVariant<
     return ['name', 'description', 'data', 'tag'];
   }
 
-  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    if (oldValue !== newValue) {
+  attributeChangedCallback(
+    name: string,
+    _oldValue: string | null,
+    _newValue: string | null
+  ) {
+    if (_oldValue !== _newValue) {
       name === 'name' && this.updateName();
       name === 'description' && this.updateDescription();
       name === 'data' && this.updateData();
@@ -191,14 +197,18 @@ export class StyleVariant<
   shouldBe() {
     const data = JSON.parse(this.data);
     const expected = Object.keys(data)
-      .map((key) => (key !== 'content' ? key + '="' + data[key] + '"' : ''))
-      .join(' ')
+      .map((key) => this.checkDataKey(key, data[key]))
+      .join('')
       .trim();
-    return (
-      `<${this.tag} ${expected}>` +
-      (data.content || 'Sample content') +
-      `</${this.tag}>`
-    );
+    return `<${this.tag}${expected ? ' ' : ''}${expected}>${
+      data.content || ''
+    }</${this.tag}>`;
+  }
+
+  checkDataKey(key: string, value: any): string {
+    if (key === 'content') return '';
+    if (typeof value === 'boolean') return value ? ` ${key}=""` : '';
+    return ` ${key}="${value}"`;
   }
 
   setVariantProps(props: StyleVariantProps<K>) {

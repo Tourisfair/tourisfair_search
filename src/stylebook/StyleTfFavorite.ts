@@ -1,20 +1,20 @@
 import { StyleBook, StyleComponentProps, StyleVariantProps } from './StyleBook';
 
 const notFavorite: StyleVariantProps<'tf-favorite'> = {
-  name: 'Favorite False/True',
-  description: 'Favorite False or True of activities',
+  name: 'Not Favorite',
+  tag: 'tf-favorite',
+  description: 'Favorite icon not enabled',
   data: {
-    enabled: 'false',
-    content: 'Not favorite icon',
+    enabled: false,
   },
 };
 
 const favorite: StyleVariantProps<'tf-favorite'> = {
-  name: 'Favorite False/True',
-  description: 'Favorite False or True of activities',
+  name: 'Favorite',
+  tag: 'tf-favorite',
+  description: 'Favorite icon enabled',
   data: {
-    enabled: 'true',
-    content: 'Favorite icon',
+    enabled: true,
   },
 };
 

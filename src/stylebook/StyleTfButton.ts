@@ -35,6 +35,7 @@ const primaryActive: StyleVariantProps<'tf-button'> = {
 
 const primaryFocus: StyleVariantProps<'tf-button'> = {
   name: 'Small Primary Focus',
+  tag: 'tf-button',
   description: '',
   data: {
     ...primaryNone.data,
@@ -44,6 +45,7 @@ const primaryFocus: StyleVariantProps<'tf-button'> = {
 
 const primaryDisabled: StyleVariantProps<'tf-button'> = {
   name: 'Small Primary Disabled',
+  tag: 'tf-button',
   description: '',
   data: {
     ...primaryNone.data,
@@ -74,6 +76,7 @@ const secondaryActive: StyleVariantProps<'tf-button'> = {
 
 const secondaryFocus: StyleVariantProps<'tf-button'> = {
   name: 'Small Secondary Focus',
+  tag: 'tf-button',
   description: '',
   data: {
     ...secondaryNone.data,
@@ -83,6 +86,7 @@ const secondaryFocus: StyleVariantProps<'tf-button'> = {
 
 const secondaryDisabled: StyleVariantProps<'tf-button'> = {
   name: 'Small Secondary Disabled',
+  tag: 'tf-button',
   description: '',
   data: {
     ...secondaryNone.data,
@@ -113,6 +117,7 @@ const tertiaryActive: StyleVariantProps<'tf-button'> = {
 
 const tertiaryFocus: StyleVariantProps<'tf-button'> = {
   name: 'Small Tertiary Focus',
+  tag: 'tf-button',
   description: '',
   data: {
     ...tertiaryNone.data,
@@ -122,6 +127,7 @@ const tertiaryFocus: StyleVariantProps<'tf-button'> = {
 
 const tertiaryDisabled: StyleVariantProps<'tf-button'> = {
   name: 'Small Tertiary Disabled',
+  tag: 'tf-button',
   description: '',
   data: {
     ...tertiaryNone.data,

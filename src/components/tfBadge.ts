@@ -4,7 +4,6 @@ export class tfBadge extends tfBase {
   constructor() {
     super();
     this.shadowRoot!.innerHTML += html`
-      <link rel="stylesheet" href="/components/styles/tf-badge.css" />
       <div>
         <svg
           width="32"
@@ -96,7 +95,14 @@ export class tfBadge extends tfBase {
           </defs>
         </svg>
       </div>
-      
     `;
   }
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'tf-badge': tfBadge;
+  }
+}
+
+customElements.define('tf-badge', tfBadge);

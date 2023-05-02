@@ -27,11 +27,15 @@ export class tfButton extends tfBase {
     return ['variant', 'state'];
   }
 
-  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+  attributeChangedCallback(
+    name: string,
+    _oldValue: string | null,
+    _newValue: string | null
+  ) {
     const buttonElem = this.shadowRoot!.querySelector('button');
     if (['variant', 'state'].includes(name)) {
-      buttonElem!.classList.remove(oldValue);
-      buttonElem!.classList.add(newValue);
+      buttonElem!.classList.remove(_oldValue!);
+      buttonElem!.classList.add(_newValue!);
     }
   }
 

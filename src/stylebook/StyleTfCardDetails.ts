@@ -7,7 +7,7 @@ const defaultCardDetails: StyleVariantProps<'tf-card-details'> = {
   data: {
     
   },
-};
+};//
 
 const meta: StyleComponentProps<'tf-card-details'> = {
   ref: 'tf-card-details',

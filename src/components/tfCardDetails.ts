@@ -69,6 +69,7 @@ export class tfCardDetails extends tfBase {
     this.setAttribute('details', value!);
   }
 }
+//
 
 declare global {
   interface HTMLElementTagNameMap {

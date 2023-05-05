@@ -4,8 +4,18 @@ import { styleTfBudget } from './StyleTfBudget.js';
 import { styleTfButton } from './StyleTfButton.js';
 import { styleTfCardDetails } from './StyleTfCardDetails.js';
 import { styleTfCardHeaderImage } from './StyleTfCardHeaderImage.js';
+import { styleTfCarrouselIndicator } from './StyleTfCarrousselIndicator.js';
 import { styleTfChip } from './StyleTfChip.js';
+import { styleTfDropDownListButton } from './StyleTfDropDownListButton.js';
 import { styleTfFavorite } from './StyleTfFavorite.js';
+import { styleTfHomeCard } from './StyleTfHomeCard.js';
+import { styleTfIcon } from './StyleTfIcon.js';
+import { styleTfInputText } from './StyleTfInputText.js';
+import { styleTfLogo } from './StyleTfLogo.js';
+import { styleTfMainContainer } from './StyleTfMainContainer.js';
+import { styleTfTextButton } from './StyleTfTextButton.js';
+import { styleTfWelcomeCard } from './StyleTfWelcomeCard.js';
+import { styleTfProgressBar } from './styleTfProgressBar.js';
 
 export const escapeHTML = (htm: string) =>
   htm.replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -404,6 +414,16 @@ window.customElements.define('style-component', StyleComponent);
 window.customElements.define('style-book', StyleBook);
 
 const styleBook = document.createElement('style-book') as StyleBook;
+styleTfHomeCard(styleBook);
+styleTfInputText(styleBook);
+styleTfWelcomeCard(styleBook);
+styleTfTextButton(styleBook);
+styleTfIcon(styleBook);
+styleTfCarrouselIndicator(styleBook);
+styleTfMainContainer(styleBook);
+styleTfProgressBar(styleBook);
+styleTfDropDownListButton(styleBook);
+styleTfLogo(styleBook);
 styleTfButton(styleBook);
 styleTfChip(styleBook);
 styleTfBudget(styleBook);

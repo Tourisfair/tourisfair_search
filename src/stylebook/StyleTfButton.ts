@@ -8,6 +8,7 @@ const defaultBtn: StyleVariantProps<'tf-button'> = {
   data: {
     variant: 'primary',
     state: 'default',
+    size : 'small',
     content: 'Default',
   },
 };

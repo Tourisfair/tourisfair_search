@@ -26,7 +26,7 @@ export interface StyleVariantProps<K extends keyof HTMLElementTagNameMap> {
   name: string;
   description: string;
   tag: K;
-  data: StyleVariantDataProps | StyleVariantDataProps[];
+  data: StyleVariantDataProps;
 }
 
 export interface StyleComponentProps<K extends keyof HTMLElementTagNameMap> {
@@ -196,10 +196,10 @@ export class StyleVariant<
       data
     ) as unknown as StyleVariantDataProps;
     for (const key in parsedData) {
-      variant[key] = parsedData[key];
+      variant.setAttribute(key, parsedData[key]);
     }
     variant.innerHTML += variant.shadowRoot
-      ? variant.content || ''
+      ? variant.getAttribute('content') || ''
       : 'Not defined yet';
     return variant;
   }
@@ -251,8 +251,8 @@ export class StyleVariant<
     this.setAttribute('data', value);
   }
 
-  get tag(): HTMLElementTagNameMap[K] {
-    return this.getAttribute('tag') as HTMLElementTagNameMap[K];
+  get tag(): K {
+    return this.getAttribute('tag') as K;
   }
 
   set tag(value: string) {

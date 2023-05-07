@@ -1,26 +1,26 @@
-import { html, css, tfBase } from './TfBase.js';
+import { html, css, TfBase } from './TfBase.js';
 
 const tfCardDetailsStyle = css``;
 
-export class tfCardDetails extends tfBase {
-   private _url = `https://api.tourisfair.de/api/v1/activities?page=1&limit=10`;
-   data: any;
-   constructor() {
-      super();
-      this.getData();
-      this.render();
-   }
-   async getData() {
-      try {
-         const response = await fetch(this._url);
-         const json = await response.json();
-         this.data = json;
-         console.log(this.data);
-      } catch (error) {
-         console.error(error);
-      }
-   }
-   render() {
+export class TfCardDetails extends TfBase {
+  private _url = 'https://api.tourisfair.de/api/v1/activities?page=1&limit=10';
+  data: any;
+  constructor() {
+    super();
+    this.getData();
+    this.render();
+  }
+  async getData() {
+    try {
+      const response = await fetch(this._url);
+      const json = await response.json();
+      this.data = json;
+      console.log(this.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  render() {
       this.shadowRoot!.innerHTML += html`
          <style>
             ${tfCardDetailsStyle}
@@ -38,37 +38,37 @@ export class tfCardDetails extends tfBase {
             </button>
          </section>
       `;
-   }
+  }
 
-   connectedCallback() {}
+  connectedCallback() {}
 
-   static get observedAttributes() {
-      return ['details', 'budget', 'chip', 'button'];
-   }
+  static get observedAttributes() {
+    return ['details', 'budget', 'chip', 'button'];
+  }
 
-   attributeChangedCallback(name: string, _oldValue: string | null, _newValue: string | null) {
-      const sectionElem = this.shadowRoot!.querySelector('.level')!;
+  attributeChangedCallback(name: string, _oldValue: string | null, _newValue: string | null) {
+    const sectionElem = this.shadowRoot!.querySelector('.level')!;
 
-      if (name === 'details') {
+    if (name === 'details') {
          sectionElem!.innerHTML = this.data.remove(_oldValue!);
          sectionElem!.innerHTML = this.data.add(_newValue!);
-      }
-   }
+    }
+  }
 
-   get details() {
-      return this.getAttribute('details');
-   }
+  get details() {
+    return this.getAttribute('details');
+  }
 
-   set details(value) {
-      this.setAttribute('details', value!);
-   }
+  set details(value) {
+    this.setAttribute('details', value!);
+  }
 }
 //
 
 declare global {
    interface HTMLElementTagNameMap {
-      'tf-card-details': tfCardDetails;
+      'tf-card-details': TfCardDetails;
    }
 }
 
-customElements.define('tf-card-details', tfCardDetails);
+customElements.define('tf-card-details', TfCardDetails);

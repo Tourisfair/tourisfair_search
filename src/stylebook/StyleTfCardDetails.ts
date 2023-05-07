@@ -1,5 +1,13 @@
 import { StyleBook } from './StyleBook.js';
 import { StyleComponentProps } from './StyleComponent.js';
+import { StyleVariantProps } from './StyleVariant.js';
+
+const defaultCardDetails: StyleVariantProps<'tf-card-details'> = {
+  name: 'Default Card Header Image',
+  tag: 'tf-card-details',
+  description: '',
+  data: {},
+};
 
 const meta: StyleComponentProps<'tf-card-details'> = {
   ref: 'tf-card-details',

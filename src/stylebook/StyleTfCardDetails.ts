@@ -7,7 +7,7 @@ const meta: StyleComponentProps<'tf-card-details'> = {
   description:
       'Tourisfair card details are used to display information about an activity or a place.',
   component: 'Tourisfair Card Details',
-  variants: [],
+  variants: [defaultCardDetails],
 };
 
 export const styleTfCardDetails = (styleBook: StyleBook) => styleBook.addComponent(meta);

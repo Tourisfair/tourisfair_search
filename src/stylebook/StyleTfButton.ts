@@ -1,13 +1,15 @@
-import { StyleBook, StyleComponentProps, StyleVariantProps } from './StyleBook';
+import { StyleBook } from './StyleBook.js';
+import { StyleComponentProps } from './StyleComponent.js';
+import { StyleVariantProps } from './StyleVariant.js';
 
 const defaultBtn: StyleVariantProps<'tf-button'> = {
   name: 'Small Default Button',
   tag: 'tf-button',
-  description:
-    'The default button is small, with no icon, and based on the primary variant.',
+  description: 'The default button is small, with no icon, and based on the primary variant.',
   data: {
     variant: 'primary',
     state: 'default',
+    size: 'small',
     content: 'Default',
   },
 };
@@ -138,8 +140,7 @@ const tertiaryDisabled: StyleVariantProps<'tf-button'> = {
 const meta: StyleComponentProps<'tf-button'> = {
   ref: 'tf-button',
   tag: 'tf-button',
-  description:
-    'A generic button with 3 variants: primary, secondary and tertiary.',
+  description: 'A generic button with 3 variants: primary, secondary and tertiary.',
   component: 'Tourisfair Button',
   variants: [
     defaultBtn,
@@ -158,5 +159,4 @@ const meta: StyleComponentProps<'tf-button'> = {
   ],
 };
 
-export const styleTfButton = (styleBook: StyleBook) =>
-  styleBook.addComponent(meta);
+export const styleTfButton = (styleBook: StyleBook) => styleBook.addComponent(meta);

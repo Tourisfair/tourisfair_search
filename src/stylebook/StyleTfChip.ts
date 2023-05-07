@@ -1,4 +1,6 @@
-import { StyleBook, StyleComponentProps, StyleVariantProps } from './StyleBook';
+import { StyleBook } from './StyleBook.js';
+import { StyleComponentProps } from './StyleComponent.js';
+import { StyleVariantProps } from './StyleVariant.js';
 
 const activityChip: StyleVariantProps<'tf-chip'> = {
   name: 'Activity Chip',
@@ -24,10 +26,9 @@ const meta: StyleComponentProps<'tf-chip'> = {
   ref: 'tf-chip',
   tag: 'tf-chip',
   description:
-    'A chip is used to tag an information or title, to give a labelled meaning, to categorize.',
+      'A chip is used to tag an information or title, to give a labelled meaning, to categorize.',
   component: 'Tourisfair Chip',
   variants: [activityChip, poiChip],
 };
 
-export const styleTfChip = (styleBook: StyleBook) =>
-  styleBook.addComponent(meta);
+export const styleTfChip = (styleBook: StyleBook) => styleBook.addComponent(meta);

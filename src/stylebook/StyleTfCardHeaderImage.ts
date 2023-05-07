@@ -1,4 +1,6 @@
-import { StyleBook, StyleComponentProps, StyleVariantProps } from './StyleBook';
+import { StyleBook } from './StyleBook.js';
+import { StyleComponentProps } from './StyleComponent.js';
+import { StyleVariantProps } from './StyleVariant.js';
 
 const defaultCardHeaderImage: StyleVariantProps<'tf-card-header-image'> = {
   name: 'Default Card Header Image',
@@ -12,11 +14,9 @@ const defaultCardHeaderImage: StyleVariantProps<'tf-card-header-image'> = {
 const meta: StyleComponentProps<'tf-card-header-image'> = {
   ref: 'tf-card-header-image',
   tag: 'tf-card-header-image',
-  description:
-    'Tourisfair card header image component, showing the header image of a card.',
+  description: 'Tourisfair card header image component, showing the header image of a card.',
   component: 'Tourisfair Card Header Image',
   variants: [defaultCardHeaderImage],
 };
 
-export const styleTfCardHeaderImage = (styleBook: StyleBook) =>
-  styleBook.addComponent(meta);
+export const styleTfCardHeaderImage = (styleBook: StyleBook) => styleBook.addComponent(meta);

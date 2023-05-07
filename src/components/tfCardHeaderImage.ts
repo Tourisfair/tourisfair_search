@@ -1,47 +1,43 @@
-import { css, html, tfBase } from './tfBase.js';
+import { css, html, TfBase } from './TfBase.js';
 
 const tfCardHeaderImageStyle = css`
-  :host {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
+   :host {
+      display: block;
+      width: 100%;
+      height: 100%;
+   }
 
-  .header-img {
-    max-width: 100%;
-    max-height: 100%;
-    width: 14rem;
-    height: 20rem;
-    background-size: cover;
-    background-position: center;
-  }
+   .header-img {
+      max-width: 100%;
+      max-height: 100%;
+      width: 14rem;
+      height: 20rem;
+      background-size: cover;
+      background-position: center;
+   }
 `;
 
-export class tfCardHeaderImage extends tfBase {
+export class TfCardHeaderImage extends TfBase {
   constructor() {
     super();
-    this.shadowRoot!.innerHTML += html`
-      <style>
-        ${tfCardHeaderImageStyle}
-      </style>
-      <div class="header-img"></div>
-    `;
+    this.shadowRoot &&
+         (this.shadowRoot.innerHTML += html`
+            <style>
+               ${tfCardHeaderImageStyle}
+            </style>
+            <div class="header-img"></div>
+         `);
   }
 
-  connectedCallback() {}
+  // connectedCallback() {}
 
   static get observedAttributes() {
     return ['src'];
   }
 
-  attributeChangedCallback(
-    _name: string,
-    _oldValue: string,
-    _newValue: string
-  ) {
-    const divElem = this.shadowRoot!.querySelector(
-      '.header-img'
-    )! as HTMLElement;
+  attributeChangedCallback(_name: string, _oldValue: string, _newValue: string) {
+    const divElem = this.shadowRoot?.querySelector<HTMLDivElement>('.header-img');
+    if (!divElem) return;
     if (_name === 'src') {
       divElem.style.backgroundImage = `url(${_newValue})`;
     }
@@ -52,14 +48,14 @@ export class tfCardHeaderImage extends tfBase {
   }
 
   set src(value) {
-    this.setAttribute('src', value!);
+    this.setAttribute('src', value ?? '');
   }
 }
 
 declare global {
-  interface HTMLElementTagNameMap {
-    'tf-card-header-image': tfCardHeaderImage;
-  }
+   interface HTMLElementTagNameMap {
+      'tf-card-header-image': TfCardHeaderImage;
+   }
 }
 
-customElements.define('tf-card-header-image', tfCardHeaderImage);
+customElements.define('tf-card-header-image', TfCardHeaderImage);

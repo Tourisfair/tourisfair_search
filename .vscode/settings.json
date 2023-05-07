@@ -1,6 +1,0 @@
-{
-    "liveServer.settings.root": "/public",
-    "liveServer.settings.mount": [
-        ["/dist","./dist"]
-    ]
-}

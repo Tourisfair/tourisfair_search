@@ -1,62 +1,60 @@
-import { html, css, tfBase } from './tfBase.js';
+import { html, css, TfBase } from './TfBase.js';
 
 const tfBudgetStyle = css`
-  .level {
-    color: var(--tf-primary-main);
-    font-weight: bold;
-  }
-  .budget {
-    color: var(--tf-main-disabled);
-    font-weight: bold;
-  }
+   .level {
+      color: var(--tf-sys-light-secondary);
+      font-weight: bold;
+   }
+   .budget {
+      color: var(--tf-main-disabled);
+      font-weight: bold;
+   }
 `;
 
-export class tfBudget extends tfBase {
+export class TfBudget extends TfBase {
   private _currencySymbol = '€';
   constructor() {
     super();
-    this.shadowRoot!.innerHTML += html`
-      <style>
-        ${tfBudgetStyle}
-      </style>
-      <span class="level"> </span><span class="budget"> </span>
-    `;
+    this.shadowRoot &&
+         (this.shadowRoot.innerHTML += html`
+            <style>
+               ${tfBudgetStyle}
+            </style>
+            <span class="level"> </span><span class="budget"> </span>
+         `);
   }
 
-  connectedCallback() {}
+  // connectedCallback() {}
 
   static get observedAttributes() {
     return ['level'];
   }
 
-  attributeChangedCallback(
-    name: string,
-    _oldValue: string | null,
-    _newValue: string | null
-  ) {
-    const levelElem = this.shadowRoot!.querySelector('.level')!;
-    const budgetlElem = this.shadowRoot!.querySelector('.budget')!;
+  attributeChangedCallback(name: string, _oldValue: string, newValue: string): void {
+    const levelElem = this.shadowRoot?.querySelector('.level');
+    const budgetlElem = this.shadowRoot?.querySelector('.budget');
+
+    if (!levelElem || !budgetlElem) return;
+
     if (name === 'level') {
-      levelElem.innerHTML = this._currencySymbol.repeat(parseInt(_newValue!));
-      budgetlElem.innerHTML = this._currencySymbol.repeat(
-        5 - parseInt(_newValue!)
-      );
+      levelElem.innerHTML = this._currencySymbol.repeat(parseInt(newValue));
+      budgetlElem.innerHTML = this._currencySymbol.repeat(5 - parseInt(newValue));
     }
   }
 
   get level() {
-    return this.getAttribute('level');
+    return this.getAttribute('level') || '1';
   }
 
   set level(value) {
-    this.setAttribute('level', value!);
+    this.setAttribute('level', value ?? '1');
   }
 }
 
 declare global {
-  interface HTMLElementTagNameMap {
-    'tf-budget': tfBudget;
-  }
+   interface HTMLElementTagNameMap {
+      'tf-budget': TfBudget;
+   }
 }
 
-customElements.define('tf-budget', tfBudget);
+customElements.define('tf-budget', TfBudget);

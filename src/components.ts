@@ -1,8 +1,8 @@
-export * from './components/tfBadge.js';
-export * from './components/tfBase.js';
-export * from './components/tfBudget.js';
-export * from './components/tfButton.js';
-export * from './components/tfCardDetails.js';//
-export * from './components/tfCardHeaderImage.js';
-export * from './components/tfChip.js';
-export * from './components/tfFavorite.js';
+export * from './components/TfBadge.js';
+export * from './components/TfBase.js';
+export * from './components/TfBudget.js';
+export * from './components/TfButton.js';
+export * from './components/TfCardDetails.js'; //
+export * from './components/TfCardHeaderImage.js';
+export * from './components/TfChip.js';
+export * from './components/TfFavorite.js';

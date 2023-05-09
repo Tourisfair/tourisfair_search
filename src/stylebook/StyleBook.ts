@@ -18,7 +18,7 @@ import { styleTfLogo } from './StyleTfLogo.js';
 import { styleTfMainContainer } from './StyleTfMainContainer.js';
 import { styleTfTextButton } from './StyleTfTextButton.js';
 import { styleTfWelcomeCard } from './StyleTfWelcomeCard.js';
-import { styleTfProgressBar } from './styleTfProgressBar.js';
+import { styleTfProgressBar } from './StyleTfProgressBar.js';
 
 export const styleBookCSS: string = css`
    @import url('https://fonts.cdnfonts.com/css/sf-pro-display');

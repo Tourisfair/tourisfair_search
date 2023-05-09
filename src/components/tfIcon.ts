@@ -1,6 +1,11 @@
 import { css, html, TfBase } from './TfBase.js';
 
 const style = css`
+  :host {
+    display: block;
+    width: fit-content;
+    height: fit-content;
+  }
   .container-icon {
     display: block;
     height: 24px;
@@ -54,8 +59,8 @@ const add = html` <svg
 </svg>`;
 
 const accountCircle = html`<svg
-  width="20"
-  height="20"
+  width="24"
+  height="24"
   viewBox="0 0 20 20"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +85,7 @@ export class tfIcon extends TfBase {
       <style>
         ${style}
       </style>
-      <span class="container-icon">${this.icon}</span>
+      <div class="container-icon">${this.icon}</div>
     `);
   }
 
@@ -93,7 +98,7 @@ export class tfIcon extends TfBase {
     _oldValue: string | null,
     _newValue: string | null
   ) {
-    const span = this.shadowRoot?.querySelector('span');
+    const span = this.shadowRoot?.querySelector('div');
     if (!span) return ;
     if (['icon'].includes(name)) {
       span.innerHTML = this.icon;

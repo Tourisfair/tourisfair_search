@@ -2,34 +2,39 @@ import { html, css, TfBase } from './TfBase.js';
 
 const style = css`
   input {
-    padding: 12px 8px;
+    padding: 12px 0 12px 1rem;
     width: 100%;
   }
 
   label {
     position: absolute;
     top: 50%;
-    left: 8px;
+    left: 1rem;
     transform: translateY(-50%);
     pointer-events: none;
     transition: 0.2s ease all;
   }
 
-  input:focus ~ label {
+  input:focus ~ label,
+  .error ~ label {
     top: -10px;
   }
 
-  .input-icon {
-    padding-left: 40px !important;
-    width: calc(100% - 34px);
-  }
-
   .input-icon ~ label {
-    left: 40px;
+    left: 2.5rem;
   }
 
-  .input-icon:focus ~ label {
-    left: 10px;
+  .input-icon:focus ~ label,
+  .error ~ label {
+    left: 1rem;
+  }
+
+  .error ~ .icon {
+    top : 30%;
+  }
+  .input-icon {
+    padding-left: 2.5rem !important;
+    width: calc(100% - 2.5rem);
   }
 
   .container {
@@ -41,15 +46,17 @@ const style = css`
     top: 50%;
     left: 10px;
     transform: translateY(-50%);
+    color: var(--tf-sys-light-on-primary);
   }
 
   input:focus {
-    border-color: var(--tf-sys-light-primary);
+    outline: none;
+    border-color: var(--tf-sys-light-on-primary);
   }
 
   .default {
     border: 1px solid var(--tf-sys-light-outline);
-    border-radius: 24px;
+    border-radius: 1.5rem;
     background-color: var(--tf-sys-light-primary-container);
   }
 
@@ -60,21 +67,36 @@ const style = css`
 
   .error {
     background-color: var(--tf-syslight-error-container);
+  }
+
+  .error,
+  .error ~ label,
+  .error-message,
+  .error::placeholder,
+  .error ~ .icon {
     color: var(--tf-sys-light-error);
+  }
+
+
+
+  .error-message {
+    margin-left: 1rem;
+    margin-top: 0.5rem;
   }
 `;
 
 export class TfInputText extends TfBase {
   constructor() {
     super();
-    this.shadowRoot &&
+    this.shadowRoot && 
     (this.shadowRoot.innerHTML += html`
       <style>
         ${style}
       </style>
       <div class="container">
         <input type="text" class="default input-icon" />
-        <label></label>
+        <label><slot name="label"></slot></label>
+        <div class="error-message"><slot name="error"></slot></div>
       </div>
     `);
   }
@@ -104,7 +126,7 @@ export class TfInputText extends TfBase {
       if (this.icon === 'true') {
         console.log(this.pictogramme);
         input?.insertAdjacentHTML(
-          'beforebegin',
+          'afterend',
           `<tf-icon icon="${this.pictogramme}" class="icon"></tf-icon>`
         );
         input?.classList.add('input-icon');

@@ -1,0 +1,43 @@
+import { css, html, tfBase } from "./tfBase.js";
+
+const style = css`
+  
+
+  ::slotted(img) {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    border: 0.2rem solid #ffff;
+  }
+
+  .swiper-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+`;
+
+export class TfCitySwiperItem extends tfBase {
+  constructor() {
+    super();
+    this.shadowRoot!.innerHTML += html`
+      <style>
+        ${style}
+      </style>
+      <div class="swiper-item">
+        <slot name="image"></slot>
+        <slot name="title"></slot>
+      </div>
+    `;
+  }
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "tf-city-swiper-item": TfCitySwiperItem;
+  }
+}
+
+customElements.define("tf-city-swiper-item", TfCitySwiperItem);

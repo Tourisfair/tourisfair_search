@@ -7,7 +7,7 @@ export const css = (strings: TemplateStringsArray, ...values: string[]) =>
 const style = css`
   * {
     --tf-sys-light-primary: #00aae3;
-    --tf-sys-light-onprimary: #250127;
+    --tf-sys-light-on-primary: #250127;
     --tf-sys-light-primary-container: #c2e8ff;
     --tf-ref-primary-primary90: #c2e8ff;
     --tf-ref-primary-primary10: #001e2c;
@@ -34,7 +34,7 @@ const style = css`
 
   .primary {
     background-color: var(--tf-sys-light-primary);
-    color: var(--tf-sys-light-onprimary);
+    color: var(--tf-sys-light-on-primary);
   }
 
   .secondary {

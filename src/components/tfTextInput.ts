@@ -99,22 +99,26 @@ export class TfInputText extends tfBase {
         label!.textContent = this.label;
         break;
 
-      case "icon":
+      case "pictogramme":
         if (this.icon === "true") {
+          console.log(this.pictogramme);
           input!.insertAdjacentHTML(
             "beforebegin",
             `<tf-icon icon="${this.pictogramme}" class="icon"></tf-icon>`
           );
           input!.classList.add("input-icon");
-        } else if (this.icon === "false") {
+        }
+        
+      case "icon":
+        if (this.icon === "false") {
           const icon = this.shadowRoot!.querySelector(".icon");
           icon?.remove();
           input!.classList.remove("input-icon");
         }
+
         break;
     }
   }
-
 
   get icon() {
     return this.getAttribute("icon") || "false";

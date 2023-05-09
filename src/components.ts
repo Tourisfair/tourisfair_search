@@ -15,3 +15,5 @@ export * from './components/tfWelcomeCard.js';
 export * from './components/tfIcon.js';
 export * from './components/tfTextInput.js';
 export * from './components/tfHomeCard.js';
+export * from './components/tfCitySwiper.js';
+export * from './components/tfCitySwiperItem.js';

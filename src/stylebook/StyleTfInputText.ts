@@ -7,7 +7,7 @@ const tfInputTextIconDefault: StyleVariantProps<"tf-input-text"> = {
   data: {
     icon: "true",
     status: "default",
-    pictogramme: "account_circle",
+    pictogramme: "account-circle",
     content: "default",
     label: "default",
   },
@@ -32,7 +32,7 @@ const tfInputTextIconDisabled: StyleVariantProps<"tf-input-text"> = {
   data: {
     icon: "true",
     status: "disabled",
-    pictogramme: "",
+    pictogramme: "account-circle",
     content: "default",
     label: "default",
   },
@@ -57,7 +57,7 @@ const tfInputTextIconError: StyleVariantProps<"tf-input-text"> = {
   data: {
     icon: "true",
     status: "error",
-    pictogramme: "",
+    pictogramme: "account-circle",
     content: "default",
     label: "default",
   },

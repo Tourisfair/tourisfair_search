@@ -57,7 +57,7 @@ export class TfWelcomeCard extends tfBase {
         <div class="welcome-card__actions">
           <tf-button variant="primary" size="medium" class="action-button transform"/>Next</tf-button>
           <tf-text-button
-          suffix-icon="<tf-icon icon='arrow-forward-ios'></tf-icon>"
+          suffix-icon='<tf-icon icon="arrow-forward-ios"></tf-icon>'
           >Skip</tf-text-button>
           
         </div>

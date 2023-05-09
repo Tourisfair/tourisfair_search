@@ -1,111 +1,109 @@
-import { css, html, tfBase } from "./tfBase.js";
+import { css, html, TfBase } from './TfBase.js';
 
 const style = css`
-  :host {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
+   :host {
+      display: block;
+      width: 100%;
+      height: 100%;
+   }
 
-  .swiper-container {
-    position: relative;
-  }
+   .swiper-container {
+      position: relative;
+   }
 
-  .swiper-img {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    position: relative;
-    transition: all 0.5s ease-in-out;
-  }
+   .swiper-img {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      position: relative;
+      transition: all 0.5s ease-in-out;
+   }
 
-  .swiper-img::-webkit-scrollbar {
-    display: none;
-  }
+   .swiper-img::-webkit-scrollbar {
+      display: none;
+   }
 
-  
+   ::slotted(div > img) {
+      width: 8rem;
+      height: 8rem;
+      border-radius: 50%;
+      border: 0.2rem solid #ffff;
+   }
 
-  ::slotted(div > img) {
-    width: 8rem;
-    height: 8rem;
-    border-radius: 50%;
-    border: 0.2rem solid #ffff;
-  }
+   .button {
+      background-color: #ffff;
+      border-radius: 50%;
+      margin: auto;
+      border: none;
+      width: fit-content;
+      height: fit-content;
+      padding: 1px;
+      z-index: 2;
+   }
 
-  .button {
-    background-color: #ffff;
-    border-radius: 50%;
-    margin: auto;
-    border: none;
-    width: fit-content;
-    height: fit-content;
-    padding: 1px;
-    z-index: 2;
-  }
+   .back-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+   }
 
-  .back-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .next-button {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-  }
+   .next-button {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+   }
 `;
 
-export class TfCitySwiper extends tfBase {
+export class TfCitySwiper extends TfBase {
   constructor() {
     super();
-    this.shadowRoot!.innerHTML += html`
-      <style>
-        ${style}
-      </style>
-      <section class="swiper-container">
-        <button class="back-button button" id="slideLeft">
-        <tf-icon icon="arrow-back-ios"></tf-icon>
-        </button>
-        <div class="swiper-img">
-          <slot></slot>
-        </div>
-        <button class="next-button button" id="slideRight">
-          <tf-icon icon="arrow-forward-ios"></tf-icon>
-        </button>
-      </section>
-    `;
+    this.shadowRoot &&
+         (this.shadowRoot.innerHTML += html`
+            <style>
+               ${style}
+            </style>
+            <section class="swiper-container">
+               <button class="back-button button" id="slideLeft">
+                  <tf-icon icon="arrow-back-ios"></tf-icon>
+               </button>
+               <div class="swiper-img">
+                  <slot></slot>
+               </div>
+               <button class="next-button button" id="slideRight">
+                  <tf-icon icon="arrow-forward-ios"></tf-icon>
+               </button>
+            </section>
+         `);
   }
 
   connectedCallback() {
-    const slideLeft = this.shadowRoot!.querySelector("#slideLeft");
-    const slideRight = this.shadowRoot!.querySelector("#slideRight");
+    const slideLeft = this.shadowRoot?.querySelector('#slideLeft');
+    const slideRight = this.shadowRoot?.querySelector('#slideRight');
 
-    slideLeft!.addEventListener("click", () => {
-      this.shadowRoot!.querySelector(".swiper-img")!.scrollBy({
+    slideLeft?.addEventListener('click', () => {
+      this.shadowRoot?.querySelector('.swiper-img')?.scrollBy({
         left: -200,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
     });
 
-    slideRight!.addEventListener("click", () => {
-      this.shadowRoot!.querySelector(".swiper-img")!.scrollBy({
+    slideRight?.addEventListener('click', () => {
+      this.shadowRoot?.querySelector('.swiper-img')?.scrollBy({
         left: 200,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
     });
   }
 }
-
 
 declare global {
-  interface HTMLElementTagNameMap {
-    "tf-city-swiper": TfCitySwiper;
-  }
+   interface HTMLElementTagNameMap {
+      'tf-city-swiper': TfCitySwiper;
+   }
 }
 
-customElements.define("tf-city-swiper", TfCitySwiper);
+customElements.define('tf-city-swiper', TfCitySwiper);

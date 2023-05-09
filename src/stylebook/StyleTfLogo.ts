@@ -1,4 +1,6 @@
-import { StyleBook, StyleComponentProps, StyleVariantProps } from './StyleBook';
+import { StyleBook } from './StyleBook.js';
+import { StyleComponentProps } from './StyleComponent.js';
+import { StyleVariantProps } from './StyleVariant.js';
 
 const defaultLogo: StyleVariantProps<'tf-logo'> = {
   name: 'default logo',
@@ -70,14 +72,10 @@ const mantraMonoLogo: StyleVariantProps<'tf-logo'> = {
   },
 };
 
-
-
-
 const meta: StyleComponentProps<'tf-logo'> = {
   ref: 'tf-logo',
   tag: 'tf-logo',
-  description:
-    "Tourisfair Logo component",
+  description: 'Tourisfair Logo component',
   component: 'Logo Tourisfair',
   variants: [
     defaultLogo,
@@ -90,5 +88,4 @@ const meta: StyleComponentProps<'tf-logo'> = {
   ],
 };
 
-export const styleTfLogo = (styleBook: StyleBook) =>
-  styleBook.addComponent(meta);
+export const styleTfLogo = (styleBook: StyleBook) => styleBook.addComponent(meta);

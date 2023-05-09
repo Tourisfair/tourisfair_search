@@ -1,4 +1,4 @@
-import { html, css, tfBase } from "./tfBase.js";
+import { html, css, TfBase } from './TfBase.js';
 
 const style = css`
   input {
@@ -64,10 +64,11 @@ const style = css`
   }
 `;
 
-export class TfInputText extends tfBase {
+export class TfInputText extends TfBase {
   constructor() {
     super();
-    this.shadowRoot!.innerHTML += html`
+    this.shadowRoot &&
+    (this.shadowRoot.innerHTML += html`
       <style>
         ${style}
       </style>
@@ -75,88 +76,80 @@ export class TfInputText extends tfBase {
         <input type="text" class="default input-icon" />
         <label></label>
       </div>
-    `;
+    `);
   }
-
-  connectedCallback() {}
 
   static get observedAttributes() {
-    return ["icon", "status", "pictogramme", "label"];
+    return ['icon', 'status', 'pictogramme', 'label'];
   }
 
-  attributeChangedCallback(name: String, _oldValue: String, _newValue: String) {
-    const input = this.shadowRoot!.querySelector("input");
-    const label = this.shadowRoot!.querySelector("label");
+  attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
+    const input = this.shadowRoot?.querySelector('input');
+    const label = this.shadowRoot?.querySelector('label');
+
+    if (!input || !label) return;
 
     switch (name) {
-      case "status":
-        input!.classList.toggle(this.status, true);
-        input!.disabled = this.status === "disabled";
-        break;
+    case 'status':
+      input?.classList.toggle(this.status, true);
+      input.disabled = this.status === 'disabled';
+      break;
 
-      case "label":
-        label!.classList.toggle("label", true);
-        label!.textContent = this.label;
-        break;
+    case 'label':
+      label?.classList.toggle('label', true);
+      label.textContent = this.label;
+      break;
 
-      case "pictogramme":
-        if (this.icon === "true") {
-          console.log(this.pictogramme);
-          input!.insertAdjacentHTML(
-            "beforebegin",
-            `<tf-icon icon="${this.pictogramme}" class="icon"></tf-icon>`
-          );
-          input!.classList.add("input-icon");
-        }
-        
-      case "icon":
-        if (this.icon === "false") {
-          const icon = this.shadowRoot!.querySelector(".icon");
-          icon?.remove();
-          input!.classList.remove("input-icon");
-        }
-
-        break;
+    case 'pictogramme':
+      if (this.icon === 'true') {
+        console.log(this.pictogramme);
+        input?.insertAdjacentHTML(
+          'beforebegin',
+          `<tf-icon icon="${this.pictogramme}" class="icon"></tf-icon>`
+        );
+        input?.classList.add('input-icon');
+      }
+      break;
     }
   }
 
   get icon() {
-    return this.getAttribute("icon") || "false";
+    return this.getAttribute('icon') || 'false';
   }
 
   set icon(value) {
-    this.setAttribute("icon", value);
+    this.setAttribute('icon', value);
   }
 
   get status() {
-    return this.getAttribute("status") || "default";
+    return this.getAttribute('status') || 'default';
   }
 
   set status(value) {
-    this.setAttribute("status", value);
+    this.setAttribute('status', value);
   }
 
   get pictogramme() {
-    return this.getAttribute("pictogramme") || "arrow-forward-ios";
+    return this.getAttribute('pictogramme') || 'arrow-forward-ios';
   }
 
   set pictogramme(value) {
-    this.setAttribute("pictogramme", value);
+    this.setAttribute('pictogramme', value);
   }
 
   get label() {
-    return this.getAttribute("label") || "";
+    return this.getAttribute('label') || '';
   }
 
   set label(value) {
-    this.setAttribute("label", value);
+    this.setAttribute('label', value);
   }
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    "tf-input-text": TfInputText;
+    'tf-input-text': TfInputText;
   }
 }
 
-customElements.define("tf-input-text", TfInputText);
+customElements.define('tf-input-text', TfInputText);

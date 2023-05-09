@@ -1,54 +1,55 @@
-import { StyleBook, StyleComponentProps, StyleVariantProps } from "./StyleBook";
+import { StyleBook } from './StyleBook.js';
+import { StyleComponentProps } from './StyleComponent.js';
+import { StyleVariantProps } from './StyleVariant.js';
 
-const welcomeCardFirst: StyleVariantProps<"tf-welcome-card"> = {
-  name: "first step",
-  tag: "tf-welcome-card",
-  description: " Indicate the first step of a welcome card.",
+const welcomeCardFirst: StyleVariantProps<'tf-welcome-card'> = {
+  name: 'first step',
+  tag: 'tf-welcome-card',
+  description: ' Indicate the first step of a welcome card.',
   data: {
     content: `
     <h1 slot="title">Title </h1>
       <p slot="content">
         Content inside your card. First step
       </p>`,
-    step: "first",
+    step: 'first',
   },
 };
 
-const welcomeCardIntermediate: StyleVariantProps<"tf-welcome-card"> = {
-  name: "intermediate step",
-  tag: "tf-welcome-card",
-  description: " Indicate the intermediate step of a welcome card.",
+const welcomeCardIntermediate: StyleVariantProps<'tf-welcome-card'> = {
+  name: 'intermediate step',
+  tag: 'tf-welcome-card',
+  description: ' Indicate the intermediate step of a welcome card.',
   data: {
     content: `
     <h1 slot="title">Title </h1>
       <p slot="content">
         Content inside your card. Intermediate step
       </p>`,
-    step: "intermediate",
+    step: 'intermediate',
   },
 };
 
-const welcomeCardFinal: StyleVariantProps<"tf-welcome-card"> = {
-  name: "final step",
-  tag: "tf-welcome-card",
-  description: " Indicate the final step of a welcome card.",
+const welcomeCardFinal: StyleVariantProps<'tf-welcome-card'> = {
+  name: 'final step',
+  tag: 'tf-welcome-card',
+  description: ' Indicate the final step of a welcome card.',
   data: {
     content: `
     <h1 slot="title">Title </h1>
       <p slot="content">
         Content inside your card. Final step
       </p>`,
-    step: "final",
+    step: 'final',
   },
 };
 
-const meta: StyleComponentProps<"tf-welcome-card"> = {
-  ref: "tf-welcome-card",
-  tag: "tf-welcome-card",
-  description: "Indicate the current step of a welcome card.",
-  component: "Tourisfair Welcome Card",
+const meta: StyleComponentProps<'tf-welcome-card'> = {
+  ref: 'tf-welcome-card',
+  tag: 'tf-welcome-card',
+  description: 'Indicate the current step of a welcome card.',
+  component: 'Tourisfair Welcome Card',
   variants: [welcomeCardFirst, welcomeCardIntermediate, welcomeCardFinal],
 };
 
-export const styleTfWelcomeCard = (styleBook: StyleBook) =>
-  styleBook.addComponent(meta);
+export const styleTfWelcomeCard = (styleBook: StyleBook) => styleBook.addComponent(meta);

@@ -1,4 +1,4 @@
-import { css, html, tfBase } from "./tfBase.js";
+import { css, html, TfBase } from './TfBase.js';
 
 const style = css`
   .container-icon {
@@ -9,10 +9,10 @@ const style = css`
 `;
 
 interface tfIconNameMap {
-  "arrow-forward-ios": typeof arrowForwardIos;
-  "arrow-back-ios": typeof arrowBackIos;
+  'arrow-forward-ios': typeof arrowForwardIos;
+  'arrow-back-ios': typeof arrowBackIos;
   add: typeof add;
-  "account-circle": typeof accountCircle;
+  'account-circle': typeof accountCircle;
 }
 
 const arrowForwardIos = html`<svg
@@ -65,28 +65,27 @@ const accountCircle = html`<svg
     fill="currentColor"
   />
 </svg> `;
-export class tfIcon extends tfBase {
+export class tfIcon extends TfBase {
   private _icon: tfIconNameMap = {
-    "arrow-forward-ios": arrowForwardIos,
-    "arrow-back-ios": arrowBackIos,
+    'arrow-forward-ios': arrowForwardIos,
+    'arrow-back-ios': arrowBackIos,
     add: add,
-    "account-circle": accountCircle,
+    'account-circle': accountCircle,
   };
 
   constructor() {
     super();
-    this.shadowRoot!.innerHTML = html`
+    this.shadowRoot && 
+    (this.shadowRoot.innerHTML = html`
       <style>
         ${style}
       </style>
       <span class="container-icon">${this.icon}</span>
-    `;
+    `);
   }
 
-  connectedCallback() {}
-
   static get observedAttributes() {
-    return ["icon"];
+    return ['icon'];
   }
 
   attributeChangedCallback(
@@ -94,28 +93,29 @@ export class tfIcon extends tfBase {
     _oldValue: string | null,
     _newValue: string | null
   ) {
-    if (["icon"].includes(name)) {
-      const span = this.shadowRoot!.querySelector("span");
-      span!.innerHTML = this.icon;
+    const span = this.shadowRoot?.querySelector('span');
+    if (!span) return ;
+    if (['icon'].includes(name)) {
+      span.innerHTML = this.icon;
     }
   }
 
   get icon() {
     return (
-      this._icon[this.getAttribute("icon") as keyof tfIconNameMap] ||
-      this._icon["add" as keyof tfIconNameMap]
+      this._icon[this.getAttribute('icon') as keyof tfIconNameMap] ||
+      this._icon['add' as keyof tfIconNameMap]
     );
   }
 
   set icon(value: tfIconNameMap[keyof tfIconNameMap]) {
-    this.setAttribute("icon", value);
+    this.setAttribute('icon', value);
   }
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    "tf-icon": tfIcon;
+    'tf-icon': tfIcon;
   }
 }
 
-customElements.define("tf-icon", tfIcon);
+customElements.define('tf-icon', tfIcon);

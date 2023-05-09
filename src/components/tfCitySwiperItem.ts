@@ -1,4 +1,4 @@
-import { css, html, tfBase } from "./tfBase.js";
+import { css, html, TfBase } from './TfBase.js';
 
 const style = css`
   
@@ -19,10 +19,11 @@ const style = css`
   }
 `;
 
-export class TfCitySwiperItem extends tfBase {
+export class TfCitySwiperItem extends TfBase {
   constructor() {
     super();
-    this.shadowRoot!.innerHTML += html`
+    this.shadowRoot &&
+    (this.shadowRoot.innerHTML += html`
       <style>
         ${style}
       </style>
@@ -30,14 +31,14 @@ export class TfCitySwiperItem extends tfBase {
         <slot name="image"></slot>
         <slot name="title"></slot>
       </div>
-    `;
+    `);
   }
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    "tf-city-swiper-item": TfCitySwiperItem;
+    'tf-city-swiper-item': TfCitySwiperItem;
   }
 }
 
-customElements.define("tf-city-swiper-item", TfCitySwiperItem);
+customElements.define('tf-city-swiper-item', TfCitySwiperItem);

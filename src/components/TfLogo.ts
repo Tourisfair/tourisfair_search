@@ -164,26 +164,21 @@ const logoMantraInverted = html`<svg
    </defs>
 </svg> `;
 
-interface tfLogoNameMap {
-   'alone-default': typeof logoAlone;
-   'text-color': typeof logoTextColor;
-   'text-monochrome': typeof logoTextMonochrome;
-   'text-inverted': typeof logoTextInverted;
-   'mantra-color': typeof logoMantraColor;
-   'mantra-monochrome': typeof logoMantraMonochrome;
-   'mantra-inverted': typeof logoMantraInverted;
+interface TfLogoNameMap {
+   [key: string]: string;
 }
 
+const tfLogoNameMap: TfLogoNameMap = {
+  'alone-default': logoAlone,
+  'text-color': logoTextColor,
+  'text-monochrome': logoTextMonochrome,
+  'text-inverted': logoTextInverted,
+  'mantra-color': logoMantraColor,
+  'mantra-monochrome': logoMantraMonochrome,
+  'mantra-inverted': logoMantraInverted,
+};
+
 export class TfLogo extends TfBase {
-  private _logo: tfLogoNameMap = {
-    'alone-default': logoAlone,
-    'text-color': logoTextColor,
-    'text-monochrome': logoTextMonochrome,
-    'text-inverted': logoTextInverted,
-    'mantra-color': logoMantraColor,
-    'mantra-monochrome': logoMantraMonochrome,
-    'mantra-inverted': logoMantraInverted,
-  };
 
   constructor() {
     super();
@@ -229,11 +224,10 @@ export class TfLogo extends TfBase {
   }
 
   get logo() {
-    const logoName = `${this.variant}-${this.color}` as keyof tfLogoNameMap;
-    return this._logo[logoName];
+    return tfLogoNameMap[this.variant + '-' + this.color] || tfLogoNameMap['alone-default'];
   }
 
-  set logo(value: tfLogoNameMap[keyof tfLogoNameMap]) {
+  set logo(value: TfLogoNameMap[keyof TfLogoNameMap]) {
     this.setAttribute('logo', value);
   }
 }

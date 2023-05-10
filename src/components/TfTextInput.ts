@@ -124,7 +124,6 @@ export class TfInputText extends TfBase {
 
     case 'pictogramme':
       if (this.icon === 'true') {
-        console.log(this.pictogramme);
         input?.insertAdjacentHTML(
           'afterend',
           `<tf-icon icon="${this.pictogramme}" class="icon"></tf-icon>`

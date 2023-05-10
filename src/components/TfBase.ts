@@ -6,6 +6,7 @@ export const css = (strings: TemplateStringsArray, ...values: string[]) =>
 
 const style = css`
    * {
+      --tf-sys-light-tertiary : #FFB030;
       --tf-sys-light-primary: #00aae3;
       --tf-sys-light-onprimary: #250127;
       --tf-sys-light-primary-container: #c2e8ff;

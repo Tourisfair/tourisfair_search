@@ -19,6 +19,8 @@ import { styleTfMainContainer } from './StyleTfMainContainer.js';
 import { styleTfTextButton } from './StyleTfTextButton.js';
 import { styleTfWelcomeCard } from './StyleTfWelcomeCard.js';
 import { styleTfProgressBar } from './StyleTfProgressBar.js';
+import { styleTfNavigationItem } from './StyleNavigationItem.js';
+import { styleTfNavigationBar } from './StyleTfNavigationBar.js';
 
 export const styleBookCSS: string = css`
    @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
@@ -171,6 +173,8 @@ customElements.define('style-book', StyleBook);
  */
 
 const styleBook = document.createElement('style-book') as StyleBook;
+styleTfNavigationBar(styleBook);
+styleTfNavigationItem(styleBook);
 styleTfInputText(styleBook);
 styleTfCitySwiperItem(styleBook);
 styleTfCitySwiper(styleBook);

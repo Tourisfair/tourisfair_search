@@ -21,20 +21,26 @@ const style = css`
   }
 
   .input-icon ~ label {
-    left: 2.5rem;
+    left: 3rem;
   }
 
   .input-icon:focus ~ label,
   .error ~ label {
-    left: 1rem;
+    left: 2rem;
   }
+
+  .keep-focus ~ label {
+      top: -10px;
+      left: 2rem;
+   }
 
   .error ~ .icon {
     top : 30%;
   }
+
   .input-icon {
-    padding-left: 2.5rem !important;
-    width: calc(100% - 2.5rem);
+    padding-left: 3rem !important;
+    width: calc(100% - 3rem);
   }
 
   .container {
@@ -44,7 +50,7 @@ const style = css`
   .icon {
     position: absolute;
     top: 50%;
-    left: 10px;
+    left: 1rem;
     transform: translateY(-50%);
     color: var(--tf-sys-light-on-primary);
   }
@@ -101,6 +107,18 @@ export class TfInputText extends TfBase {
     `);
   }
 
+  connectedCallback() {
+    const input = this.shadowRoot?.querySelector('input');
+    if(!input) return;
+    input.addEventListener('change', () => {
+      if (input.value.length > 0) {
+        input.classList.add('keep-focus');
+      }else{
+        input.classList.remove('keep-focus');
+      }
+    });
+  }
+
   static get observedAttributes() {
     return ['icon', 'status', 'pictogramme', 'label'];
   }
@@ -113,13 +131,13 @@ export class TfInputText extends TfBase {
 
     switch (name) {
     case 'status':
-      input?.classList.toggle(this.status, true);
-      input.disabled = this.status === 'disabled';
+      input?.classList.toggle(_newValue, true);
+      input.disabled = _newValue === 'disabled';
       break;
 
     case 'label':
-      label?.classList.toggle('label', true);
-      label.textContent = this.label;
+      label?.classList.toggle(_newValue, true);
+      label.textContent = _newValue;
       break;
 
     case 'pictogramme':

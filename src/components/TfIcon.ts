@@ -133,6 +133,20 @@ const lock = html`<svg
       fill="currentColor"
    />
 </svg> `;
+
+const check = html`<style>
+<svg
+   width="currentWidth"
+   height="currentHeight"
+   viewBox="0 0 24 24"
+   fill="none"
+   xmlns="http://www.w3.org/2000/svg"
+>
+   <path
+      d="M8.79506 15.875L5.32506 12.405C4.93506 12.015 4.30506 12.015 3.91506 12.405C3.52506 12.795 3.52506 13.425 3.91506 13.815L8.09506 17.995C8.48506 18.385 9.11506 18.385 9.50506 17.995L20.0851 7.41502C20.4751 7.02502 20.4751 6.39502 20.0851 6.00502C19.6951 5.61502 19.0651 5.61502 18.6751 6.00502L8.79506 15.875Z"
+      fill="currentColor"
+   />
+</svg> `;
 interface TfIconNameMap {
    [key: string]: string;
 }
@@ -148,12 +162,13 @@ export const tfIconNameMap: TfIconNameMap = {
   lock: lock,
   visibility: visibility,
   'visibility-off': visibilityOff,
+  check: check,
 };
-export class tfIcon extends TfBase {
+export class TfIcon extends TfBase {
   constructor() {
     super();
     this.shadowRoot &&
-         (this.shadowRoot.innerHTML = html`
+         (this.shadowRoot.innerHTML += html`
             <style>
                ${style}
             </style>
@@ -188,8 +203,8 @@ export class tfIcon extends TfBase {
 
 declare global {
    interface HTMLElementTagNameMap {
-      'tf-icon': tfIcon;
+      'tf-icon': TfIcon;
    }
 }
 
-customElements.define('tf-icon', tfIcon);
+customElements.define('tf-icon', TfIcon);

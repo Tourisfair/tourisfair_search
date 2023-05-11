@@ -1,5 +1,5 @@
-import { css, html } from '../components/TfBase.js';
 import { StyleComponent, StyleComponentProps } from './StyleComponent.js';
+import { css, html } from '../components/TfBase.js';
 import { styleTfBadge } from './StyleTfBadge.js';
 import { styleTfBudget } from './StyleTfBudget.js';
 import { styleTfButton } from './StyleTfButton.js';
@@ -23,6 +23,7 @@ import { styleTfNavigationItem } from './StyleNavigationItem.js';
 import { styleTfNavigationBar } from './StyleTfNavigationBar.js';
 import { styleTfInputPassword } from './StyleTfInputPassword.js';
 import { styleTfLogoNotch } from './StyleTfLogoNotch.js';
+import { styleTfCheckbox } from './StyleCheckbox.js';
 
 export const styleBookCSS: string = css`
    @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
@@ -175,6 +176,7 @@ customElements.define('style-book', StyleBook);
  */
 
 const styleBook = document.createElement('style-book') as StyleBook;
+styleTfCheckbox(styleBook);
 styleTfLogoNotch(styleBook);
 styleTfInputPassword(styleBook);
 styleTfNavigationBar(styleBook);

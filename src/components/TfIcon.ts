@@ -134,7 +134,7 @@ const lock = html`<svg
    />
 </svg> `;
 
-const check = html`<style>
+const check = html`
 <svg
    width="currentWidth"
    height="currentHeight"

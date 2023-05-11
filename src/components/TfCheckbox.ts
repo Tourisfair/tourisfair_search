@@ -86,7 +86,6 @@ export class TfCheckbox extends TfBase {
 
       if(newValue === 'disabled') {
         inputElem?.setAttribute('disabled', '');
-        this.colorCheckChange('var(--tf-sys-light-outline)');
       }
     
       break;
@@ -101,8 +100,8 @@ export class TfCheckbox extends TfBase {
   }
 
 
-  colorCheckChange(color = 'currentColor') {
-    const newSvg =  this.svg.replace('currentColor', '#ffff');
+  colorCheckChange() {
+    const newSvg =  this.svg;
 
     style += css`
          input[type='checkbox']::before {

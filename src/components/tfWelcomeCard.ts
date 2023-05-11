@@ -7,7 +7,7 @@ const style = css`
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      background-color: var(--tf-neutral-95);
+      background-color: var(--tf-ref-neutral-neutral95);
       border-radius: 32px;
       padding: 16px;
    }

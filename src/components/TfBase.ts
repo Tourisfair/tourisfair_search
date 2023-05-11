@@ -6,37 +6,35 @@ export const css = (strings: TemplateStringsArray, ...values: string[]) =>
 
 const style = css`
    * {
-      --tf-sys-light-tertiary : #FFB030;
-      --tf-sys-light-primary: #00aae3;
-      --tf-sys-light-onprimary: #250127;
       --tf-sys-light-primary-container: #c2e8ff;
-      --tf-sys-light-secondary: #ff805e;
-      --tf-sys-light-onsecondary: #250127;
       --tf-sys-light-secondary-container: #ffdacf;
-      --tf-sys-light-tertiary: #ffb030;
-      --tf-sys-light-ontertiary: #250127;
       --tf-sys-light-tertiary-container: #ffddb0;
-      --tf-ref-primary-primary90: #c2e8ff;
-      --tf-ref-primary-primary10: #001e2c;
+      --tf-sys-light-error-container: #ffdad4;
+      --tf-sys-light-onprimary: #250127;
+      --tf-sys-light-onsecondary: #250127;
+      --tf-sys-light-ontertiary: #250127;
+      --tf-sys-light-primary: #00aae3;
+      --tf-sys-light-secondary: #ff805e;
+      --tf-sys-light-tertiary : #FFB030;
+      --tf-sys-light-error: #ba1b1b;
+      --tf-sys-light-surface-variant: #d4d4d4;
+      --tf-sys-light-surface: #fbfdfd;
+      --tf-sys-light-outline: #71787d;
       --tf-onprimary-main: #f9f9f8;
-      --tf-secondary-main: #f2bf41;
       --tf-onsecondary-main: #f9f9f8;
-      --tf-tertiary-main: #4ca7de;
       --tf-ontertiary-main: #f9f9f8;
+      --tf-secondary-main: #f2bf41;
+      --tf-tertiary-main: #4ca7de;
       --tf-main-main: #012e4a;
       --tf-main-variant: #505050;
       --tf-main-disabled: #c4c4c4;
+      --tf-background-main: #ffffff;
+      --tf-background-main: #f3f3f3;
       --tf-ref-green: #56a359;
       --tf-ref-white-25: #ffffff;
-      --tf-background-main: #ffffff;
-      --tf-neutral-95: #eff1f1;
-      --tf-background-main: #f3f3f3;
-      --tf-sys-light-outline: #71787d;
-      --tf-sys-light-surface-variant: #d4d4d4;
-      --tf-syslight-error-container: #ffdad4;
-      --tf-sys-light-error: #ba1b1b;
-      --tf-sys-light-surface: #fbfdfd;
-      --tf-sys-light-surface-variant: #d4d4d4;
+      --tf-ref-neutral-neutral95: #eff1f1;
+      --tf-ref-primary-primary90: #c2e8ff;
+      --tf-ref-primary-primary10: #001e2c;
    }
 
    .primary {

@@ -20,3 +20,4 @@ export * from './components/TfCitySwiperItem.js';
 export * from './components/TfNavigationItem.js';
 export * from './components/TfNavigationBar.js';
 export * from './components/TfPasswordInput.js';
+export * from './components/TfLogoNotch.js';

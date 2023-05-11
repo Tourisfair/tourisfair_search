@@ -72,7 +72,7 @@ const style = css`
   }
 
   .error {
-    background-color: var(--tf-syslight-error-container);
+    background-color: var(--tf-sys-light-error-container);
   }
 
   .error,

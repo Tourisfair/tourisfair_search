@@ -9,8 +9,8 @@ const style = css`
 `;
 
 const logoAlone = html`<svg
-   width="656"
-   height="373"
+   width="100%"
+   height="100%"
    viewBox="0 0 656 373"
    fill="none"
    xmlns="http://www.w3.org/2000/svg"
@@ -31,8 +31,8 @@ const logoAlone = html`<svg
 </svg> `;
 
 const logoTextColor = html`<svg
-   width="656"
-   height="373"
+   width="100%"
+   height="100%"
    viewBox="0 0 656 373"
    fill="none"
    xmlns="http://www.w3.org/2000/svg"
@@ -53,8 +53,8 @@ const logoTextColor = html`<svg
 </svg> `;
 
 const logoTextMonochrome = html`<svg
-   width="656"
-   height="373"
+   width="100%"
+   height="100%"
    viewBox="0 0 656 373"
    fill="none"
    xmlns="http://www.w3.org/2000/svg"
@@ -75,8 +75,8 @@ const logoTextMonochrome = html`<svg
 </svg>`;
 
 const logoTextInverted = html`<svg
-   width="656"
-   height="373"
+   width="100%"
+   height="100%"
    viewBox="0 0 656 373"
    fill="none"
    xmlns="http://www.w3.org/2000/svg"
@@ -97,8 +97,8 @@ const logoTextInverted = html`<svg
 </svg> `;
 
 const logoMantraColor = html`<svg
-   width="656"
-   height="373"
+   width="100%"
+   height="100%"
    viewBox="0 0 656 373"
    fill="none"
    xmlns="http://www.w3.org/2000/svg"
@@ -120,8 +120,8 @@ const logoMantraColor = html`<svg
 
 const logoMantraMonochrome = html`
    <svg
-      width="656"
-      height="373"
+      width="100%"
+      height="100%"
       viewBox="0 0 656 373"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -143,8 +143,8 @@ const logoMantraMonochrome = html`
 `;
 
 const logoMantraInverted = html`<svg
-   width="656"
-   height="373"
+   width="100%"
+   height="100%"
    viewBox="0 0 656 373"
    fill="none"
    xmlns="http://www.w3.org/2000/svg"

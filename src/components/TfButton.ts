@@ -6,6 +6,8 @@ const style = css`
       border-radius: 30px;
       text-align: center;
       border: none;
+      color: var(--tf-sys-light-ontertiary);
+      font-weight: bold;
    }
 
    button:hover {

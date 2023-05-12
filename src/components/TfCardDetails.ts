@@ -1,74 +1,85 @@
 import { html, css, TfBase } from './TfBase.js';
 
-const tfCardDetailsStyle = css``;
+const tfCardDetailsStyle = css`
+  .type {
+    font-weight: bold;
+    display: block;
+    padding-top: 0.25rem;
+    line-height: 0.75rem;
+    font-size: 0.625rem;
+    
+  }
+
+  .actions {
+    float: right;
+    font-weight: 700;
+  }
+`;
 
 export class TfCardDetails extends TfBase {
-  private _url = 'https://api.tourisfair.de/api/v1/activities?page=1&limit=10';
-  data: any;
   constructor() {
     super();
-    this.getData();
-    this.render();
-  }
-  async getData() {
-    try {
-      const response = await fetch(this._url);
-      const json = await response.json();
-      this.data = json;
-      console.log(this.data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  render() {
-      this.shadowRoot!.innerHTML += html`
-         <style>
-            ${tfCardDetailsStyle}
-         </style>
-         <section class="details">
-            <h2 class="title">${this.data?.title?.substring(0, 30)}...</h2>
-            <p class="address">${this.data?.meetingPoints[0]?.address ?? 'Pickup'}</p>
-            <span class="level"> </span><span class="budget"> </span>
-            <span class="activity">
-               <slot></slot>
-            </span>
-            <p class="abstract">${this.data?.abstract.substring(0, 255)}</p>
-            <button class="primary">
-               <slot></slot>
-            </button>
-         </section>
-      `;
+    this.shadowRoot &&
+      (this.shadowRoot.innerHTML += html`
+        <style>
+          ${tfCardDetailsStyle}
+        </style>
+        <section class="details">
+          <h2>
+            <slot name="title"></slot>
+          </h2>
+          <p class="subtitle">
+            <slot name="subtitle"></slot>
+          </p>
+          <slot name="budget"></slot>
+          <slot class="type" name="chip"></slot>
+          <p class="description">
+            <slot name="description"></slot>
+          </p>
+          <div class="actions">
+            <slot name="actions"></slot>
+          </div>
+        </section>
+      `);
   }
 
-  connectedCallback() {}
+  // connectedCallback() {}
 
   static get observedAttributes() {
-    return ['details', 'budget', 'chip', 'button'];
+    return ['title', 'subtitle'];
   }
 
-  attributeChangedCallback(name: string, _oldValue: string | null, _newValue: string | null) {
-    const sectionElem = this.shadowRoot!.querySelector('.level')!;
-
-    if (name === 'details') {
-         sectionElem!.innerHTML = this.data.remove(_oldValue!);
-         sectionElem!.innerHTML = this.data.add(_newValue!);
+  attributeChangedCallback(name: string /*oldValue: string | null, newValue: string | null*/) {
+    if (name === 'title') {
+      this.innerHTML += html` <span slot="title">${this.title}</span> `;
+    }
+    if (name === 'subtitle') {
+      this.innerHTML += html` <span slot="subtitle">${this.subtitle}</span> `;
     }
   }
-
-  get details() {
-    return this.getAttribute('details');
+  // SUBTITLE
+  get subtitle() {
+    return this.getAttribute('subtitle') || 'title';
   }
 
-  set details(value) {
-    this.setAttribute('details', value!);
+  set subtitle(value) {
+    this.setAttribute('subtitle', value);
+  }
+  // TITLE
+  get title() {
+    return this.getAttribute('title') || 'title';
+  }
+
+  set title(value) {
+    this.setAttribute('title', value);
   }
 }
 //
 
 declare global {
-   interface HTMLElementTagNameMap {
-      'tf-card-details': TfCardDetails;
-   }
+  interface HTMLElementTagNameMap {
+    'tf-card-details': TfCardDetails;
+  }
 }
 
 customElements.define('tf-card-details', TfCardDetails);

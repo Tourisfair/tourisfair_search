@@ -6,7 +6,7 @@ export const css = (strings: TemplateStringsArray, ...values: string[]) =>
 
 const style = css`
    * {
-      --tf-sys-light-primary: #00aae3;
+      --tf-sys-light-primary: #00AAE3;
       --tf-sys-light-onprimary: #250127;
       --tf-sys-light-primary-container: #c2e8ff;
       --tf-sys-light-secondary: #ff805e;
@@ -36,6 +36,7 @@ const style = css`
       --tf-sys-light-error: #ba1b1b;
       --tf-sys-light-surface: #fbfdfd;
       --tf-sys-light-surface-variant: #d4d4d4;
+      --tf-sys-read-more: #e76b2d;
    }
 
    .primary {
@@ -44,13 +45,13 @@ const style = css`
    }
 
    .secondary {
-      background-color: var(--tf-secondary-main);
-      color: var(--tf-onsecondary-main);
+      background-color: var(--tf-sys-light-secondary);
+      color: var(--tf-sys-light-onsecondary);
    }
 
    .tertiary {
-      background-color: var(--tf-tertiary-main);
-      color: var(--tf-ontertiary-main);
+      background-color: var(--tf-sys-light-tertiary);
+      color: var(--tf-sys-light-ontertiary);
    }
 
    .primary-container {

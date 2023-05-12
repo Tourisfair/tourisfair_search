@@ -6,7 +6,7 @@ const tfBudgetStyle = css`
       font-weight: bold;
    }
    .budget {
-      color: var(--tf-main-disabled);
+      color: var(--tf-sys-light-secondary-container);
       font-weight: bold;
    }
 `;

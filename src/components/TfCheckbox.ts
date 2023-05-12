@@ -1,11 +1,11 @@
 import { css, html, TfBase } from './TfBase.js';
 import { tfIconNameMap } from './TfIcon.js';
 
-
-let style = css`
+const style = css`
    .checkbox {
       display: flex;
       align-items: center;
+      position: relative;
       gap: 0.5rem;
    }
 
@@ -19,15 +19,21 @@ let style = css`
       border-radius: 0.5rem;
       display: grid;
       place-content: center;
+      pointer-events:auto;
+      margin: 0;
    }
 
-   input[type='checkbox']:checked::before {
-      transform: scale(0.8);
-      color: var(--tf-sys-light-primary);
+   input[type='checkbox'] ~.check-icon {
+      display: none;
+      position: absolute;
    }
 
-   .default {
-      color: var(--tf-sys-light-primary);
+   input[type='checkbox']:checked ~.check-icon {
+      display: block;
+      width: 1rem;
+      height: 1rem;
+      margin-left: 0.25rem;
+      pointer-events: none;
    }
 
    .default input[type='checkbox'] {
@@ -36,6 +42,11 @@ let style = css`
 
    .default input[type='checkbox']:focus {
       border-color: var(--tf-sys-light-primary);
+      
+   }
+
+   .default input[type='checkbox']:focus ~ .check-icon {
+      color: var(--tf-sys-light-primary);
    }
 
    .default input[type='checkbox']:focus ~ label {
@@ -47,6 +58,10 @@ let style = css`
    }
 
    .disabled input[type='checkbox'] ~ label {
+      color: var(--tf-sys-light-outline);
+   }
+
+   .disabled input[type='checkbox'] ~ .check-icon {
       color: var(--tf-sys-light-outline);
    }
 `;
@@ -66,6 +81,7 @@ export class TfCheckbox extends TfBase {
                <label for="checkbox">
                   <slot></slot>
                </label>
+               <tf-icon icon="check" class="check-icon"></tf-icon>
             </section>
          `);
   }
@@ -78,42 +94,27 @@ export class TfCheckbox extends TfBase {
     const checkboxElem = this.shadowRoot?.querySelector('section');
     const inputElem = this.shadowRoot?.querySelector('input');
     inputElem?.removeAttribute('checked');
-    
+
     switch (name) {
-    case 'status' :
+    case 'status':
       checkboxElem?.classList.remove(_oldValue);
       checkboxElem?.classList.add(newValue);
 
-      if(newValue === 'disabled') {
+      if (newValue === 'disabled') {
         inputElem?.setAttribute('disabled', '');
       }
-    
+
+      if (newValue === 'focus') {
+        checkboxElem?.classList.add('default');
+        inputElem?.focus();
+      }
+
       break;
-    case 'checked' :
+    case 'checked':
       inputElem?.setAttribute('checked', '');
       break;
     }
-    
-    
-    this.colorCheckChange();
-
   }
-
-
-  colorCheckChange() {
-    const newSvg =  this.svg;
-
-    style += css`
-         input[type='checkbox']::before {
-          
-            content: url(${'data:image/svg+xml,' + encodeURIComponent(newSvg)});
-            width: inherit;
-            height: inherit;
-            transform: scale(0);
-         }
-      `;
-  }
-
 
   get checked() {
     return this.getAttribute('checked');

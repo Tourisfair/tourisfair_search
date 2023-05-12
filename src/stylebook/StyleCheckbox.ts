@@ -44,6 +44,8 @@ const checkboxDisabledChecked: StyleVariantProps<'tf-checkbox'> = {
   },
 };
 
+
+
 const meta : StyleComponentProps<'tf-checkbox'> = {
   ref: 'tf-checkbox',
   description: 'Tourisfair checkbox component. It is used to show a checkbox.',

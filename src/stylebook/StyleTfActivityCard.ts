@@ -21,6 +21,7 @@ const defaultActivityCard: StyleVariantProps<'tf-activity-card'> = {
       <style>
         ${StyletfCardDetailsStyle}
       </style>
+      <tf-badge slot="badge"></tf-badge>
       <tf-card-header-image slot="image"></tf-card-header-image>
       <tf-budget level="3" slot="budget"></tf-budget>
       <tf-chip type="activity" slot="chip">Churches</tf-chip>
@@ -31,7 +32,7 @@ const defaultActivityCard: StyleVariantProps<'tf-activity-card'> = {
           >Read more...</span
         >
       </p>
-      <tf-favorite slot="favorite"></tf-favorite>
+      <tf-favorite slot="favorites"></tf-favorite>
       <tf-button variant="secondary" slot="actions">Book Now</tf-button>
     `,
     data: {

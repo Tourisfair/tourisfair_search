@@ -1,6 +1,11 @@
 import { html, css, TfBase } from './TfBase.js';
 
 const tfActivityCardStyle = css`
+  .badges {
+    position: absolute;
+    left: 30px;
+  }
+
   .details {
     position: relative;
     width: 440px;
@@ -86,7 +91,7 @@ const tfActivityCardStyle = css`
     top: 8px;
     left: 45px;
     font-style: normal;
-   
+
     font-size: 15px;
     line-height: 110%;
     /* identical to box height, or 17px */
@@ -107,15 +112,19 @@ const tfActivityCardStyle = css`
     height: 109px;
     left: -28px;
     top: 0px;
-color: var(--tf-main-main);
+    color: var(--tf-main-main);
     margin-left: 100px;
     float: right;
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
-    
   }
 
+  .favorites {
+    position: absolute;
+    margin-top: 230px;
+    margin-left: 35px;
+  }
   .actions {
     top: 15px;
     position: relative;
@@ -144,32 +153,24 @@ export class TfActivityCard extends TfBase {
           <div class="header-img">
             <slot name="image"></slot>
           </div>
-          <h2 class="droite">
+          <div class="badges">
+            <slot name="badge"></slot>
+          </div>
+          <h2>
             <slot name="title"></slot>
           </h2>
-          <p class="subtitle droite">
+          <p class="subtitle ">
             <slot name="subtitle"></slot>
           </p>
           <div class="budget">
             <slot name="budget"></slot>
           </div>
           <slot class="type" name="chip"></slot>
-          <p class="description droite">
+          <p class="description ">
             <slot name="description"></slot>
           </p>
           <div class="favorites">
-            <slot name="favorites"><svg
-                  width="28"
-                  height="30"
-                  viewBox="0 0 28 30"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-               >
-                  <path
-                     d="M4.8823 17.0843L13.2581 25.5336C13.5926 25.871 13.7599 26.0398 13.9683 26.0398C14.1766 26.0398 14.3439 25.871 14.6784 25.5336L23.0542 17.0843C25.1993 14.9203 25.4638 11.522 23.6794 9.05222L23.099 8.24892C20.8559 5.14424 16.0911 5.64022 14.5355 9.14033C14.3171 9.63186 13.6194 9.63186 13.401 9.14033C11.8454 5.64022 7.08061 5.14424 4.83749 8.24892L4.25711 9.05222C2.47267 11.522 2.73719 14.9203 4.8823 17.0843Z"
-                     class="favorite"
-                  />
-               </svg></slot>
+            <slot name="favorites"></slot>
           </div>
           <div class="actions">
             <slot name="actions"></slot>
@@ -181,11 +182,19 @@ export class TfActivityCard extends TfBase {
   // connectedCallback() {}
 
   static get observedAttributes() {
-    return ['title', 'subtitle', 'src','enabled'];
+    return ['title', 'subtitle', 'src', 'enabled'];
   }
 
   attributeChangedCallback(name: string /*oldValue: string | null,*/, newValue: string | null) {
     const imgElem = this.shadowRoot?.querySelector<HTMLDivElement>('.header-img');
+    const favoriteElem = this.shadowRoot?.querySelector('div') as HTMLDivElement;
+
+    if (this.enabled) {
+      favoriteElem.classList.add('enabled');
+    } else {
+      favoriteElem.classList.remove('enabled');
+    }
+
     if (!imgElem) return;
     if (name === 'src') {
       imgElem.style.backgroundImage = `url(${newValue})`;
@@ -196,6 +205,15 @@ export class TfActivityCard extends TfBase {
     if (name === 'subtitle') {
       this.innerHTML += html` <span slot="subtitle">${this.subtitle}</span> `;
     }
+  }
+  // FAV
+  get enabled() {
+    return this.hasAttribute('enabled');
+  }
+
+  set enabled(_value) {
+    _value && this.setAttribute('enabled', '');
+    !_value && this.removeAttribute('enabled');
   }
   // IMG
   get src() {

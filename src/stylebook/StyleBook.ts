@@ -176,6 +176,7 @@ customElements.define('style-book', StyleBook);
  */
 
 const styleBook = document.createElement('style-book') as StyleBook;
+styleTfButton(styleBook);
 styleTfCheckbox(styleBook);
 styleTfLogoNotch(styleBook);
 styleTfInputPassword(styleBook);
@@ -190,7 +191,6 @@ styleTfWelcomeCard(styleBook);
 styleTfTextButton(styleBook);
 styleTfBadge(styleBook);
 styleTfBudget(styleBook);
-styleTfButton(styleBook);
 styleTfCardDetails(styleBook);
 styleTfCardHeaderImage(styleBook);
 styleTfCarrouselIndicator(styleBook);

@@ -43,13 +43,13 @@ const style = css`
    }
 
    .secondary {
-      background-color: var(--tf-secondary-main);
+      background-color: var(--tf-sys-light-secondary);
       color: var(--tf-onsecondary-main);
    }
 
    .tertiary {
-      background-color: var(--tf-tertiary-main);
-      color: var(--tf-ontertiary-main);
+      background-color: var(--tf-sys-light-tertiary);
+      color: var(--tf-sys-light-onprimary);
    }
 
    .primary-container {

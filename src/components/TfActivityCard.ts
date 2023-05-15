@@ -140,7 +140,7 @@ const tfActivityCardStyle = css`
     height: 34px;
   }
 `;
-
+//
 export class TfActivityCard extends TfBase {
   constructor() {
     super();

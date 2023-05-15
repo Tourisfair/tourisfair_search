@@ -41,7 +41,7 @@ const defaultActivityCard: StyleVariantProps<'tf-activity-card'> = {
     },
   },
 };
-
+//
 const meta: StyleComponentProps<'tf-activity-card'> = {
   ref: 'tf-activity-card',
   tag: 'tf-activity-card',

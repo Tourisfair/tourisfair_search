@@ -160,7 +160,7 @@ customElements.define('style-book', StyleBook);
  */
 
 const styleBook = document.createElement('style-book') as StyleBook;
-StyleTfActivityCard(styleBook);
+StyleTfActivityCard(styleBook);//
 styleTfBadge(styleBook);
 styleTfBudget(styleBook);
 styleTfButton(styleBook);

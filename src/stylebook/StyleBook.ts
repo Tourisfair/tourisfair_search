@@ -24,6 +24,7 @@ import { styleTfNavigationBar } from './StyleTfNavigationBar.js';
 import { styleTfInputPassword } from './StyleTfInputPassword.js';
 import { styleTfLogoNotch } from './StyleTfLogoNotch.js';
 import { styleTfCheckbox } from './StyleCheckbox.js';
+import { styleTfSimpleSlider } from './StyleTfSimpleSlider.js';
 
 export const styleBookCSS: string = css`
    @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
@@ -176,6 +177,7 @@ customElements.define('style-book', StyleBook);
  */
 
 const styleBook = document.createElement('style-book') as StyleBook;
+styleTfSimpleSlider(styleBook);
 styleTfButton(styleBook);
 styleTfCheckbox(styleBook);
 styleTfLogoNotch(styleBook);

@@ -56,7 +56,7 @@ export class TfWelcomeCard extends TfBase {
         </div>
         <tf-carrousel-indicator step=${this.step}></tf-carrousel-indicator>
         <div class="welcome-card__actions">
-          <tf-button variant="primary" size="medium" class="action-button transform"/>Next</tf-button>
+          <tf-button variant="primary" size="medium" text active class="action-button transform"/>Next</tf-button>
           <tf-text-button
           suffix-icon="<tf-icon icon='arrow-forward-ios'></tf-icon>"
           >Skip</tf-text-button>
@@ -78,12 +78,17 @@ export class TfWelcomeCard extends TfBase {
     const carrousel = this.shadowRoot?.querySelector(
       'tf-carrousel-indicator'
     ) as TfCarrouselIndicator;
-
     carrousel.setAttribute('step', newValue);
     if (name === 'step' && newValue === 'final') {
-      div.innerHTML = `
-      <tf-button variant="primary" size="medium" class="action-button"/>Start</tf-button>
-      `;
+      const button = document.createElement('tf-button');
+      button.setAttribute('variant', 'primary');
+      button.setAttribute('size', 'medium');
+      button.setAttribute('text', 'active');
+      button.classList.add('action-button');
+      button.textContent = 'Start';
+
+      div.innerHTML = '';
+      div.appendChild(button);
     }
   }
 

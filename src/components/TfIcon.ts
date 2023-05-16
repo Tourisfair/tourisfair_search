@@ -3,8 +3,8 @@ import { css, html, TfBase } from './TfBase.js';
 const style = css`
    :host {
       display: block;
-      width: fit-content;
-      height: fit-content;
+      width: 24px;
+      height: 24px;
    }
    .container-icon {
       display: flex;
@@ -135,7 +135,41 @@ const lock = html`<svg
 </svg> `;
 
 const check = html`
-<svg
+   <svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+   >
+      <path
+         d="M8.79506 15.875L5.32506 12.405C4.93506 12.015 4.30506 12.015 3.91506 12.405C3.52506 12.795 3.52506 13.425 3.91506 13.815L8.09506 17.995C8.48506 18.385 9.11506 18.385 9.50506 17.995L20.0851 7.41502C20.4751 7.02502 20.4751 6.39502 20.0851 6.00502C19.6951 5.61502 19.0651 5.61502 18.6751 6.00502L8.79506 15.875Z"
+         fill="currentColor"
+      />
+   </svg>
+`;
+
+const arrowDropUp = html`<svg
+   width="100%"
+   height="100%"
+   viewBox="0 0 10 6"
+   fill="none"
+   xmlns="http://www.w3.org/2000/svg"
+>
+   <path d="M0 5.5L5 0.5L10 5.5H0Z" fill="currentColor" />
+</svg> `;
+
+const arrowDropDown = html`<svg
+   width="100%"
+   height="100%"
+   viewBox="0 0 10 6"
+   fill="none"
+   xmlns="http://www.w3.org/2000/svg"
+>
+   <path d="M0 0.5L5 5.5L10 0.5H0Z" fill="currentColor" />
+</svg> `;
+
+const childFriendly = html`<svg
    width="100%"
    height="100%"
    viewBox="0 0 24 24"
@@ -143,10 +177,28 @@ const check = html`
    xmlns="http://www.w3.org/2000/svg"
 >
    <path
-      d="M8.79506 15.875L5.32506 12.405C4.93506 12.015 4.30506 12.015 3.91506 12.405C3.52506 12.795 3.52506 13.425 3.91506 13.815L8.09506 17.995C8.48506 18.385 9.11506 18.385 9.50506 17.995L20.0851 7.41502C20.4751 7.02502 20.4751 6.39502 20.0851 6.00502C19.6951 5.61502 19.0651 5.61502 18.6751 6.00502L8.79506 15.875Z"
+      d="M13.5 3.04525V9.96525H21.5C21.5 5.93525 18.52 2.59525 14.64 2.04525C14.04 1.95525 13.5 2.43525 13.5 3.04525ZM19.82 15.8552C20.87 14.5052 21.5 12.8052 21.5 10.9652H6.94L6.26 9.53525C6.1 9.18525 5.74 8.96525 5.36 8.96525H3.5C2.95 8.96525 2.5 9.41525 2.5 9.96525C2.5 10.5152 2.95 10.9652 3.5 10.9652H4.72C4.72 10.9652 6.61 15.0352 6.84 15.3852C5.51 16.0952 4.7 17.6552 5.1 19.3252C5.4 20.5852 6.44 21.5952 7.7 21.8752C9.8 22.3352 11.68 20.9152 11.95 18.9652H14.03C14.3 20.9052 16.17 22.3252 18.25 21.8852C19.52 21.6152 20.56 20.6152 20.88 19.3552C21.23 17.9652 20.74 16.6752 19.82 15.8552ZM8.5 19.9652C7.67 19.9652 7 19.2952 7 18.4652C7 17.6352 7.67 16.9652 8.5 16.9652C9.33 16.9652 10 17.6352 10 18.4652C10 19.2952 9.33 19.9652 8.5 19.9652ZM17.5 19.9652C16.67 19.9652 16 19.2952 16 18.4652C16 17.6352 16.67 16.9652 17.5 16.9652C18.33 16.9652 19 17.6352 19 18.4652C19 19.2952 18.33 19.9652 17.5 19.9652Z"
       fill="currentColor"
    />
 </svg> `;
+
+const man = html`<svg
+   width="100%"
+   height="100%"
+   viewBox="0 0 24 24"
+   fill="none"
+   xmlns="http://www.w3.org/2000/svg"
+>
+   <path
+      d="M14 7H10C8.9 7 8 7.9 8 9V14C8 14.55 8.45 15 9 15H10V21C10 21.55 10.45 22 11 22H13C13.55 22 14 21.55 14 21V15H15C15.55 15 16 14.55 16 14V9C16 7.9 15.1 7 14 7Z"
+      fill="currentColor"
+   />
+   <path
+      d="M12 6C13.1046 6 14 5.10457 14 4C14 2.89543 13.1046 2 12 2C10.8954 2 10 2.89543 10 4C10 5.10457 10.8954 6 12 6Z"
+      fill="currentColor"
+   />
+</svg> `;
+
 interface TfIconNameMap {
    [key: string]: string;
 }
@@ -163,6 +215,10 @@ export const tfIconNameMap: TfIconNameMap = {
   visibility: visibility,
   'visibility-off': visibilityOff,
   check: check,
+  'arrow-drop-up': arrowDropUp,
+  'arrow-drop-down': arrowDropDown,
+  'child-friendly': childFriendly,
+  man : man,
 };
 export class TfIcon extends TfBase {
   constructor() {

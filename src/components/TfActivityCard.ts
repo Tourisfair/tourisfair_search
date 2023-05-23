@@ -1,11 +1,6 @@
 import { html, css, TfBase } from './TfBase.js';
 
 const tfActivityCardStyle = css`
-  .badges {
-    position: absolute;
-    left: 30px;
-  }
-
   .details {
     position: relative;
     width: 440px;
@@ -120,11 +115,6 @@ const tfActivityCardStyle = css`
     line-height: 16px;
   }
 
-  .favorites {
-    position: absolute;
-    margin-top: 230px;
-    margin-left: 35px;
-  }
   .actions {
     top: 15px;
     position: relative;
@@ -153,9 +143,6 @@ export class TfActivityCard extends TfBase {
           <div class="header-img">
             <slot name="image"></slot>
           </div>
-          <div class="badges">
-            <slot name="badge"></slot>
-          </div>
           <h2>
             <slot name="title"></slot>
           </h2>
@@ -169,9 +156,6 @@ export class TfActivityCard extends TfBase {
           <p class="description ">
             <slot name="description"></slot>
           </p>
-          <div class="favorites">
-            <slot name="favorites"></slot>
-          </div>
           <div class="actions">
             <slot name="actions"></slot>
           </div>
@@ -182,18 +166,11 @@ export class TfActivityCard extends TfBase {
   // connectedCallback() {}
 
   static get observedAttributes() {
-    return ['title', 'subtitle', 'src', 'enabled'];
+    return ['title', 'subtitle', 'src'];
   }
 
   attributeChangedCallback(name: string /*oldValue: string | null,*/, newValue: string | null) {
     const imgElem = this.shadowRoot?.querySelector<HTMLDivElement>('.header-img');
-    const favoriteElem = this.shadowRoot?.querySelector('div') as HTMLDivElement;
-
-    if (this.enabled) {
-      favoriteElem.classList.add('enabled');
-    } else {
-      favoriteElem.classList.remove('enabled');
-    }
 
     if (!imgElem) return;
     if (name === 'src') {
@@ -207,14 +184,7 @@ export class TfActivityCard extends TfBase {
     }
   }
   // FAV
-  get enabled() {
-    return this.hasAttribute('enabled');
-  }
 
-  set enabled(_value) {
-    _value && this.setAttribute('enabled', '');
-    !_value && this.removeAttribute('enabled');
-  }
   // IMG
   get src() {
     return this.getAttribute('src');

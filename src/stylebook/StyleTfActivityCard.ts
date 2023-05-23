@@ -21,23 +21,20 @@ const defaultActivityCard: StyleVariantProps<'tf-activity-card'> = {
       <style>
         ${StyletfCardDetailsStyle}
       </style>
-      <tf-badge slot="badge"></tf-badge>
+
       <tf-card-header-image slot="image"></tf-card-header-image>
       <tf-budget level="3" slot="budget"></tf-budget>
       <tf-chip type="activity" slot="chip">Churches</tf-chip>
       <tf-chip type="poi" slot="chip">History</tf-chip>
       <p slot="description">
         The Expiatory Temple of the Sagrada Familia, known simply as the Sagrada Familia, is a
-        Catholic basilica in Barcelona, designed by architect Antoni Gaudí. <span class="read"
-          >Read more...</span
-        >
+        Catholic basilica in Barcelona, designed by architect Antoni Gaudí.
+        <span class="read">Read more...</span>
       </p>
-      <tf-favorite slot="favorites"></tf-favorite>
       <tf-button variant="secondary" slot="actions">Book Now</tf-button>
     `,
     data: {
       src: '/assets/image.png',
-      enabled: true,
     },
   },
 };

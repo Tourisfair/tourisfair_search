@@ -1,7 +1,7 @@
 // RECUPERER L'ACTIVITE //
 
 function obtenirActivite() {
-  return document.getElementById("activite").value;
+  return document.getElementById('activite').value;
 }
 
 // ENVOYER UNE REQUETE //
@@ -18,37 +18,32 @@ function search() {
 //AFFICHER LES RESULTATS //
 function afficher(activities) {
   console.log(activities);
-  const container = document.querySelector(".container");
-  container.innerHTML = "";
+  const container = document.querySelector('.container');
+  container.innerHTML = '';
   activities.forEach((activity) => {
-    const activityDiv = document.createElement("div");
+    const activityDiv = document.createElement('div');
     activityDiv.innerHTML = html`
-    <article class="carte">
+      <article class="carte">
         <div class="image">
-            <img src="${activity.photos[0].urls}" alt="">
+          <img src="${activity.photos[0].urls}" alt="" />
         </div>
         <div class="detail">
-            <i class="fa-solid fa-xmark"></i>
-            <h2 class="titre">${activity.title.substring(0, 30)}...</h2>
-            <p class="adresse">${activity.meetingPoints[0] 
-              ? activity.meetingPoints[0]?.address
-              : 'Pickup'
-            }</p>
-            <p class="budget">${activity.price.currencySymbol}</p>
-            <p class="categories">
-                <span class="chip poi">Churches</span>
-                <span class="chip categorie">History</span>
-            </p>
-            <p class="abstract">
-            ${activity.abstract.substring(0, 255)}
-            </p>
-            <div class="actions">
-              <tf-button>
-                Book now
-              </tf-button>
-            </div>
+          <i class="fa-solid fa-xmark"></i>
+          <h2 class="titre">${activity.title.substring(0, 30)}...</h2>
+          <p class="adresse">
+            ${activity.meetingPoints[0] ? activity.meetingPoints[0]?.address : 'Pickup'}
+          </p>
+          <p class="budget">${activity.price.currencySymbol}</p>
+          <p class="categories">
+            <span class="chip poi">Churches</span>
+            <span class="chip categorie">History</span>
+          </p>
+          <p class="abstract">${activity.abstract.substring(0, 255)}</p>
+          <div class="actions">
+            <tf-button> Book now </tf-button>
+          </div>
         </div>
-    </article>
+      </article>
     `;
 
     // activityDiv.classList.add('activity');

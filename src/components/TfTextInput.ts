@@ -102,7 +102,7 @@ export class TfInputText extends TfBase {
       <div class="container">
         <input type="text" class="default input-icon" />
         <label><slot name="label"></slot></label>
-        <div class="error-message"><slot name="error"></slot></div>
+        
       </div>
     `);
   }
@@ -126,6 +126,7 @@ export class TfInputText extends TfBase {
   attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
     const input = this.shadowRoot?.querySelector('input');
     const label = this.shadowRoot?.querySelector('label');
+    const icon = this.shadowRoot?.querySelector('tf-icon');
 
     if (!input || !label) return;
 
@@ -133,6 +134,9 @@ export class TfInputText extends TfBase {
     case 'status':
       input?.classList.toggle(_newValue, true);
       input.disabled = _newValue === 'disabled';
+      if (_newValue === 'error') {
+        label.insertAdjacentHTML('afterend', '<div class="error-message"><slot name="error"></slot></div>');
+      }
       break;
 
     case 'label':
@@ -141,6 +145,8 @@ export class TfInputText extends TfBase {
       break;
 
     case 'pictogramme':
+      icon?.remove();
+      input?.classList.remove('input-icon');
       if (this.icon === 'true') {
         input?.insertAdjacentHTML(
           'afterend',
@@ -187,8 +193,8 @@ export class TfInputText extends TfBase {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'tf-input-text': TfInputText;
+    'tf-text-input': TfInputText;
   }
 }
 
-customElements.define('tf-input-text', TfInputText);
+customElements.define('tf-text-input', TfInputText);

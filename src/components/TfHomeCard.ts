@@ -1,12 +1,19 @@
 import { css, html, TfBase } from './TfBase.js';
 
 const style = css`
-   .container {
+
+   :host{
+      display: block;
+      width: 100%;
+      height: 100%;
       background-color: var(--tf-sys-light-surface);
-      padding: 24px 16px 16px;
-      border-radius: 40px 40px 0px 0px;
       border: 1px solid var(--tf-sys-light-surface-variant);
+      border-radius: 40px 40px 0px 0px;
       box-shadow: 0px -12px 12px 0px #00000014;
+   }
+
+   .container {
+      padding: 24px 16px 16px;
    }
 `;
 

@@ -2,9 +2,9 @@ import { StyleBook } from './StyleBook.js';
 import { StyleComponentProps } from './StyleComponent.js';
 import { StyleVariantProps } from './StyleVariant.js';
 
-const tfInputTextIconDefault: StyleVariantProps<'tf-input-text'> = {
+const tfInputTextIconDefault: StyleVariantProps<'tf-text-input'> = {
   name: 'tf input text',
-  tag: 'tf-input-text',
+  tag: 'tf-text-input',
   description: 'A text input component with icon.',
   data: {
     icon: 'true',
@@ -14,9 +14,9 @@ const tfInputTextIconDefault: StyleVariantProps<'tf-input-text'> = {
   },
 };
 
-const tfInputTextDefault: StyleVariantProps<'tf-input-text'> = {
+const tfInputTextDefault: StyleVariantProps<'tf-text-input'> = {
   name: 'tf input text',
-  tag: 'tf-input-text',
+  tag: 'tf-text-input',
   description: 'A text input component no icon.',
   data: {
     icon: 'false',
@@ -25,9 +25,9 @@ const tfInputTextDefault: StyleVariantProps<'tf-input-text'> = {
   },
 };
 
-const tfInputTextIconDisabled: StyleVariantProps<'tf-input-text'> = {
+const tfInputTextIconDisabled: StyleVariantProps<'tf-text-input'> = {
   name: 'tf input text',
-  tag: 'tf-input-text',
+  tag: 'tf-text-input',
   description: 'A text input component disabled with icon.',
   data: {
     icon: 'true',
@@ -37,9 +37,9 @@ const tfInputTextIconDisabled: StyleVariantProps<'tf-input-text'> = {
   },
 };
 
-const tfInputTextDisabled: StyleVariantProps<'tf-input-text'> = {
+const tfInputTextDisabled: StyleVariantProps<'tf-text-input'> = {
   name: 'tf input text',
-  tag: 'tf-input-text',
+  tag: 'tf-text-input',
   description: 'A text input component disabled no icon.',
   data: {
     icon: 'false',
@@ -48,9 +48,9 @@ const tfInputTextDisabled: StyleVariantProps<'tf-input-text'> = {
   },
 };
 
-const tfInputTextIconError: StyleVariantProps<'tf-input-text'> = {
+const tfInputTextIconError: StyleVariantProps<'tf-text-input'> = {
   name: 'tf input text',
-  tag: 'tf-input-text',
+  tag: 'tf-text-input',
   description: 'A text input component error with icon.',
   data: {
     icon: 'true',
@@ -62,9 +62,9 @@ const tfInputTextIconError: StyleVariantProps<'tf-input-text'> = {
   },
 };
 
-const tfInputTextError: StyleVariantProps<'tf-input-text'> = {
+const tfInputTextError: StyleVariantProps<'tf-text-input'> = {
   name: 'tf input text',
-  tag: 'tf-input-text',
+  tag: 'tf-text-input',
   description: 'A text input component error no icon.',
   data: {
     icon: 'false',
@@ -75,9 +75,9 @@ const tfInputTextError: StyleVariantProps<'tf-input-text'> = {
   },
 };
 
-const meta: StyleComponentProps<'tf-input-text'> = {
-  ref: 'tf-input-text',
-  tag: 'tf-input-text',
+const meta: StyleComponentProps<'tf-text-input'> = {
+  ref: 'tf-text-input',
+  tag: 'tf-text-input',
   description:
     'Tourisfair input text component. It is used to showcase an input text',
   component: 'Tourisfair Input Text',

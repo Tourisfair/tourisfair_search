@@ -133,6 +133,7 @@ export class TfButton extends TfBase {
   }
 
   insertIcon(buttonElem: HTMLButtonElement, icon: string) {
+    buttonElem.innerHTML = '';
     buttonElem.insertAdjacentHTML('afterbegin', tfIconNameMap[icon]);
   }
 

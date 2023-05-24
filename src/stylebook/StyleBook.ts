@@ -26,6 +26,7 @@ import { styleTfLogoNotch } from './StyleTfLogoNotch.js';
 import { styleTfCheckbox } from './StyleCheckbox.js';
 import { styleTfSimpleSlider } from './StyleTfSimpleSlider.js';
 import { styleTfAgeSelector } from './StyleTfAgeSelector.js';
+import { styleTfCityOfTheWeek } from './StyleTfCityOfTheWeek.js';
 
 export const styleBookCSS: string = css`
    @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
@@ -178,6 +179,7 @@ customElements.define('style-book', StyleBook);
  */
 
 const styleBook = document.createElement('style-book') as StyleBook;
+styleTfCityOfTheWeek(styleBook);
 styleTfAgeSelector(styleBook);
 styleTfSimpleSlider(styleBook);
 styleTfButton(styleBook);

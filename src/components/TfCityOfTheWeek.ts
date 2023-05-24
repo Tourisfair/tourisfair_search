@@ -85,7 +85,7 @@ const style = css`
    
 `;
 
-export class StyleTfCityOfTheWeek extends TfBase {
+export class TfCityOfTheWeek extends TfBase {
   constructor() {
     super();
     this.shadowRoot &&
@@ -223,8 +223,8 @@ export class StyleTfCityOfTheWeek extends TfBase {
 
 declare global {
    interface HTMLElementTagNameMap {
-      'tf-city-of-the-week': StyleTfCityOfTheWeek;
+      'tf-city-of-the-week': TfCityOfTheWeek;
    }
 }
 
-customElements.define('tf-city-of-the-week', StyleTfCityOfTheWeek);
+customElements.define('tf-city-of-the-week', TfCityOfTheWeek);

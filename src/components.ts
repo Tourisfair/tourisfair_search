@@ -25,3 +25,4 @@ export * from './components/TfCheckbox.js';
 export * from './components/TfSimpleSlider.js';
 export * from './components/TfAgeSelector.js';
 export * from './components/TfCityOfTheWeek.js';
+export * from './components/TfFavoritePlan.js';

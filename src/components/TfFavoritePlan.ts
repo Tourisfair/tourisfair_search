@@ -43,6 +43,12 @@ const style = css`
       border-radius: 1rem;
    }
 
+   @media screen and (max-width: 350px){
+        .favorite-plan-info-container {
+            gap: 20%;
+        }
+    }
+
 `;
 
 export class TfFavoritePlans extends TfBase {

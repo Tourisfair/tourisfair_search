@@ -8,12 +8,14 @@ const style = css`
    }
    .container-icon {
       display: flex;
+      height: inherit;
+      width: inherit;
    }
 `;
 
 const arrowForwardIos = html`<svg
-   width="24"
-   height="24"
+   width="100%"
+   height="100%"
    viewBox="0 0 24 24"
    fill="none"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +27,13 @@ const arrowForwardIos = html`<svg
 </svg>`;
 
 const arrowBackIos = html`
-   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+   >
       <path
          d="M17.885 3.77L16.115 2L6.11499 12L16.115 22L17.885 20.23L9.65499 12L17.885 3.77Z"
          fill="black"
@@ -44,8 +52,8 @@ const add = html` <svg
 </svg>`;
 
 const accountCircle = html`<svg
-   width="24"
-   height="24"
+   width="100%"
+   height="100%"
    viewBox="0 0 20 20"
    fill="none"
    xmlns="http://www.w3.org/2000/svg"
@@ -57,8 +65,8 @@ const accountCircle = html`<svg
 </svg> `;
 
 const explore = html`<svg
-   width="20"
-   height="20"
+   width="100%"
+   height="100%"
    viewBox="0 0 20 20"
    fill="none"
    xmlns="http://www.w3.org/2000/svg"
@@ -70,8 +78,8 @@ const explore = html`<svg
 </svg> `;
 
 const dateRange = html`<svg
-   width="18"
-   height="20"
+   width="100%"
+   height="100%"
    viewBox="0 0 18 20"
    fill="none"
    xmlns="http://www.w3.org/2000/svg"
@@ -83,8 +91,8 @@ const dateRange = html`<svg
 </svg> `;
 
 const message = html`<svg
-   width="20"
-   height="20"
+   width="100%"
+   height="100%"
    viewBox="0 0 20 20"
    fill="none"
    xmlns="http://www.w3.org/2000/svg"
@@ -96,8 +104,8 @@ const message = html`<svg
 </svg> `;
 
 const visibility = html`<svg
-   width="22"
-   height="16"
+   width="100%"
+   height="100%"
    viewBox="0 0 22 16"
    fill="none"
    xmlns="http://www.w3.org/2000/svg"
@@ -109,8 +117,8 @@ const visibility = html`<svg
 </svg> `;
 
 const visibilityOff = html`<svg
-   width="22"
-   height="20"
+   width="100%"
+   height="100%"
    viewBox="0 0 22 20"
    fill="none"
    xmlns="http://www.w3.org/2000/svg"
@@ -122,8 +130,8 @@ const visibilityOff = html`<svg
 </svg> `;
 
 const lock = html`<svg
-   width="16"
-   height="22"
+   width="100%"
+   height="100%"
    viewBox="0 0 16 22"
    fill="none"
    xmlns="http://www.w3.org/2000/svg"
@@ -307,6 +315,68 @@ const language = html`<svg
    />
 </svg> `;
 
+const locationCity = html`<svg
+   width="100%"
+   height="100%"
+   viewBox="0 0 18 20"
+   fill="none"
+   xmlns="http://www.w3.org/2000/svg"
+>
+   <path
+      d="M12 9.5V3.5L9 0.5L6 3.5V5.5H0V19.5H18V9.5H12ZM4 17.5H2V15.5H4V17.5ZM4 13.5H2V11.5H4V13.5ZM4 9.5H2V7.5H4V9.5ZM10 17.5H8V15.5H10V17.5ZM10 13.5H8V11.5H10V13.5ZM10 9.5H8V7.5H10V9.5ZM10 5.5H8V3.5H10V5.5ZM16 17.5H14V15.5H16V17.5ZM16 13.5H14V11.5H16V13.5Z"
+      fill="currentColor"
+   />
+</svg>`;
+
+const world = html`<svg
+   width="100%"
+   height="100%"
+   viewBox="0 0 20 20"
+   fill="none"
+   xmlns="http://www.w3.org/2000/svg"
+>
+   <path
+      d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM9 17.93C5.05 17.44 2 14.08 2 10C2 9.38 2.08 8.79 2.21 8.21L7 13V14C7 15.1 7.9 16 9 16V17.93ZM15.9 15.39C15.64 14.58 14.9 14 14 14H13V11C13 10.45 12.55 10 12 10H6V8H8C8.55 8 9 7.55 9 7V5H11C12.1 5 13 4.1 13 3V2.59C15.93 3.78 18 6.65 18 10C18 12.08 17.2 13.97 15.9 15.39Z"
+      fill="currentColor"
+   />
+</svg> `;
+
+const numbers = html`<svg
+   width="100%"
+   height="100%"
+   viewBox="0 0 18 16"
+   fill="none"
+   xmlns="http://www.w3.org/2000/svg"
+>
+   <path
+      d="M17.5 6L18 4H14L15 0H13L12 4H8L9 0H7L6 4H2L1.5 6H5.5L4.5 10H0.5L0 12H4L3 16H5L6 12H10L9 16H11L12 12H16L16.5 10H12.5L13.5 6H17.5ZM10.5 10H6.5L7.5 6H11.5L10.5 10Z"
+      fill="currentColor"
+   />
+</svg>`;
+
+const phone = html`<svg
+   width="100%"
+   height="100%"
+   viewBox="0 0 18 18"
+   fill="none"
+   xmlns="http://www.w3.org/2000/svg"
+>
+   <path
+      d="M3.54 2C3.6 2.89 3.75 3.76 3.99 4.59L2.79 5.79C2.38 4.59 2.12 3.32 2.03 2H3.54ZM13.4 14.02C14.25 14.26 15.12 14.41 16 14.47V15.96C14.68 15.87 13.41 15.61 12.2 15.21L13.4 14.02ZM4.5 0H1C0.45 0 0 0.45 0 1C0 10.39 7.61 18 17 18C17.55 18 18 17.55 18 17V13.51C18 12.96 17.55 12.51 17 12.51C15.76 12.51 14.55 12.31 13.43 11.94C13.33 11.9 13.22 11.89 13.12 11.89C12.86 11.89 12.61 11.99 12.41 12.18L10.21 14.38C7.38 12.93 5.06 10.62 3.62 7.79L5.82 5.59C6.1 5.31 6.18 4.92 6.07 4.57C5.7 3.45 5.5 2.25 5.5 1C5.5 0.45 5.05 0 4.5 0Z"
+      fill="currentColor"
+   />
+</svg> `;
+
+const remove = html`<svg
+   width="100%"
+   height="100%"
+   viewBox="0 0 24 24"
+   fill="none"
+   xmlns="http://www.w3.org/2000/svg"
+>
+   <path d="M19 13H5V11H19V13Z" fill="#250127" />
+</svg>`;
+
 interface TfIconNameMap {
    [key: string]: string;
 }
@@ -335,6 +405,11 @@ export const tfIconNameMap: TfIconNameMap = {
   'pound-symbol': poundSymbol,
   'location-on': locationOn,
   language: language,
+  'location-city': locationCity,
+  world: world,
+  numbers: numbers,
+  phone: phone,
+  remove: remove,
 };
 export class TfIcon extends TfBase {
   constructor() {

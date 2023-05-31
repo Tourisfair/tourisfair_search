@@ -103,7 +103,7 @@ export class TfInputPassword extends TfBase {
             </style>
             <div class="container">
                <input type="password" class="default input-icon" />
-               <label><slot name="label"></slot></label>
+               <label></label>
                <tf-icon icon="visibility" class="icon right" id="eyes"></tf-icon>
                <div class="error-message"><slot name="error"></slot></div>
             </div>

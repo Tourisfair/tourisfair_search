@@ -10,7 +10,7 @@ const tfInputTextIconDefault: StyleVariantProps<'tf-text-input'> = {
     icon: 'true',
     status: 'default',
     pictogramme: 'account-circle',
-    content: '<p slot="label">Default Icon</p>',
+    label: 'Default Icon',
   },
 };
 
@@ -21,7 +21,7 @@ const tfInputTextDefault: StyleVariantProps<'tf-text-input'> = {
   data: {
     icon: 'false',
     status: 'default',
-    content: '<p slot="label">Default</p>',
+    label: 'Default',
   },
 };
 
@@ -33,7 +33,7 @@ const tfInputTextIconDisabled: StyleVariantProps<'tf-text-input'> = {
     icon: 'true',
     status: 'disabled',
     pictogramme: 'account-circle',
-    content: '<p slot="label">Disabled Icon</p>',
+    label: 'Disabled Icon',
   },
 };
 
@@ -44,7 +44,7 @@ const tfInputTextDisabled: StyleVariantProps<'tf-text-input'> = {
   data: {
     icon: 'false',
     status: 'disabled',
-    content: '<p slot="label">Disabled</p>',
+    label: 'Disabled',
   },
 };
 
@@ -57,8 +57,8 @@ const tfInputTextIconError: StyleVariantProps<'tf-text-input'> = {
     status: 'error',
     pictogramme: 'account-circle',
     placeholder: 'old value',
-    content: `<p slot="label">Error</p> 
-    <span slot="error">Error message</span>`,
+    label: 'Error',
+    content: '<span slot="error">Error message</span>',
   },
 };
 
@@ -70,8 +70,8 @@ const tfInputTextError: StyleVariantProps<'tf-text-input'> = {
     icon: 'false',
     status: 'error',
     placeholder: 'old value',
-    content: `<p slot="label">Error</p> 
-              <span slot="error">Error message</span>`,
+    label: 'Error',
+    content: '<span slot="error">Error message</span>',
   },
 };
 

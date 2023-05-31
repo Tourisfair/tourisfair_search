@@ -1,6 +1,16 @@
 import { css, html, TfBase } from './TfBase.js';
 
 const style = css`
+   :host {
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      max-width: 6rem;
+      width: 100%;
+   }
+
+
    .active {
       background-color: var(--tf-sys-light-tertiary);
       box-shadow: 0px 0px 8px 0px #00000040;
@@ -21,7 +31,6 @@ const style = css`
       flex-direction: column;
       align-items: center;
       padding: 0.5rem 1rem;
-      width:5rem
    }
 
    .text {
@@ -49,7 +58,7 @@ export class TfNavigationItem extends TfBase {
 
   attributeChangedCallback(name: string, _oldValue: string | null, newValue: string | null) {
     const navigationItemElem = this.shadowRoot?.querySelector('div');
-
+    this.shadowRoot?.querySelector('.active')?.classList.remove('active');
     if (name === 'icon') {
       const icon = document.createElement('tf-icon');
       icon.classList.add('icon');

@@ -1,11 +1,15 @@
 import { css, html, TfBase } from './TfBase.js';
 
 const style = css`
-    * {
+   * {
       --tf-thumb-color: var(--tf-sys-light-primary);
       --tf-track-fill-color: var(--tf-sys-light-primary-container);
       --tf-outline-color: var(--tf-sys-light-outline);
-    }
+   }
+
+   :host {
+      width: 100%;
+   }
 
    input[type='range'].styled-slider {
       -webkit-appearance: none;
@@ -56,23 +60,20 @@ const style = css`
    }
 
    input[type='range'].styled-slider.slider-progress::-webkit-slider-runnable-track {
-      background: linear-gradient(
-               var(--tf-track-fill-color),
-               var(--tf-track-fill-color)
-            )
-            0 / var(--sx) 100% no-repeat,
+      background: linear-gradient(var(--tf-track-fill-color), var(--tf-track-fill-color)) 0 /
+            var(--sx) 100% no-repeat,
          var(--tf-sys-light-surface-variant);
    }
 
    input[type='range'].styled-slider.slider-progress:hover::-webkit-slider-runnable-track {
-      background: linear-gradient(var(--tf-thumb-color), var(--tf-thumb-color)) 0 /
-            var(--sx) 100% no-repeat,
+      background: linear-gradient(var(--tf-thumb-color), var(--tf-thumb-color)) 0 / var(--sx) 100%
+            no-repeat,
          var(--tf-sys-light-surface-variant);
    }
 
    input[type='range'].styled-slider.slider-progress:active::-webkit-slider-runnable-track {
-      background: linear-gradient(var(--tf-thumb-color), var(--tf-thumb-color)) 0 /
-            var(--sx) 100% no-repeat,
+      background: linear-gradient(var(--tf-thumb-color), var(--tf-thumb-color)) 0 / var(--sx) 100%
+            no-repeat,
          var(--tf-sys-light-surface-variant);
    }
 
@@ -103,23 +104,20 @@ const style = css`
    }
 
    input[type='range'].styled-slider.slider-progress::-moz-range-track {
-      background: linear-gradient(
-               var(--tf-track-fill-color),
-               var(--tf-track-fill-color)
-            )
-            0 / var(--sx) 100% no-repeat,
+      background: linear-gradient(var(--tf-track-fill-color), var(--tf-track-fill-color)) 0 /
+            var(--sx) 100% no-repeat,
          var(--tf-sys-light-surface-variant);
    }
 
    input[type='range'].styled-slider.slider-progress:hover::-moz-range-track {
-      background: linear-gradient(var(--tf-thumb-color), var(--tf-thumb-color)) 0 /
-            var(--sx) 100% no-repeat,
+      background: linear-gradient(var(--tf-thumb-color), var(--tf-thumb-color)) 0 / var(--sx) 100%
+            no-repeat,
          var(--tf-sys-light-surface-variant);
    }
 
    input[type='range'].styled-slider.slider-progress:active::-moz-range-track {
-      background: linear-gradient(var(--tf-thumb-color), var(--tf-thumb-color)) 0 /
-            var(--sx) 100% no-repeat,
+      background: linear-gradient(var(--tf-thumb-color), var(--tf-thumb-color)) 0 / var(--sx) 100%
+            no-repeat,
          var(--tf-sys-light-surface-variant);
    }
 
@@ -179,7 +177,6 @@ const style = css`
       background: var(--tf-thumb-color);
    }
 
-
    .slider-container {
       position: relative;
    }
@@ -187,7 +184,7 @@ const style = css`
    .slider-value {
       position: absolute;
       top: 0%;
-      transform: translate(26px , calc(0.75rem - 1px));
+      transform: translate(26px, calc(0.75rem - 1px));
       pointer-events: none;
       width: calc(100% - 3rem);
    }
@@ -233,8 +230,8 @@ export class TfSimpleSlider extends TfBase {
       this.eventListener(input);
     }
   }
-  
-  eventListener = (input : HTMLInputElement) => {
+
+  eventListener = (input: HTMLInputElement) => {
     input.style.setProperty('--value', input.value);
     input.style.setProperty('--min', input.min == '' ? '0' : input.min);
     input.style.setProperty('--max', input.max == '' ? '100' : input.max);
@@ -244,18 +241,20 @@ export class TfSimpleSlider extends TfBase {
   displayRangeValue(value: string) {
     const div = this.shadowRoot?.querySelector('.slider-value-text') as HTMLElement;
     if (div) {
-      div.style.left   = `calc((${value}%)`;
+      div.style.left = `calc((${value}%)`;
       div.innerHTML = value;
     }
   }
 
   static get observedAttributes() {
-    return ['status' , 'text'];
+    return ['status', 'text'];
   }
 
   attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
-    if (name === 'status'){
-      const host = this.shadowRoot?.querySelector('input[type="range"].slider-progress') as HTMLInputElement;
+    if (name === 'status') {
+      const host = this.shadowRoot?.querySelector(
+        'input[type="range"].slider-progress'
+      ) as HTMLInputElement;
       if (host) {
         switch (_newValue) {
         case 'default':
@@ -263,24 +262,29 @@ export class TfSimpleSlider extends TfBase {
           break;
         case 'disabled':
           host.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-surface-variant');
-          host.style.setProperty('--tf-track-fill-color', 'var(--tf-sys-light-surface-variant');
+          host.style.setProperty(
+            '--tf-track-fill-color',
+            'var(--tf-sys-light-surface-variant'
+          );
           host.disabled = true;
           break;
         case 'error':
           host.style.setProperty('--tf-thumb-color', 'var(--tf-sys-light-error-container)');
-          host.style.setProperty('--tf-track-fill-color', 'var(--tf-sys-light-error-container)');
+          host.style.setProperty(
+            '--tf-track-fill-color',
+            'var(--tf-sys-light-error-container)'
+          );
           host.style.setProperty('--tf-outline-color', 'var(--tf-sys-light-error)');
           break;
         }
       }
     }
-    if (!this.text){
+    if (!this.text) {
       const div = this.shadowRoot?.querySelector('.slider-value-text') as HTMLElement;
       if (div) {
         div.style.display = 'none';
       }
     }
-
   }
 
   get status() {

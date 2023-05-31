@@ -10,7 +10,7 @@ const tfInputPasswordIconDefault: StyleVariantProps<'tf-input-password'> = {
     icon: 'true',
     status: 'default',
     show : 'false',
-    content: '<p slot="label">Password Icon</p>',
+    label : 'Password Icon',
   },
 };
 
@@ -22,7 +22,7 @@ const tfInputPasswordIconDefaultShow: StyleVariantProps<'tf-input-password'> = {
     icon: 'true',
     status: 'default',
     show : 'true',
-    content: '<p slot="label">Password Icon</p>',
+    label : 'Password Icon',
   },
 };
 
@@ -34,7 +34,7 @@ const tfInputPasswordDefault: StyleVariantProps<'tf-input-password'> = {
     icon: 'false',
     status: 'default',
     show : 'false',
-    content: '<p slot="label">Default</p>',
+    label : 'Password',
   },
 };
 
@@ -46,7 +46,7 @@ const tfInputPasswordDefaultIconDisabledShow: StyleVariantProps<'tf-input-passwo
     icon: 'false',
     status: 'default',
     show : 'true',
-    content: '<p slot="label">Disabled Icon</p>',
+    label: 'Disabled Icon',
   },
 };
 
@@ -58,7 +58,7 @@ const tfInputPasswordIconDisabled: StyleVariantProps<'tf-input-password'> = {
     icon: 'true',
     status: 'disabled',
     show : 'true',
-    content: '<p slot="label">Disabled Icon</p>',
+    label: 'Disabled Icon',
   },
 };
 
@@ -70,7 +70,7 @@ const tfInputPasswordIconDisabledShow: StyleVariantProps<'tf-input-password'> = 
     icon: 'true',
     status: 'disabled',
     show: 'false',
-    content: '<p slot="label">Disabled Icon</p>',
+    label: 'Disabled Icon',
   },
 };
 
@@ -82,7 +82,7 @@ const tfInputPasswordShow: StyleVariantProps<'tf-input-password'> = {
     icon: 'false',
     status: 'disabled',
     show: 'true',
-    content: '<p slot="label">Disabled Icon</p>',
+    label: 'Disabled Icon',
   },
 };
 
@@ -94,7 +94,7 @@ const tfInputPasswordDisabled: StyleVariantProps<'tf-input-password'> = {
   data: {
     icon: 'false',
     status: 'disabled',
-    content: '<p slot="label">Disabled</p>',
+    label: 'Disabled',
   },
 };
 
@@ -107,8 +107,8 @@ const tfInputPasswordIconError: StyleVariantProps<'tf-input-password'> = {
     status: 'error',
     show: 'false',
     placeholder: 'old value',
-    content: `<p slot="label">Error</p> 
-    <span slot="error">Error message</span>`,
+    label: 'Error',
+    content: '<span slot="error">Error message</span>',
   },
 };
 
@@ -121,8 +121,8 @@ const tfInputPasswordError: StyleVariantProps<'tf-input-password'> = {
     status: 'error',
     show: 'false',
     placeholder: 'old value',
-    content: `<p slot="label">Error</p> 
-              <span slot="error">Error message</span>`,
+    label: 'Error',
+    content: ' <span slot="error">Error message</span>',
   },
 };
 

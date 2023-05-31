@@ -79,10 +79,11 @@ const style = css`
       order: 2;
     }
 
-
-   
-
-   
+    @media screen and (max-width: 350px){
+        .city-week-info-container {
+            gap: 20%;
+        }
+    }
 `;
 
 export class TfCityOfTheWeek extends TfBase {

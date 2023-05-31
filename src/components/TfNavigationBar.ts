@@ -8,7 +8,7 @@ const style = css`
    .navigation-bar {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       box-shadow: 0px -12px 24px 0px #00000014;
    }
 `;

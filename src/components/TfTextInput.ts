@@ -2,8 +2,9 @@ import { html, css, TfBase } from './TfBase.js';
 
 const style = css`
   input {
-    padding: 12px 0 12px 1rem;
-    width: 100%;
+    padding: 0.75rem 0;
+    width: calc(100% - 0.75rem);
+    padding-left: 0.75rem;
   }
 
   label {
@@ -53,6 +54,8 @@ const style = css`
     left: 1rem;
     transform: translateY(-50%);
     color: var(--tf-sys-light-on-primary);
+    width: 1.25rem;
+    height: 1.25rem;
   }
 
   input:focus {
@@ -100,8 +103,8 @@ export class TfInputText extends TfBase {
         ${style}
       </style>
       <div class="container">
-        <input type="text" class="default input-icon" />
-        <label><slot name="label"></slot></label>
+        <input type="text" class="default" />
+        <label></label>
         
       </div>
     `);
@@ -140,7 +143,6 @@ export class TfInputText extends TfBase {
       break;
 
     case 'label':
-      label?.classList.toggle(_newValue, true);
       label.textContent = _newValue;
       break;
 

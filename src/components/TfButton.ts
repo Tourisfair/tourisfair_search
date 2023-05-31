@@ -10,6 +10,7 @@ const style = css`
       border-radius: 30px;
       text-align: center;
       border: none;
+      justify-content: center;
    }
 
    button:hover , .hover {
@@ -77,8 +78,8 @@ export class TfButton extends TfBase {
                ${style}
             </style>
             <button class="primary">
-               <slot></slot>
-            </button>
+              <slot></slot>
+              </button>
          `);
   }
 
@@ -133,7 +134,7 @@ export class TfButton extends TfBase {
   }
 
   insertIcon(buttonElem: HTMLButtonElement, icon: string) {
-    buttonElem.innerHTML = '';
+    this.shadowRoot?.querySelector('svg')?.remove();
     buttonElem.insertAdjacentHTML('afterbegin', tfIconNameMap[icon]);
   }
 
@@ -176,6 +177,14 @@ export class TfButton extends TfBase {
   set text(value) {
     value && this.setAttribute('text', '');
     !value && this.removeAttribute('text');
+  }
+
+  get icon() {
+    return this.getAttribute('icon') || '';
+  }
+
+  set icon(value) {
+    this.setAttribute('icon', value);
   }
 }
 

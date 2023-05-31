@@ -12,6 +12,7 @@ const style = css`
 
    .slider-container{
     display: flex;
+    width: 100%;
    }
 
    .input-container {

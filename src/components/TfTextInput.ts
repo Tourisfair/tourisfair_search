@@ -149,7 +149,7 @@ export class TfInputText extends TfBase {
     case 'pictogramme':
       icon?.remove();
       input?.classList.remove('input-icon');
-      if (this.icon === 'true') {
+      if (this.icon) {
         input?.insertAdjacentHTML(
           'afterend',
           `<tf-icon icon="${this.pictogramme}" class="icon"></tf-icon>`
@@ -161,11 +161,12 @@ export class TfInputText extends TfBase {
   }
 
   get icon() {
-    return this.getAttribute('icon') || 'false';
+    return this.hasAttribute('icon');
   }
 
   set icon(value) {
-    this.setAttribute('icon', value);
+    value && this.setAttribute('icon', '');
+    !value && this.removeAttribute('icon');
   }
 
   get status() {

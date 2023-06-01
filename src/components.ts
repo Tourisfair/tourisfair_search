@@ -26,3 +26,4 @@ export * from './components/TfSimpleSlider.js';
 export * from './components/TfAgeSelector.js';
 export * from './components/TfCityOfTheWeek.js';
 export * from './components/TfFavoritePlan.js';
+export * from './components/TfActivityCard.js';

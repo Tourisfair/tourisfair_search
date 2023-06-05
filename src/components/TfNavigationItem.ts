@@ -31,6 +31,7 @@ const style = css`
       flex-direction: column;
       align-items: center;
       padding: 0.5rem 1rem;
+      text-align: center;
    }
 
    .text {

@@ -34,10 +34,13 @@ const style = css`
 
    h3 {
       font: var(--tf-subhead1);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
    }
 
    .main-container {
-      margin: 0 0.5rem 0.5rem 0.5rem;
+      padding: 0 0.5rem 0.5rem 0.5rem;
       width: 70%;
       background-color: var(--tf-sys-light-surface);
    }

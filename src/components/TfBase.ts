@@ -175,6 +175,7 @@ const style = css`
       --tf-subhead1 : 700 1rem/2rem Nunito,sans-serif;
       --tf-caption : 400 0.75rem/1rem Nunito,sans-serif;
       --tf-body-small : 400 0.75rem/1rem Nunito,sans-serif;
+      --tf-button : 700 1rem Nunito,sans-serif;
    }
 
    .primary {

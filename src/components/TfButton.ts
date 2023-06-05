@@ -2,6 +2,11 @@ import { css, html, TfBase } from './TfBase.js';
 import { tfIconNameMap } from './TfIcon.js';
 
 const style = css`
+  :host {
+    width:fit-content;
+    display:block;
+  }
+
    button {
       display: flex;
       align-items: center;
@@ -11,6 +16,8 @@ const style = css`
       text-align: center;
       border: none;
       justify-content: center;
+      font: var(--tf-button);
+      width:100%;
    }
 
    button:hover , .hover {
@@ -135,6 +142,7 @@ export class TfButton extends TfBase {
 
   insertIcon(buttonElem: HTMLButtonElement, icon: string) {
     this.shadowRoot?.querySelector('svg')?.remove();
+    if (!tfIconNameMap[icon]) return;
     buttonElem.insertAdjacentHTML('afterbegin', tfIconNameMap[icon]);
   }
 

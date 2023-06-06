@@ -2,10 +2,17 @@ import { html } from '../components.js';
 import { css, TfBase } from '../components/TfBase.js';
 
 export interface IActivity {
+  categories: any;
+  type: string;
+  description: string;
+  code: string;
   photos: { urls: string }[];
   title: string;
   meetingPoints: { address: string }[];
-  price: { currencySymbol: string };
+  price: {
+    basePrice: number;
+    currencySymbol: string;
+  };
   abstract: string;
 }
 
@@ -14,7 +21,7 @@ const tfActivityCardStyle = css`
     position: relative;
     width: 440px;
     height: 278px;
-
+    display: inline-block;
     /* Background/Main */
 
     background: #ffffff;
@@ -47,7 +54,8 @@ const tfActivityCardStyle = css`
     left: -10px;
 
     /* Main/Main */
-    color: var(--tf-main-main);
+    /* color: var(--tf-main-main); */
+    color: #012e4a;
     /* Inside auto layout */
 
     flex: none;
@@ -57,16 +65,16 @@ const tfActivityCardStyle = css`
 
   .subtitle {
     float: right;
-    width: 136px;
+    width: 220px;
     height: 14px;
     margin-top: -10px;
-    margin-right: 120px;
+    margin-right: 35px;
     font-family: 'SF Pro Display';
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
     line-height: 14px;
-    display: flex;
+
     align-items: center;
 
     /* Inside auto layout */
@@ -77,23 +85,17 @@ const tfActivityCardStyle = css`
   }
 
   .type {
-    float: right;
-    position: relative;
-    left: -26%;
-    top: 10px;
+    position: absolute;
+    margin-left: 185px;
+    margin-top: 75px;
     font-weight: bold;
-    display: block;
+
     padding-top: 0.25rem;
-    line-height: 0.75rem;
-    font-size: 0.625rem;
-    color: var(--tf-main-main);
   }
+
   .level {
-    color: var(--tf-sys-light-secondary);
-    font-weight: bold;
-  }
-  .budget {
-    color: var(--tf-sys-light-secondary-container);
+    /* color: var(--tf-sys-light-secondary); */
+    color: #ff805e;
     font-weight: bold;
 
     width: 45px;
@@ -117,14 +119,19 @@ const tfActivityCardStyle = css`
     order: 0;
     flex-grow: 0;
   }
+  .budget {
+    color: #ffdacf;
+    font-weight: bold;
+  }
 
   .description {
     position: relative;
     width: 230px;
     height: 109px;
-    left: -28px;
-    top: 0px;
-    color: var(--tf-main-main);
+    left: -24px;
+    top: 10px;
+    /* color: var(--tf-main-main); */
+    color: #012e4a;
     margin-left: 100px;
     float: right;
     font-weight: 400;
@@ -147,7 +154,8 @@ const tfActivityCardStyle = css`
     height: 34px;
   }
   .read {
-    color: var(--tf-sys-read-more);
+    /* color: var(--tf-sys-read-more); */
+    color: #e76b2d;
     text-decoration: underline;
     font-weight: 700;
   }
@@ -165,13 +173,14 @@ export class TfApp extends HTMLElement {
       .then((json: { data: any }) => json.data)
       .then(this._afficher.bind(this));
 
-    console.log('url');
+    console.log(url);
   }
+
+
 
   // 2 //
   _afficher(activities: IActivity[]) {
     const container = document.createElement('div');
-
     activities.forEach((activity: IActivity) => {
       const activityElement = document.createElement('div');
       activityElement.innerHTML = html`
@@ -189,18 +198,27 @@ export class TfApp extends HTMLElement {
           <p class="subtitle ">
             <slot name="subtitle"
               >${activity.meetingPoints[0]
-    ? activity.meetingPoints[0]?.address.substring(0, 25)
+    ? activity.meetingPoints[0]?.address.substring(0, 40) + ' ...'
     : 'Pickup'}</slot
             >
           </p>
-          <div class="budget">
-            <slot name="budget">${activity.price.currencySymbol}</slot>
+          <div class="level">
+            <slot name="level">${activity.price.currencySymbol}<span class="budget">€€€€</span></slot>
           </div>
-          <slot class="type" name="chip"></slot>
-          <slot class="type" name="chip"></slot>
+          <div class="type">
+            <tf-chip class="activity">
+              <slot name="chip">
+                <!-- /*${
+  activity.categories[1] /*.code + ' ' + activity.categories[1].code*/
+} --></slot
+              >
+            </tf-chip>
+            <tf-chip type="poi" slot="chip"></tf-chip>
+          </div>
           <p class="description ">
             <slot name="description"
-              >${activity.abstract.substring(0, 255)} <span class="read">Read more...</span></slot
+              >${activity.description.substring(0, 205)}
+              <span class="read">Read more...</span></slot
             >
           </p>
           <div class="actions">
@@ -250,8 +268,6 @@ export class TfApp extends HTMLElement {
   //         </section>
   //       `);
   //   });
-
-
 
   // 2 //
   // async function fetchActivities(): Promise<IActivity[]> {

@@ -219,19 +219,18 @@ function afficher(activities) {
 
 }
 // FILTER //
-// Variables globales pour stocker les données d'activité
-// Filtrer les activités en fonction des critères sélectionnés
+
 function filterActivities() {
   var minPrice = parseFloat(document.getElementById('min-price').value);
   var maxPrice = parseFloat(document.getElementById('max-price').value);
 
-  // Sélectionner tous les éléments d'activité sur la page
+
   var cards = document.querySelectorAll('.container');
 
-  // Parcourir les éléments d'activité et les filtrer en fonction des critères de prix
+
   for (var i = 0; i < cards.length; i++) {
     var activityElement = cards[i];
-    var priceElement = activityElement.querySelector('.level'); // Modifier le sélecteur pour correspondre à votre structure HTML
+    var priceElement = activityElement.querySelector('.level'); 
     var activityPrice = parseFloat(priceElement);
 
     if (isNaN(activityPrice) || (minPrice && activityPrice < minPrice) || (maxPrice && activityPrice > maxPrice)) {
@@ -269,30 +268,30 @@ function filterElements() {
 }
 // RATING //
 
-// Fonction pour effacer la sélection du filtre
+
 function clearSelection() {
-  // Désélectionner tous les boutons radio
+
   var radioButtons = document.querySelectorAll('input[name="option"]');
   for (var i = 0; i < radioButtons.length; i++) {
     radioButtons[i].checked = false;
   }
   const cards1 = document.querySelectorAll('.container');
-  // Afficher toutes les notes
+
   var ratings = document.getElementsByClassName('rating1');
   for (var i = 0; i < ratings.length; i++) {
     cards1[i].style.display  = 'block';
   }
 }
 
-// Fonction pour filtrer les notes
+
 function filterRatings() {
-  // Récupérer toutes les notes affichées
+ 
   var ratings = document.getElementsByClassName('rating1');
   const cards1 = document.querySelectorAll('.container');
-  // Récupérer la valeur sélectionnée du filtre
+
   var selectedValue = document.querySelector('input[name="option"]:checked').value;
 
-  // Parcourir les notes et les masquer si elles ne correspondent pas au filtre sélectionné
+ 
   for (var i = 0; i < ratings.length; i++) {
     var rating = parseFloat(ratings[i].textContent);
     

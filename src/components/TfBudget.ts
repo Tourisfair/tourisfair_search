@@ -1,14 +1,15 @@
 import { html, css, TfBase } from './TfBase.js';
 
 const tfBudgetStyle = css`
-   .level {
-      color: var(--tf-sys-light-secondary);
-      font-weight: bold;
-   }
-   .budget {
-      color: var(--tf-sys-light-secondary-container);
-      font-weight: bold;
-   }
+  .level {
+    color: var(--tf-sys-light-secondary);
+    font-weight: bold;
+  }
+
+  .budget {
+    color: var(--tf-sys-light-secondary-container);
+    font-weight: bold;
+  }
 `;
 
 export class TfBudget extends TfBase {
@@ -16,12 +17,12 @@ export class TfBudget extends TfBase {
   constructor() {
     super();
     this.shadowRoot &&
-         (this.shadowRoot.innerHTML += html`
-            <style>
-               ${tfBudgetStyle}
-            </style>
-            <span class="level"> </span><span class="budget"> </span>
-         `);
+      (this.shadowRoot.innerHTML += html`
+        <style>
+          ${tfBudgetStyle}
+        </style>
+        <span class="level"> </span><span class="budget"> </span>
+      `);
   }
 
   // connectedCallback() {}
@@ -52,9 +53,9 @@ export class TfBudget extends TfBase {
 }
 
 declare global {
-   interface HTMLElementTagNameMap {
-      'tf-budget': TfBudget;
-   }
+  interface HTMLElementTagNameMap {
+    'tf-budget': TfBudget;
+  }
 }
 
 customElements.define('tf-budget', TfBudget);

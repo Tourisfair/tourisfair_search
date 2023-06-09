@@ -11,18 +11,19 @@ const tfActivityCardStyle = css`
     background: #ffffff;
     box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
+    font-family: nunito;
   }
 
   .header-img {
     position: absolute;
-    border-radius: 20px 0 0 20px;
-    left: -5px;
-    right: 0%;
-    top: 0%;
-    bottom: 0%;
+    border-radius: 15px 0 0 15px;
+
+    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    width: 11.5rem;
+    height: 20rem;
     background: url(/assets/image.png);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0);
-    background-repeat: no-repeat;
   }
 
   h2 {
@@ -33,7 +34,7 @@ const tfActivityCardStyle = css`
     font-style: normal;
     font-size: 18px;
     line-height: 25px;
-    left: -10px;
+    right: 0.4rem;
 
     /* Main/Main */
     color: var(--tf-main-main);
@@ -46,16 +47,15 @@ const tfActivityCardStyle = css`
 
   .subtitle {
     float: right;
-    width: 136px;
+    width: 160px;
     height: 14px;
     margin-top: -10px;
-    margin-right: 120px;
+    margin-right: 90px;
     font-family: 'SF Pro Display';
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
     line-height: 14px;
-    display: flex;
     align-items: center;
 
     /* Inside auto layout */
@@ -67,9 +67,9 @@ const tfActivityCardStyle = css`
 
   .type {
     float: right;
-    position: relative;
-    left: -26%;
-    top: 10px;
+    position: absolute;
+    left: 11.8rem;
+    top: 5rem;
     font-weight: bold;
     display: block;
     padding-top: 0.25rem;
@@ -105,8 +105,8 @@ const tfActivityCardStyle = css`
     position: relative;
     width: 230px;
     height: 109px;
-    left: -28px;
-    top: 0px;
+    right: 1.2rem;
+    top: 0.5rem;
     color: var(--tf-main-main);
     margin-left: 100px;
     float: right;
@@ -116,7 +116,7 @@ const tfActivityCardStyle = css`
   }
 
   .actions {
-    top: 15px;
+    top: 2rem;
     position: relative;
     float: right;
     font-weight: bold;

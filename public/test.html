@@ -7,9 +7,10 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" />
     <title>test</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="/dist/components.js" type="module"></script>
     <script src="script.js"></script>
   </head>
-  <body onload="search()">
+  <body onload="searchElements()">
     <form class="filtre">
       <p>Price</p>
       <label for="min-price">Min price :</label>
@@ -18,8 +19,7 @@
       <label for="max-price">Max price :</label>
       <input type="number" id="max-price" />
 
-      <button id="filter-button" onclick="event.preventDefault(); filterActivities()">Filter</button>
-
+      <button id="filter-button" type="button" onclick="searchElements()">Filter</button>
     </form>
 
     <form class="rating">
@@ -37,11 +37,9 @@
 
     <div class="search-bar">
       <input type="text" id="search-activities" placeholder="Search activities..." />
-      <button id="button-search" onclick="filterElements()">Search</button>
+      <button id="button-search" onclick="searchElements()">Search</button>
     </div>
 
-    <div id="container" style="display: flex; flex-wrap: wrap; gap: 1.5rem; padding: 5rem;"></div>
-
-
+    <div id="container" style="display: flex; flex-wrap: wrap; gap: 1.5rem; padding: 5rem"></div>
   </body>
 </html>

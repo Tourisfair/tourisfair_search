@@ -5,6 +5,7 @@ const style = css`
     padding: 0.25rem;
     line-height: 0.75rem;
     font-size: 0.625rem;
+    
   }
 
   .activity {

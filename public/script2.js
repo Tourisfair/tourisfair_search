@@ -1,15 +1,8 @@
-// RECUPERER L'ACTIVITE //
-
-function obtenirActivite() {
-  return document.getElementById('activite').value;
-}
-
-style = `
 .container {
   position: relative;
-  width: 740px;
-  height: 378px;
-  display: inline-block;
+  width: 440px;
+  height: 278px;
+ 
   /* Background/Main */
 
   background: #ffffff;
@@ -19,99 +12,83 @@ style = `
   margin-left: 20px;
 }
 
+.badge {
+  position: relative;
+  left: 30px;
+}
+.favorite {
+  position: relative;
+  top: 175px;
+  left: 40px;
+}
+
 .header-img {
   position: absolute;
-  border-radius: 15px 15px 0 0;
-  
+  border-radius: 15px 0 0 15px;
+ 
 
   object-fit: cover;
   max-width: 100%;  
   max-height: 100%;
-  width: 550.5rem;
-  height: 12rem; 
+  width: 11.5rem;
+  height: 20rem; 
 }
 
 h2 {
-  width: 35rem;
+  width: 255px;
   height: 25px;
-  position: relative;
-  float: left;
-  font-style: normal;
+  position: absolute;
+  margin-left: 12.2rem;
   font-size: 18px;
   line-height: 25px;
-  left: 20px;
-top: 50%;
+ 
 
-  /* Main/Main */
   /* color: var(--tf-main-main); */
   color: #012e4a;
-  /* Inside auto layout */
+
   font-family: nunito;
-  flex: none;
-  order: 0;
-  flex-grow: 1;
+
 }
 
 .subtitle {
-  float: left;
+  margin-left: 12.2rem;
   width: 220px;
   height: 14px;
-  margin-top: 11rem;
-  margin-left: 1.35rem;
-  font-family: 'SF Pro Display';
-  font-style: normal;
+  top: 1.8rem;
+  position: absolute;
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
-
   align-items: center;
-
-  /* Inside auto layout */
   font-family: nunito;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+ 
 }
 
 .level {
-  /* color: var(--tf-sys-light-secondary); */
+  // color: var(--tf-sys-light-secondary);
   color: #ff805e;
   font-weight: bold;
-
-  width: 45px;
+  width: 4rem;
   height: 17px;
-  float: left;
-  position: relative;
-  top: 10.9rem;
-  right: 10.1rem;
-  font-style: normal;
-
+  margin-left: 12.2rem;
+  position: absolute;
+  top: 3.55rem;
   font-size: 15px;
-  line-height: 110%;
-  /* identical to box height, or 17px */
-
-  display: flex;
-  align-items: center;
-
-  /* Inside auto layout */
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+ 
 }
 .budget {
-  display: block;
   color: #ffdacf;
+  position: relative;
   font-weight: bold;
-  margin-left: 0.5rem;
-  white-space: nowrap
+  top: 3.55rem;
+  left: 14.5rem;
 }
 
 .type {
-  float: left;
-  position: relative;
-  right: 4rem;
-  top: 10.8rem;
+  margin-left: 15.2rem;
+  position: absolute;
+  
+  top: 5rem;
   font-weight: bold;
   
   padding-top: 0.25rem;
@@ -123,7 +100,15 @@ top: 50%;
 .activity {
   background-color: #4ca7de;
   color:  #012e4a;
-  display: inline-block;
+  width: 4.2rem;
+  margin: auto;
+  justify-content: center;
+  height: 0.9rem;
+  text-align: center;font-family: nunito;
+}
+.rating1 {
+  background-color: #4ca7de;
+  color:  #012e4a;
   width: 4.2rem;
   margin: auto;
   justify-content: center;
@@ -131,65 +116,39 @@ top: 50%;
   text-align: center;font-family: nunito;
 }
 
-.activity1 {
-  background-color: #4ca7de;
-  color:  #012e4a;
-  display: inline-block;
-  width: 4.2rem;
-  margin: auto;
-  justify-content: center;
-  height: 1.65rem;
-  text-align: center;font-family: nunito;
-}
-
-.activity2 {
-  background-color: #4ca7de;
-  color:  #012e4a;
-  display: inline-block;
-  width: 4.2rem;
-  margin: auto;
-  justify-content: center;
-  height: 2.4rem;
-  text-align: center;font-family: nunito;
-}
-
 .description {
   position: relative;
-  width: 40rem;
+  width: 230px;
   height: 109px;
-  right: 5rem;
-  top: rem;
+  top: 7.5rem;
   /* color: var(--tf-main-main); */
   color: #012e4a;
-  margin-left: 100px;
-  float: left;
+  margin-left: 12.2rem;
+  
   font-weight: 400;
-  font-size: 16px;
+  font-size: 12px;
   line-height: 16px;font-family: nunito;
 }
 
 .actions {
-  bottom: 4rem;
+  top: 7.5rem;
   position: relative;
   float: right;
   font-weight: bold;
-  display: flex;
+
   font-size: 14px;
   justify-content: center;
   align-items: center;  
   
   background-color: #00AAE3;
-  width: 45rem;
-  height: 34px;
+
   border-radius: 30px;
   color:  #250127;
-  padding: 0.1rem 0.1rem;
+
   font-family: nunito;
   margin-right: 10px;
+ 
 }
-
-
-
 
 .actions:hover {
   cursor: pointer;
@@ -202,69 +161,34 @@ top: 50%;
   font-weight: 700;font-family: nunito;
 }
 
-`;
-// ENVOYER UNE REQUETE //
-
-function search() {
-  let url = ` https://travelers-api.getyourguide.com/search/v2/search?q=Paris&searchcontext=TRIP_ITEM_SORT_LOCATIONS&size=1&tcId=27`;
-
-  fetch(url, {
-    headers: {
-      'content-type': 'application/json',
-      'accept-currency': 'EUR',
-      'accept-language': 'fr-FR',
-    },
-  })
-    .then((response) => response.json())
-    // .then((json) => json.data)
-    .then(afficher);
-}
-
-//AFFICHER LES RESULTATS //
-function afficher(activities) {
-  console.log(activities);
-  const activityElement = document.createElement('div');
-  activityElement.innerHTML = `
-        <style>
-          ${style}
-        </style>
-        <section class="container">
-        
-          <img  src="${activities.items[0].photos[0].urls[1].url}" class="header-img">
-         <h2>${activities.items[0].title}</h2>
-         <p class="subtitle ">
-         ${activities.items[0].primaryLocation.name}
+<div class="header-img">
+            <tf-card-header-image  src="${
+              activity.photos[0].urls[2].url
+            }" class="header-img style="border-radius: 15px 0 0 15px;""></tf-card-header-image>
+            <tf-badge class="badge no"></tf-badge>
+            <tf-favorite class="favorite" enabled=""></tf-favorite>
+          </div>
+          <h2>${activity.title.substring(0, 26)}...</h2>
+          <p class="subtitle ">
+            ${activity.primaryLocation.name}
           </p>
-          <div class="level">
-          ${activities.items[0].price.formattedBasePrice}<span class="budget">${
-    activities.items[0].price.priceCategoryLabel
-  }</span>
-          </div>
-          <div class="type">
+          
+          
+            0 10 50 200 500 ${activity.price.basePrice} ${activity.price.currencySymbol}
+          <tf-budget level=''>
+          </tf-budget>
+          
+          <tf-chip class="type">
             <div class="activity">
-            ${activities.items[0].categoryLabel}
+            ${activity.categoryLabel}
             </div>
-            <div class="activity">
-            ${activities.items[0].attributes[0].label
-            }
+            <div class="rating1">
+            ${activity.reviewStatistics.rating.toFixed(1)}
             </div>
-            <div class="activity1">
-            ${activities.items[0].attributes[1].label}
-            </div>
-            <div class="activity1">
-            ${activities.items[0].attributes[2].label}
-            </div>
-            <div class="activity2">
-            ${activities.items[0].availability.message}
-            </div>
-          </div>
-          <p class="description">${activities.items[0].abstract.substring(0, 205)} 
-         <span class="read"> </span></p> 
+          </tf-chip>
+          <p class="description">${activity.abstract.substring(
+            0,
+            205
+          )} <span class="read"> Read more...</span></p>
 
-          <div class="actions">
-            Book now 
-          </div>
-        </section>
-      `;
-  container.appendChild(activityElement);
-}
+          <tf-button class="actions">Book now</tf-button> 

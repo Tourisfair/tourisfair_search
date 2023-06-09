@@ -22,6 +22,7 @@ const tfCardHeaderImageStyle = css`
     max-height: 100%;
     width: 14rem;
     height: 20rem;
+    border-radius: 15px 0 0 15px;
     background-size: cover;
     background-position: center;
   }

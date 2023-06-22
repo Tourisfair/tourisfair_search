@@ -154,6 +154,18 @@ const tfInputPasswordErrorShow: StyleVariantProps<'tf-input-password'> = {
   },
 };
 
+const tfInputPasswordErrorShowNoText: StyleVariantProps<'tf-input-password'> = {
+  name: 'tf input password',
+  tag: 'tf-input-password',
+  description: 'A password input component error with icon.',
+  data: {
+    icon: 'true',
+    status: 'error',
+    show : 'true',
+    placeholder: 'old value',
+  },
+};
+
 const meta: StyleComponentProps<'tf-input-password'> = {
   ref: 'tf-input-password',
   tag: 'tf-input-password',
@@ -173,7 +185,7 @@ const meta: StyleComponentProps<'tf-input-password'> = {
     tfInputPasswordError,
     tfInputPasswordIconErrorShow,
     tfInputPasswordErrorShow,
-    
+    tfInputPasswordErrorShowNoText
   ],
 };
 

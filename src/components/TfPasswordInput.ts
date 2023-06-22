@@ -34,9 +34,6 @@ const style = css`
       left: 1rem;
    }
 
-   .error ~ .icon {
-      top: 30%;
-   }
    .input-icon {
       padding-left: 2.5rem !important;
       width: calc(100% - 2.5rem);
@@ -48,10 +45,12 @@ const style = css`
 
    .icon {
       position: absolute;
-      top: 50%;
+      top: 0;
       left: 1rem;
-      transform: translateY(-50%);
+      transform: translateY(50%);
       color: var(--tf-sys-light-on-primary);
+      width: 1.25rem;
+      height: 1.25rem;
    }
 
    .right {
@@ -89,7 +88,7 @@ const style = css`
 
    .error-message {
       margin-left: 1rem;
-      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
    }
 `;
 
@@ -105,7 +104,6 @@ export class TfInputPassword extends TfBase {
                <input type="password" class="default input-icon" />
                <label></label>
                <tf-icon icon="visibility" class="icon right" id="eyes"></tf-icon>
-               <div class="error-message"><slot name="error"></slot></div>
             </div>
          `);
   }
@@ -122,7 +120,7 @@ export class TfInputPassword extends TfBase {
     input.addEventListener('change', () => {
       if (input.value.length > 0) {
         input.classList.add('keep-focus');
-      }else{
+      } else {
         input.classList.remove('keep-focus');
       }
     });
@@ -143,6 +141,13 @@ export class TfInputPassword extends TfBase {
     case 'status':
       input?.classList.toggle(_newValue, true);
       input.disabled = _newValue === 'disabled';
+
+      if (_newValue === 'error') {
+        label.insertAdjacentHTML(
+          'afterend',
+          '<div class="error-message"><slot name="error"></slot></div>'
+        );
+      }
       break;
 
     case 'label':
@@ -157,10 +162,10 @@ export class TfInputPassword extends TfBase {
 
     case 'icon':
       _newValue === 'true' &&
-      input?.insertAdjacentHTML(
-        'afterend',
-        '<tf-icon icon="lock" class="icon"></tf-icon>'
-      );
+               input?.insertAdjacentHTML(
+                 'afterend',
+                 '<tf-icon icon="lock" class="icon"></tf-icon>'
+               );
       input?.classList.add('input-icon');
     }
   }

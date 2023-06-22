@@ -2,9 +2,10 @@ import { html, css, TfBase } from './TfBase.js';
 
 const style = css`
   input {
-    padding: 0.75rem 0;
+    padding: 0.5rem 0;
     width: calc(100% - 0.75rem);
     padding-left: 0.75rem;
+    font : var(--tf-body1);
   }
 
   label {
@@ -35,13 +36,9 @@ const style = css`
       left: 2rem;
    }
 
-  .error ~ .icon {
-    top : 30%;
-  }
-
   .input-icon {
     padding-left: 3rem !important;
-    width: calc(100% - 3rem);
+    width: calc(100% - 3rem - 2px);
   }
 
   .container {
@@ -50,9 +47,9 @@ const style = css`
 
   .icon {
     position: absolute;
-    top: 50%;
+    top: 0;
     left: 1rem;
-    transform: translateY(-50%);
+    transform: translateY(50%);
     color: var(--tf-sys-light-on-primary);
     width: 1.25rem;
     height: 1.25rem;
@@ -86,11 +83,9 @@ const style = css`
     color: var(--tf-sys-light-error);
   }
 
-
-
-  .error-message {
+  .error-message{
     margin-left: 1rem;
-    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 `;
 
@@ -105,7 +100,6 @@ export class TfInputText extends TfBase {
       <div class="container">
         <input type="text" class="default" />
         <label></label>
-        
       </div>
     `);
   }
@@ -123,16 +117,15 @@ export class TfInputText extends TfBase {
   }
 
   static get observedAttributes() {
-    return ['icon', 'status', 'pictogramme', 'label'];
+    return ['icon', 'status', 'pictogramme', 'label' , 'value'];
   }
 
   attributeChangedCallback(name: string, _oldValue: string, _newValue: string) {
     const input = this.shadowRoot?.querySelector('input');
     const label = this.shadowRoot?.querySelector('label');
     const icon = this.shadowRoot?.querySelector('tf-icon');
-
     if (!input || !label) return;
-
+    
     switch (name) {
     case 'status':
       input?.classList.toggle(_newValue, true);
@@ -156,6 +149,10 @@ export class TfInputText extends TfBase {
         );
         input?.classList.add('input-icon');
       }
+      break;
+    case 'value':
+      input.value = _newValue;
+      input.classList.add('keep-focus');
       break;
     }
   }

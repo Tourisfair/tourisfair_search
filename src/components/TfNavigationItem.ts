@@ -14,9 +14,9 @@ const style = css`
    .active {
       background-color: var(--tf-sys-light-tertiary);
       box-shadow: 0px 0px 8px 0px #00000040;
-      border-top: 8px solid var(--tf-sys-light-tertiary);
-      border-bottom: 8px solid var(--tf-sys-light-tertiary);
-      margin: -8px 0px;
+      border-top: 4px solid var(--tf-sys-light-tertiary);
+      margin-top: -4px;
+      padding-bottom : 8px;
    }
 
    .icon {
@@ -30,8 +30,8 @@ const style = css`
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 0.5rem 1rem;
       text-align: center;
+      width: 100%;
    }
 
    .text {

@@ -56,11 +56,8 @@ const style = css`
     align-items: center;
     background-color: #ffffff;
     border-radius: 2rem;
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
+    padding : 0 0.25rem;
     font-size: 0.75rem;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
     gap: 0.25rem;
    }
 
@@ -79,7 +76,7 @@ const style = css`
       order: 2;
     }
 
-    @media screen and (max-width: 350px){
+    @media screen and (max-width: 376px){
         .city-week-info-container {
             gap: 20%;
         }

@@ -1,45 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" />
-    <title>test</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="/dist/components.js" type="module"></script>
-    <script src="script.js"></script>
-  </head>
-  <body onload="searchElements()">
-    <form class="filtre">
-      <p>Price</p>
-      <label for="min-price">Min price :</label>
-      <input type="number" id="min-price" />
 
-      <label for="max-price">Max price :</label>
-      <input type="number" id="max-price" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" />
+  <title>test</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="/dist/components.js" type="module"></script>
+  <script src="script.js"></script>
+</head>
 
-      <button id="filter-button" type="button" onclick="searchElements()">Filter</button>
-    </form>
+<body onload="searchElements()">
+  <form >
+    <div>
+    <p>Price</p>
+    <label for="min-price">Min price :</label>
+    <input type="number" id="min-price" />
 
-    <form class="rating">
-      <p>Rating</p>
-      <div>
-        <label for="note-3">3.0+</label>
-        <input type="radio" onclick="filterRatings()" name="option" id="note-3" value="3.0+" />
-      </div>
-      <div>
-        <label for="note-4.5">4.5+</label>
-        <input type="radio" onclick="filterRatings()" name="option" id="note-4.5" value="4.5+" />
-      </div>
-      <button type="button" onclick="clearSelection()" id="rating-button">Clear selection</button>
-    </form>
-
-    <div class="search-bar">
-      <input type="text" id="search-activities" placeholder="Search activities..." />
-      <button id="button-search" onclick="searchElements()">Search</button>
+    <label for="max-price">Max price :</label>
+    <input type="number" id="max-price" />
     </div>
 
-    <div id="container" style="display: flex; flex-wrap: wrap; gap: 1.5rem; padding: 5rem"></div>
-  </body>
+    <div>
+    <p>Rating</p>
+    <div>
+      <label for="note-3">3.0+</label>
+      <input type="radio" onclick="filterRatings()" name="option" id="note-3" value="3.0+" />
+    </div>
+    <div>
+      <label for="note-4.5">4.5+</label>
+      <input type="radio" onclick="filterRatings()" name="option" id="note-4.5" value="4.5+" />
+    </div>
+    </div>
+
+
+    <div>
+      <input type="text" id="search-activities" placeholder="Search activities..." />
+    </div>
+
+    <button id="filter-button" type="button" onclick="searchElements()">Search</button>
+    <button type="button" onclick="clearSelection()" id="rating-button">Clear selection</button>
+  </form>
+
+  <div id="container" style="display: flex; flex-wrap: wrap; gap: 1.5rem; padding: 5rem"></div>
+</body>
+
 </html>

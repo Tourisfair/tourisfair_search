@@ -1,5 +1,4 @@
 // RECUPERER L'ACTIVITE //
-
 function obtenirActivite() {
   return document.getElementById('activite').value;
 }
@@ -12,8 +11,21 @@ style = `
   font-weight: 700;font-family: nunito;
 }
 `;
-// ENVOYER UNE REQUETE //
 
+// Exécuter la recherche
+function searchElements() {
+  const searchInput = document.querySelector('#search-activities');
+  const searchText = searchInput.value.toLowerCase();
+
+  loadElements(searchText);
+}
+
+// Charger les éléments
+function loadElements(query = '') {
+  search(query).then(priceFilter).then(afficher);
+}
+
+// Envoyer la requête
 async function search(query = '') {
   let url =
     'https://travelers-api.getyourguide.com/search/v2/search?' +
@@ -27,16 +39,38 @@ async function search(query = '') {
       'accept-currency': 'EUR',
       'accept-language': 'fr-FR',
     },
-  }).then((response) => response.json());
-  // .then((json) => json.data)
+  })
+  .then((response) => response.json())
+  .then((json) => json.items);
 }
 
-//AFFICHER LES RESULTATS //
+// Filter by price
+function priceFilter(activities) {
+  const minPrice = parseFloat(document.querySelector('#min-price').value);
+  const maxPrice = parseFloat(document.querySelector('#max-price').value);
+
+  console.log('Min Price:', minPrice);
+  console.log('Max Price:', maxPrice);
+
+
+  if (isNaN(minPrice) && isNaN(maxPrice)) return activities;
+  if (isNaN(minPrice)) return activities.filter((activity) => activity.price.basePrice <= maxPrice);
+  if (isNaN(maxPrice)) return activities.filter((activity) => activity.price.basePrice >= minPrice);
+
+  const filteredActivities = activities.filter((activity) =>
+    isBetween(activity.price.basePrice, minPrice, maxPrice)
+  );
+  console.log('Filtered Activities:', filteredActivities);
+
+  return filteredActivities;
+}
+
+// Afficher les éléments
 function afficher(activities) {
   console.log(activities);
   let container = document.querySelector('#container');
   container.innerHTML = '';
-  activities.items.forEach((activity) => {
+  activities.forEach((activity) => {
     const activityElement = document.createElement('div');
     activityElement.innerHTML = `
         <style>
@@ -80,8 +114,8 @@ function afficher(activities) {
     container.appendChild(activityElement);
   });
 }
-// PRICE //
 
+// Assign Level
 function assignLevel(price) {
   if (price < 10) {
     return 1;
@@ -96,28 +130,6 @@ function assignLevel(price) {
   }
 }
 
-// FILTER PRICE //
-
-function priceFilter(activities) {
-  const minPrice = parseFloat(document.querySelector('#min-price').value);
-  const maxPrice = parseFloat(document.querySelector('#max-price').value);
-
-  console.log('Min Price:', minPrice);
-  console.log('Max Price:', maxPrice);
-
-
-  if (isNaN(minPrice) && isNaN(maxPrice)) return activities;
-  if (isNaN(minPrice)) return activities.filter((activity) => activity.price.basePrice <= maxPrice);
-  if (isNaN(maxPrice)) return activities.filter((activity) => activity.price.basePrice >= minPrice);
-
-  const filteredActivities = activities.filter((activity) =>
-    isBetween(activity.price.basePrice, minPrice, maxPrice)
-  );
-  console.log('Filtered Activities:', filteredActivities);
-
-  return filteredActivities;
-}
-
 // SEARCHBAR  //
 
 const searchButton = document.querySelector('#button-search');
@@ -126,20 +138,10 @@ function isBetween(x, a, b) {
   return x >= Math.min(a, b) && x <= Math.max(a, b);
 }
 
-function loadElements(query = '') {
-  search(query).then(priceFilter).then(afficher);
-}
-
 // function funcfiltre(activity) {
 //   return activity.price > '10';
 // }
 
-function searchElements() {
-  const searchInput = document.querySelector('#search-activities');
-  const searchText = searchInput.value.toLowerCase();
-
-  loadElements(searchText);
-}
 // RATING //
 
 function ratingFilter(activities) {

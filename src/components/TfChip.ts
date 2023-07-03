@@ -1,33 +1,43 @@
 import { css, html, TfBase } from './TfBase.js';
 
 const style = css`
-   .type {
-      padding: 0.25rem;
-      line-height: 0.75rem;
-      font-size: 0.625rem;
-   }
+  .type {
+    padding: 0.25rem;
+    line-height: 0.75rem;
+    font-size: 0.625rem;
+    
+  }
 
-   .activity {
-      background-color: var(--tf-secondary-main);
-   }
+  .activity {
+    background-color: var(--tf-tertiary-main);
+    color: var(--tf-main-main);
+    display: inline-block;
+    width: 4.2rem;
+    margin: auto;
+    justify-content: center;
+    height: 0.9rem;
+    text-align: center;
+   
+  }
 
-   .poi {
-      background-color: var(--tf-tertiary-main);
-   }
+  .poi {
+    background-color: var(--tf-secondary-main);
+    margin-left: 0.3rem;
+  }
 `;
 
 export class TfChip extends TfBase {
   constructor() {
     super();
     this.shadowRoot &&
-         (this.shadowRoot.innerHTML += html`
-            <style>
-               ${style}
-            </style>
-            <span class="activity">
-               <slot></slot>
-            </span>
-         `);
+      (this.shadowRoot.innerHTML += html`
+        <style>
+          ${style}
+        </style>
+        <span class="activity">
+          <slot></slot>
+        </span>
+      `);
   }
 
   // connectedCallback() {}
@@ -57,9 +67,9 @@ export class TfChip extends TfBase {
 }
 
 declare global {
-   interface HTMLElementTagNameMap {
-      'tf-chip': TfChip;
-   }
+  interface HTMLElementTagNameMap {
+    'tf-chip': TfChip;
+  }
 }
 
 customElements.define('tf-chip', TfChip);

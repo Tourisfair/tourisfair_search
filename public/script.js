@@ -22,10 +22,17 @@ function searchElements() {
 
 // Charger les éléments
 function loadElements(query = '') {
+  const minPrice = document.querySelector('#min-price');
+  const maxPrice = document.querySelector('#max-price');
+  const selectedRating = document.querySelector('input[name="rating-option"]:checked');
+
   search(query)
-  .then(priceFilter)
-  .then(ratingFilter)
-  .then(afficher);
+    .then(filter('price', minPrice, maxPrice))
+    .then(filter('rating', selectedRating))
+    .then(filter('language', null))
+    .then(filter('duration', null))
+    .then(filter('timeframe', null))
+    .then(afficher);
 }
 
 // Envoyer la requête
@@ -35,56 +42,114 @@ async function search(query = '') {
     (query === '' ? '' : `q=${query}&`) +
     'searchcontext=TRIP_ITEM_SORT_LOCATIONS&size=15';
   //?q=Paris&searchcontext=TRIP_ITEM_SORT_LOCATIONS&size=100&tcId=27`;
+  let headers = {
+    'content-type': 'application/json',
+    'accept-currency': 'EUR',
+    'accept-language': 'fr-FR',
+  };
 
-  return await fetch(url, {
-    headers: {
-      'content-type': 'application/json',
-      'accept-currency': 'EUR',
-      'accept-language': 'fr-FR',
-    },
-  })
+  return await genericSearch(url, headers)
     .then((response) => response.json())
-    .then((json) => json.items);
+    .then((json) => {
+      console.log(json.items);
+      return json.items;
+    });
+}
+
+async function genericSearch(url, headers) {
+  return await fetch(url, {
+    headers,
+  });
+}
+
+// Main filter monad
+function filter(type, ...params) {
+  return (activities) => {
+    switch (type) {
+      case 'price':
+        return activities.filter(priceFilter(...params));
+      case 'rating':
+        return activities.filter(ratingFilter(...params));
+      case 'language':
+        return activities.filter(languageFilter(...params));
+      case 'duration':
+        return activities.filter(durationFilter(...params));
+      case 'timeframe':
+        return activities.filter(timeframeFilter(...params));
+      default:
+        return activities;
+    }
+  };
 }
 
 // Filter by price
-function priceFilter(activities) {
-  const minPrice = parseFloat(document.querySelector('#min-price').value);
-  const maxPrice = parseFloat(document.querySelector('#max-price').value);
+function priceFilter(...params) {
+  const minPrice = parseFloat(params[0].value);
+  const maxPrice = parseFloat(params[1].value);
 
-  console.log('Min Price:', minPrice);
-  console.log('Max Price:', maxPrice);
+  return (activity) => {
+    if (isNaN(minPrice) && isNaN(maxPrice)) return true;
+    if (isNaN(minPrice)) return activity.price.basePrice <= maxPrice;
+    if (isNaN(maxPrice)) return activity.price.basePrice >= minPrice;
 
-  if (isNaN(minPrice) && isNaN(maxPrice)) return activities;
-  if (isNaN(minPrice)) return activities.filter((activity) => activity.price.basePrice <= maxPrice);
-  if (isNaN(maxPrice)) return activities.filter((activity) => activity.price.basePrice >= minPrice);
-
-  const filteredActivities = activities.filter((activity) =>
-    isBetween(activity.price.basePrice, minPrice, maxPrice)
-  );
-  console.log('Filtered Activities:', filteredActivities);
-
-  return filteredActivities;
+    return isBetween(activity.price.basePrice, minPrice, maxPrice);
+  };
 }
 
 // Filter by rating
-function ratingFilter(activities) {
-  const selectedRating = document.querySelector('input[name="rating"]:checked');
+function ratingFilter(...params) {
+  return (activity) => {
+    if (params.length === 0 || params[0] === null) {
+      return true;
+    }
 
-  if (!selectedRating) {
-    return activities;
-  }
+    lang;
 
-  const filteredActivities = activities.filter((activity) =>  isBetween(activity.rating, minRating, maxRating))
-
-  console.log('Filtered Activities:', filteredActivities);
-
-  return filteredActivities;
+    const selectedRating = parseFloat(params[0].value);
+    return activity.reviewStatistics.rating >= selectedRating;
+  };
 }
 
+/**
+ * Filter by language
+ * To fetch the activity languages, use the following API:
+ * https://travelers-api.getyourguide.com/search/v2/search
+ * ?languages=<language>
+ * &locations=<activity.primaryLocation.id>
+ * &p=1
+ * &searchContext=LOCATIONS
+ * &size=16
+ * &sortBy=popularity
+ *
+ * @param  {...HTMLElement} params
+ * @returns {(activity: Activity) => boolean}
+ */
+function languageFilter(...params) {
+  return (activity) => {
+    // TODO: search Languages using API
+    return true;
+  };
+}
 
+async function searchLanguages(activity) {
+  let url = '';
+  let headers = {};
+  return await genericSearch(url, headers); // .then ...;
+}
 
+// Filter by duration
+function durationFilter(...params) {
+  return (activity) => {
+    return true;
+  };
+}
 
+// Filter by timeframe
+function timeframeFilter(...params) {
+  return (activity) => {
+    return true;
+  };
+}
 
 function isBetween(value, min, max) {
   return value >= min && value <= max;
@@ -228,7 +293,6 @@ function isBetween(x, a, b) {
 // }
 
 // RATING //
-
 
 function clearSelection() {
   const radioButtons = document.querySelectorAll('input[name="option"]');

@@ -22,7 +22,10 @@ function searchElements() {
 
 // Charger les éléments
 function loadElements(query = '') {
-  search(query).then(priceFilter).then(afficher);
+  search(query)
+  .then(priceFilter)
+  .then(ratingFilter)
+  .then(afficher);
 }
 
 // Envoyer la requête
@@ -40,8 +43,8 @@ async function search(query = '') {
       'accept-language': 'fr-FR',
     },
   })
-  .then((response) => response.json())
-  .then((json) => json.items);
+    .then((response) => response.json())
+    .then((json) => json.items);
 }
 
 // Filter by price
@@ -51,7 +54,6 @@ function priceFilter(activities) {
 
   console.log('Min Price:', minPrice);
   console.log('Max Price:', maxPrice);
-
 
   if (isNaN(minPrice) && isNaN(maxPrice)) return activities;
   if (isNaN(minPrice)) return activities.filter((activity) => activity.price.basePrice <= maxPrice);
@@ -63,6 +65,89 @@ function priceFilter(activities) {
   console.log('Filtered Activities:', filteredActivities);
 
   return filteredActivities;
+}
+
+// Filter by rating
+function ratingFilter(activities) {
+  const selectedRating = document.querySelector('input[name="rating"]:checked');
+
+  if (!selectedRating) {
+    return activities;
+  }
+
+  const filteredActivities = activities.filter((activity) =>  isBetween(activity.rating, minRating, maxRating))
+
+  console.log('Filtered Activities:', filteredActivities);
+
+  return filteredActivities;
+}
+
+
+
+
+
+function isBetween(value, min, max) {
+  return value >= min && value <= max;
+}
+
+function toggleCard(cardId) {
+  var card = document.getElementById(cardId);
+  var allCards = document.querySelectorAll(
+    '.time-card, .language-card, .price-card, .hours-card, .filter-card'
+  );
+
+  for (var i = 0; i < allCards.length; i++) {
+    if (allCards[i].id === cardId) {
+      if (card.style.display === 'none') {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    } else {
+      allCards[i].style.display = 'none';
+    }
+  }
+}
+
+function toggleFilterOptions() {
+  const filterOptions = document.querySelector('#filterOptions');
+  filterOptions.style.display = filterOptions.style.display === 'none' ? 'block' : 'none';
+}
+
+function toggleTimeCard() {
+  var timeCard = document.getElementById('timeCard');
+  if (timeCard.style.display === 'none') {
+    timeCard.style.display = 'block';
+  } else {
+    timeCard.style.display = 'none';
+  }
+}
+
+function toggleLanguageCard() {
+  var languageCard = document.getElementById('languageCard');
+  if (languageCard.style.display === 'none') {
+    languageCard.style.display = 'block';
+  } else {
+    languageCard.style.display = 'none';
+  }
+}
+
+function toggleFilterCard() {
+  var priceCard = document.getElementById('priceCard');
+  if (priceCard.style.display === 'none') {
+    priceCard.style.display = 'block';
+  } else {
+    priceCard.style.display = 'none';
+  }
+}
+
+function toggleCurrencyDropdown() {
+  var currencyDropdown = document.getElementById('currencyDropdown');
+  if (currencyDropdown.style.display === 'none') {
+    currencyDropdown.style.display = 'inline-block';
+  } else {
+    currencyDropdown.style.display = 'none';
+  }
 }
 
 // Afficher les éléments
@@ -144,15 +229,6 @@ function isBetween(x, a, b) {
 
 // RATING //
 
-function ratingFilter(activities) {
-  const selectedRating = document.querySelector('input[name="option"]:checked').value;
-  if (selectedRating === 'all') return activities;
-
-  const filteredActivities = activities.filter(
-    (activity) => activity.reviewStatistics.rating.toFixed(1) === selectedRating
-  );
-  return filteredActivities;
-}
 
 function clearSelection() {
   const radioButtons = document.querySelectorAll('input[name="option"]');

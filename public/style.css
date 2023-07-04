@@ -1,43 +1,73 @@
-.filtre {
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  right: 0;
-  background-color: #f2f2f2;
-  padding: 10px;
-  margin-left: 150rem;
+.filter-button {
   position: relative;
-  position: fixed;
-  padding-top: 0px;
-}
-.filtre p {
-  font-size: 26px;
-  font-weight: bold;
-}
-.filtre label {
-  font-weight: bold;
-}
-.filtre input[type='number'] {
-  width: 80px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  outline: none;
-}
-.filtre button {
-  margin-top: 1rem;
-  padding: 8px 16px;
-  border: none;
-  width: 6rem;
-  border-radius: 5px;
-  background-color: #4caf50;
-  color: #fff;
-  font-weight: bold;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  border: 1px solid black;
+  font-weight: bold;
+  font-size: 16px;
+
 }
-.filtre button:hover {
-  background-color: #45a049;
+.filter-button:hover {
+  background-color: #f5f5f5;
 }
+.buttons,
+h1 {
+  margin-left: 5.2rem;
+}
+/* price card */
+
+.price-card {
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  margin-top: 10px;
+  width: 25rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  left: 5.8rem;
+  position: absolute;
+  z-index: 2;
+}
+
+.price-card p {
+  font-weight: bold;
+}
+
+.price-card label {
+  display: contents;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  font-weight: bold;
+}
+
+.price-card input[type='number'] {
+  width: 100px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+}
+
+.price-card .currency-toggle {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.currency-dropdown {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.currency-dropdown select {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+
+
 /* RATING */
 
 .rating {
@@ -84,15 +114,10 @@
   max-width: 400px;
   margin: 0 auto;
   padding: 10px;
-  background-color: #f2f2f2;
   border-radius: 10px;
   position: relative;
-  position: static;
-
   width: 100%;
-  background-color: #f2f2f2;
   padding: 10px;
-  z-index: 9999;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -105,8 +130,8 @@
   border-radius: 5px;
 }
 
-#button-search {
-  background-color: #4caf50;
+.button-search {
+  background-color: #2c53ff;
   color: #fff;
   border: none;
   outline: none;
@@ -118,5 +143,145 @@
 }
 
 #button-search:hover {
+  background-color: #45a049;
+}
+
+/* Language */
+
+.language-card {
+  margin-left: 5.8rem;
+  width: 9rem;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  margin-top: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  left: 5.8rem;
+  position: absolute;
+  z-index: 2;
+}
+
+.language-card label {
+  display: block;
+  margin-bottom: 1rem;
+  margin-left: 1.5rem;
+  margin-top: 1rem;
+  margin-right: 1.5rem;
+}
+
+.language-card input[type='checkbox'] {
+  margin-right: 5px;
+}
+
+/* time */
+
+.time-card {
+  margin-left: 13.8rem;
+  width: 15.4rem;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  margin-top: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  left: 5.8rem;
+  position: absolute;
+  z-index: 2;
+}
+
+.time-card label {
+  display: block;
+  margin-bottom: 1rem;
+  margin-left: 2rem;
+  margin-top: 1rem;
+  margin-right: 2rem;
+}
+
+.time-card input[type='checkbox'] {
+  margin-right: 5px;
+}
+
+/* hours */
+
+.hours-card {
+  margin-left: 19.5rem;
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 17rem;
+  left: 5.8rem;
+  position: absolute;
+  z-index: 2;
+}
+
+.hours-card label {
+  display: block;
+  margin-bottom: 1rem;
+  margin-left: 2rem;
+  margin-top: 1rem;
+  margin-right: 2rem;
+}
+
+.hours-card input[type='checkbox'] {
+  margin-right: 5px;
+}
+
+/* filter */
+.filter-button2 {
+  position: relative;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid black;
+  font-weight: bold;
+  font-size: 16px;
+  float: right;
+  margin-right: 5.2rem;
+}
+.filter-button2:hover{
+  background-color: #f5f5f5;
+}
+.filter-card {
+
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  z-index: 2;
+  float: right;
+  margin-right: 5.2rem;
+}
+  
+.filter-card p {
+  font-weight: bold;
+}
+  
+.filter-card div {
+  margin-bottom: 10px;
+}
+  
+.filter-card label {
+  margin-left: 5px;
+}
+  
+.filter-card button {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+  
+.filter-card button:hover {
   background-color: #45a049;
 }

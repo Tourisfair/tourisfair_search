@@ -29,7 +29,7 @@ function loadElements(query = '') {
   search(query)
     .then(filter('price', minPrice, maxPrice))
     .then(filter('rating', selectedRating))
-    .then(filter('language', null))
+    // .then(filter('language', null))
     .then(filter('duration', null))
     .then(filter('timeframe', null))
     .then(afficher);
@@ -102,12 +102,17 @@ function ratingFilter(...params) {
     if (params.length === 0 || params[0] === null) {
       return true;
     }
-
-    lang;
-
     const selectedRating = parseFloat(params[0].value);
     return activity.reviewStatistics.rating >= selectedRating;
   };
+}
+
+// Fonction pour fermer la carte de filtre
+function closeFilterModal(target) {
+  console.log(target);
+  //"event.stopPropagation()"
+  var filterCard = document.getElementById('filterOptions');
+  filterCard.style.display = 'none';
 }
 
 /**
@@ -121,21 +126,34 @@ function ratingFilter(...params) {
  * &size=16
  * &sortBy=popularity
  *
- * @param  {...HTMLElement} params
- * @returns {(activity: Activity) => boolean}
+ * @param  {...string} languages
+ * @returns {(activity: activity) => boolean}
  */
-function languageFilter(...params) {
-  return (activity) => {
-    // TODO: search Languages using API
-    return true;
-  };
-}
 
-async function searchLanguages(activity) {
-  let url = '';
-  let headers = {};
-  return await genericSearch(url, headers); // .then ...;
-}
+// function languageFilter(...languages) {
+//   return (activity) => {
+//     const activityLanguages = languages?.map((language) => language.code) ?? [];
+//     return activityLanguages((lang) => activity.includes(lang));
+//   };
+// }
+
+// async function searchLanguages(activity, selectedLanguage) {
+//   const url = `https://travelers-api.getyourguide.com/search/v2/search?languages=${
+//     selectedLanguage
+//   }&locations=${
+//     activity.primaryLocation.id
+//   }&p=1&searchContext=LOCATIONS&size=16&sortBy=popularity`;
+//   console.log(url);
+//   const headers = {};
+
+//   try {
+//     const response = await genericSearch(url, headers);
+//     return response.languages.map((language) => language.code);
+//   } catch (error) {
+//     console.error('Error searching languages:', error);
+//     return [];
+//   }
+// }
 
 // Filter by duration
 function durationFilter(...params) {
@@ -158,7 +176,7 @@ function isBetween(value, min, max) {
 function toggleCard(cardId) {
   var card = document.getElementById(cardId);
   var allCards = document.querySelectorAll(
-    '.time-card, .language-card, .price-card, .hours-card, .filter-card'
+    '.Timeframe-card, .language-card, .price-card, .duration-card, .filter-card'
   );
 
   for (var i = 0; i < allCards.length; i++) {
@@ -175,16 +193,20 @@ function toggleCard(cardId) {
 }
 
 function toggleFilterOptions() {
-  const filterOptions = document.querySelector('#filterOptions');
-  filterOptions.style.display = filterOptions.style.display === 'none' ? 'block' : 'none';
+  var filterOptions = document.getElementById('filterOptions');
+  if (filterOptions.style.display === 'none') {
+    filterOptions.style.display = 'block';
+  } else {
+    filterOptions.style.display = 'none';
+  }
 }
 
-function toggleTimeCard() {
-  var timeCard = document.getElementById('timeCard');
-  if (timeCard.style.display === 'none') {
-    timeCard.style.display = 'block';
+function toggleDurationCard() {
+  var durationCard = document.getElementById('durationCard');
+  if (durationCard.style.display === 'none') {
+    durationCard.style.display = 'block';
   } else {
-    timeCard.style.display = 'none';
+    durationCard.style.display = 'none';
   }
 }
 
@@ -227,7 +249,7 @@ function afficher(activities) {
           ${style}
         </style>
         <section class="container">
-          <tf-activity-card title="${
+          <tf-search-activity-card title="${
             activity.title.length > 26 ? activity.title.substring(0, 26) + '...' : activity.title
           }" 
             subtitle="${
@@ -236,19 +258,21 @@ function afficher(activities) {
                 : activity.primaryLocation.name
             }">
 
-           <tf-card-header-image slot="image" src="${
+           <tf-search-card-header-image slot="image" src="${
              activity.photos[0].urls[2].url
            }" class="header-img">
-             <tf-badge class="badge no"></tf-badge>
-              <tf-favorite class="favorite" enabled=""></tf-favorite>
-            </tf-card-header-image>
+             <tf-search-badge class="badge no"></tf-search-badge>
+              <tf-search-favorite class="favorite" enabled=""></tf-search-favorite>
+            </tf-search-card-header-image>
             
-            <tf-budget level="${assignLevel(activity.price.basePrice)}" slot="budget"></tf-budget>
-            <tf-chip type="activity" slot="chip">Churches</tf-chip>
-            <tf-chip type="poi" slot="chip">History</tf-chip>
-            <tf-chip type="activity" slot="chip">${activity.reviewStatistics.rating.toFixed(
+            <tf-search-budget level="${assignLevel(
+              activity.price.basePrice
+            )}" slot="budget"></tf-search-budget>
+            <tf-search-chip type="activity" slot="chip">Churches</tf-search-chip>
+            <tf-search-chip type="poi" slot="chip">History</tf-search-chip>
+            <tf-search-chip type="activity" slot="chip">${activity.reviewStatistics.rating.toFixed(
               1
-            )}</tf-chip>
+            )}</tf-search-chip>
             <p slot="description">
             ${
               activity.abstract.length > 205
@@ -257,8 +281,8 @@ function afficher(activities) {
             }
             
             </p>
-            <tf-button variant="primary" slot="actions">Book Now</tf-button>
-          </tf-activity-card>
+            <tf-search-button variant="primary" slot="actions">Book Now</tf-search-button>
+          </tf-search-activity-card>
         </section>
       `;
     container.appendChild(activityElement);

@@ -1,3 +1,6 @@
+body{
+  font-family: Nunito, Helvetica, sans-serif;
+}
 .filter-button {
   position: relative;
   padding: 10px;
@@ -7,7 +10,6 @@
   border: 1px solid black;
   font-weight: bold;
   font-size: 16px;
-
 }
 .filter-button:hover {
   background-color: #f5f5f5;
@@ -68,45 +70,6 @@ h1 {
 
 
 
-/* RATING */
-
-.rating {
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  right: 0;
-  background-color: #f2f2f2;
-  padding: 10px;
-  margin-top: 16rem;
-  margin-left: 150rem;
-  position: relative;
-  position: fixed;
-}
-
-.rating p {
-  font-size: 26px;
-  font-weight: bold;
-}
-
-.rating label {
-  font-weight: bold;
-}
-
-.rating button {
-  margin-top: 1rem;
-  padding: 8px 16px;
-  border: none;
-  width: 6rem;
-  border-radius: 5px;
-  background-color: #4caf50;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.rating button:hover {
-  background-color: #45a049;
-}
-
 /* SEARCH-BAR */
 .search-bar {
   display: flex;
@@ -149,7 +112,7 @@ h1 {
 /* Language */
 
 .language-card {
-  margin-left: 5.8rem;
+  margin-left: 5.9rem;
   width: 9rem;
   padding: 10px;
   background-color: #ffffff;
@@ -168,17 +131,18 @@ h1 {
   margin-left: 1.5rem;
   margin-top: 1rem;
   margin-right: 1.5rem;
+  font-weight: bold;
 }
 
 .language-card input[type='checkbox'] {
   margin-right: 5px;
 }
 
-/* time */
+/* duration */
 
-.time-card {
-  margin-left: 13.8rem;
-  width: 15.4rem;
+.duration-card {
+  margin-left: 13.9rem;
+  width: 16rem;
   padding: 10px;
   background-color: #ffffff;
   border-radius: 4px;
@@ -190,47 +154,50 @@ h1 {
   z-index: 2;
 }
 
-.time-card label {
+.duration-card label {
   display: block;
   margin-bottom: 1rem;
   margin-left: 2rem;
   margin-top: 1rem;
   margin-right: 2rem;
+  font-weight: bold;
 }
 
-.time-card input[type='checkbox'] {
+.duration-card input[type='checkbox'] {
   margin-right: 5px;
 }
 
-/* hours */
+/* Timeframe */
 
-.hours-card {
-  margin-left: 19.5rem;
+.Timeframe-card {
+  margin-left: 20.8rem;
   background-color: #ffffff;
   border-radius: 5px;
   padding: 10px;
   margin-top: 10px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  width: 17rem;
+  width: 17.5rem;
   left: 5.8rem;
   position: absolute;
   z-index: 2;
 }
 
-.hours-card label {
+.Timeframe-card label {
   display: block;
   margin-bottom: 1rem;
   margin-left: 2rem;
   margin-top: 1rem;
   margin-right: 2rem;
+  font-weight: bold;
 }
 
-.hours-card input[type='checkbox'] {
+.Timeframe-card input[type='checkbox'] {
   margin-right: 5px;
 }
 
 /* filter */
+
 .filter-button2 {
   position: relative;
   padding: 10px;
@@ -243,33 +210,22 @@ h1 {
   float: right;
   margin-right: 5.2rem;
 }
-.filter-button2:hover{
+.filter-button2:hover {
   background-color: #f5f5f5;
 }
-.filter-card {
 
-  background-color: #f2f2f2;
-  border-radius: 5px;
-  padding: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: absolute;
-  z-index: 2;
-  float: right;
-  margin-right: 5.2rem;
-}
-  
 .filter-card p {
   font-weight: bold;
 }
-  
+
 .filter-card div {
   margin-bottom: 10px;
 }
-  
+
 .filter-card label {
   margin-left: 5px;
 }
-  
+
 .filter-card button {
   background-color: #4caf50;
   color: #fff;
@@ -280,8 +236,119 @@ h1 {
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
+  margin-bottom: 15px;
 }
-  
+
 .filter-card button:hover {
   background-color: #45a049;
+}
+/**Enlever les "-" */
+#filter-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9000;
+}
+
+.divider {
+  border-bottom: 1px solid rgba(0, 0, 0);
+  width: 34.8rem;
+}
+.filter-title{
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.filter-card-content {
+  background-color: #fff;
+  padding-bottom: 10px;
+  width: 39rem;
+  height: 51rem;
+  z-index: 9900;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding-right: 20px;
+}
+#filter-modal {
+  background-color: #fff;
+  width: 36rem;
+  height: 40rem;
+  z-index: 2;
+  overflow: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 2.5rem;
+
+}
+
+#filter-overlay.closed {
+  display: none;
+}
+
+
+#filter-close {
+  cursor: pointer;
+  font-size: 2.5rem;
+  margin-left: 1.5rem;
+  color: #2c53ff;
+  font-weight: bold;
+}
+#filter-close:hover {
+  color: #001987;
+}
+
+.filter-timeframe label {
+  display: block;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.769);
+}
+
+.filter-card .fas{
+  float: right;
+}
+
+/* RATING */
+
+
+.filter-rating p {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.filter-rating label {
+  font-weight: bold;
+ position: relative;
+ color: rgba(0, 0, 0, 0.769);
+  
+}
+
+/*language*/
+
+.filter-language label {
+  display: block;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.769);
+}
+
+/*duration*/
+
+.filter-duration label {
+  color: rgba(0, 0, 0, 0.769);
+  display: block;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  font-weight: bold;
 }

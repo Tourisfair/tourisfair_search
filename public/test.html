@@ -9,25 +9,30 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
-
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+      rel="stylesheet"
+    />
     <title>test</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="/dist/components.js" type="module"></script>
+    <!-- http://127.0.0.1:5501/dist/components.js -->
+    <script src="https://www.tourisfair.de/dist/components.js" type="module"></script>
     <script src="script.js"></script>
   </head>
 
   <body onload="searchElements()">
     <form>
-      <div class="search-bar">
+      <section class="search-bar">
         <i class="fas fa-search"></i>
         <input type="text" id="search-activities" placeholder="Where you going ?" />
         <button id="filter-button" class="button-search" type="button" onclick="searchElements()">
           Search
         </button>
-      </div>
+      </section>
 
       <h1>Available activities</h1>
-      <div class="buttons">
+
+      <section class="buttons">
         <button class="filter-button" onclick="toggleCard('priceCard')" type="button">
           Prices <i class="fas fa-chevron-down"></i>
         </button>
@@ -36,27 +41,29 @@
           Languages <i class="fas fa-chevron-down"></i>
         </button>
 
-        <button class="filter-button" onclick="toggleCard('timeCard')" type="button">
-          Times <i class="fas fa-chevron-down"></i>
+        <button class="filter-button" onclick="toggleCard('durationCard')" type="button">
+          Duration <i class="fas fa-chevron-down"></i>
         </button>
 
-        <button class="filter-button" onclick="toggleCard('hoursCard')" type="button">
-          Hours <i class="fas fa-chevron-down"></i>
+        <button class="filter-button" onclick="toggleCard('TimeframeCard')" type="button">
+          Timeframe <i class="fas fa-chevron-down"></i>
         </button>
 
-        <button class="filter-button2" onclick="toggleFilterOptions()" type="button">
+        <button class="filter-button2" onclick="toggleCard('filterOptions')" type="button">
           <i class="fas fa-filter"></i> Filter
         </button>
-      </div>
+      </section>
 
-      <div class="price-card" id="priceCard" style="display: none">
+      <section class="price-card" id="priceCard" style="display: none">
         <label for="min-price">Min price.</label>
         <input type="number" id="min-price" />
 
         <label for="max-price">Max price.</label>
         <input type="number" id="max-price" />
 
-        <p>Affiché en : <span class="currency-toggle" onclick="toggleCurrencyDropdown()"></span></p>
+        <p>
+          Displayed in : <span class="currency-toggle" onclick="toggleCurrencyDropdown()"></span>
+        </p>
         <div class="currency-dropdown" id="currencyDropdown">
           <select>
             <option value="EUR">Euro (€)</option>
@@ -64,9 +71,9 @@
             <option value="GBP">British Pound (£)</option>
           </select>
         </div>
-      </div>
+      </section>
 
-      <div class="language-card" id="languageCard" style="display: none">
+      <section class="language-card" id="languageCard" style="display: none">
         <label>
           <input type="checkbox" name="language" value="fr" />
           French
@@ -83,68 +90,174 @@
           <input type="checkbox" name="language" value="de" />
           German
         </label>
-      </div>
+      </section>
 
-      <div class="time-card" id="timeCard" style="display: none">
+      <section class="duration-card" id="durationCard" style="display: none">
         <label>
-          <input type="checkbox" name="time" value="1" />
+          <input type="checkbox" name="duration" value="1" />
           0 - 3 hours
         </label>
         <label>
-          <input type="checkbox" name="time" value="2" />
+          <input type="checkbox" name="duration" value="2" />
           3 - 5 hours
         </label>
         <label>
-          <input type="checkbox" name="time" value="3" />
+          <input type="checkbox" name="duration" value="3" />
           5 - 7 hours
         </label>
         <label>
-          <input type="checkbox" name="time" value="4" />
+          <input type="checkbox" name="duration" value="4" />
           Full day (7 hours and +)
         </label>
         <label>
-          <input type="checkbox" name="time" value="5" />
+          <input type="checkbox" name="duration" value="5" />
           Several days
         </label>
-      </div>
+      </section>
 
-      <div class="hours-card" id="hoursCard" style="display: none">
+      <section class="Timeframe-card" id="TimeframeCard" style="display: none">
         <label>
-          <input type="checkbox" name="hours" value="morning" />
+          <input type="checkbox" name="Timeframe" value="morning" />
           Mornings, 8 a.m. to noon
         </label>
         <label>
-          <input type="checkbox" name="hours" value="afternoon" />
+          <input type="checkbox" name="Timeframe" value="afternoon" />
           Afternoon, noon to 5 pm
         </label>
         <label>
-          <input type="checkbox" name="hours" value="evening" />
+          <input type="checkbox" name="Timeframe" value="evening" />
           Evening, 5 p.m. to midnight
         </label>
-      </div>
+      </section>
 
-      <div class="filter-card" id="filterOptions" style="display: none">
-        <p>Rating</p>
-        <div>
-          <label for="rating-3">3.0+</label>
-          <input type="radio" name="rating-option" id="rating-3" value="3" />
+      <section class="filter-card" id="filterOptions" style="display: none">
+        <div id="filter-overlay" onclick="closeFilterModal(event)">
+          <div class="filter-card-content" onclick="event.stopPropagation()">
+            <span id="filter-close" onclick="closeFilterModal()">&times;</span
+            ><span class="filter-title">Filters</span>
+            <div id="filter-modal">
+              <div class="divider"></div>
+
+              <div class="filter-timeframe">
+                <p>Timeframe <i class="fas fa-chevron-down"></i></p>
+                <label>
+                  <input type="checkbox" name="Timeframe" value="morning" />
+                  Mornings, 8 a.m. to noon
+                </label>
+                <label>
+                  <input type="checkbox" name="Timeframe" value="afternoon" />
+                  Afternoon, noon to 5 pm
+                </label>
+                <label>
+                  <input type="checkbox" name="Timeframe" value="evening" />
+                  Evening, 5 p.m. to midnight
+                </label>
+              </div>
+
+              <div class="divider"></div>
+
+              <p>Prices <i class="fas fa-chevron-down"></i></p>
+              <label for="min-price">Min price.</label>
+              <input type="number" id="min-price" />
+
+              <label for="max-price">Max price.</label>
+              <input type="number" id="max-price" />
+
+              <p>
+                Displayed in:
+                <span class="currency-toggle" onclick="toggleCurrencyDropdown()"></span>
+              </p>
+              <div class="currency-dropdown" id="currencyDropdown">
+                <select>
+                  <option value="EUR">Euro (€)</option>
+                  <option value="USD">US Dollar ($)</option>
+                  <option value="GBP">British Pound (£)</option>
+                </select>
+              </div>
+
+              <div class="divider"></div>
+              <div class="filter-language">
+                <p>Languages <i class="fas fa-chevron-down"></i></p>
+                <label>
+                  <input type="checkbox" name="language" value="fr" />
+                  French
+                </label>
+                <label>
+                  <input type="checkbox" name="language" value="en" />
+                  English
+                </label>
+                <label>
+                  <input type="checkbox" name="language" value="es" />
+                  Spanish
+                </label>
+                <label>
+                  <input type="checkbox" name="language" value="de" />
+                  German
+                </label>
+              </div>
+
+              <div class="divider"></div>
+              <div class="filter-duration">
+                <p>Duration <i class="fas fa-chevron-down"></i></p>
+                <label>
+                  <input type="checkbox" name="duration" value="1" />
+                  0 - 3 hours
+                </label>
+                <label>
+                  <input type="checkbox" name="duration" value="2" />
+                  3 - 5 hours
+                </label>
+                <label>
+                  <input type="checkbox" name="duration" value="3" />
+                  5 - 7 hours
+                </label>
+                <label>
+                  <input type="checkbox" name="duration" value="4" />
+                  Full day (7 hours and +)
+                </label>
+                <label>
+                  <input type="checkbox" name="duration" value="5" />
+                  Several days
+                </label>
+              </div>
+              <div class="divider"></div>
+
+              <p>Rating <i class="fas fa-chevron-down"></i></p>
+              <div class="filter-rating">
+                <label for="rating-3">3.0+</label>
+                <input type="radio" name="rating-option" id="rating-3" value="3" />
+              </div>
+              <div class="filter-rating">
+                <label for="rating-3.5">3.5+</label>
+                <input type="radio" name="rating-option" id="rating-3.5" value="3.5" />
+              </div>
+              <div class="filter-rating">
+                <label for="rating-4">4.0+</label>
+                <input type="radio" name="rating-option" id="rating-4" value="4" />
+              </div>
+              <div class="filter-rating">
+                <label for="rating-4.5">4.5+</label>
+                <input type="radio" name="rating-option" id="rating-4.5" value="4.5" />
+              </div>
+              <button type="button" onclick="clearRatingSelection()" id="rating-clear-button">
+                Clear selection
+              </button>
+              <div class="divider"></div>
+            </div>
+            <button type="button" onclick="clearRatingSelection()" id="rating-clear-button">
+              Clear selection
+            </button>
+            <button
+              id="filter-button"
+              class="button-search"
+              type="button"
+              onclick="searchElements()"
+            >
+              Apply filters
+            </button>
+          </div>
         </div>
-        <div>
-          <label for="rating-3.5">3.5+</label>
-          <input type="radio" name="rating-option" id="rating-3.5" value="3.5" />
-        </div>
-        <div>
-          <label for="rating-4">4.0+</label>
-          <input type="radio" name="rating-option" id="rating-4" value="4" />
-        </div>
-        <div>
-          <label for="rating-4.5">4.5+</label>
-          <input type="radio" name="rating-option" id="rating-4.5" value="4.5" />
-        </div>
-        <button type="button" onclick="clearRatingSelection()" id="rating-clear-button">
-          Clear selection
-        </button>
-      </div>
+      </section>
     </form>
 
     <div

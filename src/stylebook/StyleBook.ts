@@ -1,13 +1,13 @@
 import { css, html } from '../components/TfBase.js';
 import { StyleComponent, StyleComponentProps } from './StyleComponent.js';
-import { StyleTfActivityCard } from './StyleTfActivityCard.js';
-import { styleTfBadge } from './StyleTfBadge.js';
-import { styleTfBudget } from './StyleTfBudget.js';
-import { styleTfButton } from './StyleTfButton.js';
-import { styleTfCardDetails } from './StyleTfCardDetails.js';
-import { styleTfCardHeaderImage } from './StyleTfCardHeaderImage.js';
-import { styleTfChip } from './StyleTfChip.js';
-import { styleTfFavorite } from './StyleTfFavorite.js';
+import { StyleTfActivityCard } from './StyleTfSearchActivityCard.js';
+import { styleTfBadge } from './StyleTfSearchBadge.js';
+import { styleTfBudget } from './StyleTfSearchBudget.js';
+import { styleTfButton } from './StyleTfSearchButton.js';
+import { styleTfCardDetails } from './StyleTfSearchCardDetails.js';
+import { styleTfCardHeaderImage } from './StyleTfSearchCardHeaderImage.js';
+import { styleTfChip } from './StyleTfSearchChip.js';
+import { styleTfFavorite } from './StyleTfSearchFavorite.js';
 
 export const styleBookCSS: string = css`
   @import url('https://fonts.cdnfonts.com/css/sf-pro-display');

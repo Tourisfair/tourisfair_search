@@ -55,41 +55,125 @@
       </section>
 
       <section class="price-card" id="priceCard" style="display: none">
-        <label for="min-price">Min price.</label>
-        <input type="number" id="min-price" />
+        
+        
+            <label for="min-price">Min price.</label>
+            <input type="number" id="min-price" />
 
-        <label for="max-price">Max price.</label>
-        <input type="number" id="max-price" />
+            <label for="max-price">Max price.</label>
+            <input type="number" id="max-price" />
 
-        <p>
-          Displayed in : <span class="currency-toggle" onclick="toggleCurrencyDropdown()"></span>
-        </p>
-        <div class="currency-dropdown" id="currencyDropdown">
-          <select>
+            <p>
+              Displayed in : <span class="currency-toggle" onclick="toggleCurrencyDropdown()"></span>
+            </p>
+          <div class="currency-dropdown" id="currencyDropdown">
+            <select>
             <option value="EUR">Euro (€)</option>
             <option value="USD">US Dollar ($)</option>
             <option value="GBP">British Pound (£)</option>
           </select>
         </div>
+
       </section>
 
-      <section class="language-card" id="languageCard" style="display: none">
+      <section class="language-card" id="languageCard" style="display: none" >
         <label>
-          <input type="checkbox" name="language" value="fr" />
-          French
+          <input type="checkbox" name="language" id="Français" value="fr-FR" />
+          Français
         </label>
         <label>
-          <input type="checkbox" name="language" value="en" />
+          <input type="checkbox" name="language"id="Čeština" value="cs-CZ" />
+          Čeština
+        </label>
+        <label>
+          <input type="checkbox" name="language" id="Dansk"value="da-DK" />
+          Dansk
+        </label>
+        <label>
+          <input type="checkbox" name="language" id="Deutsch-(Deutschland)" value="de-DE" />
+          Deutsch (Deutschland)
+        </label>
+        <label>
+          <input type="checkbox" name="language" id="Deutsch-(Österreich)" value="de-AT" />
+          Deutsch (Österreich)
+        </label>
+        <label>
+          <input type="checkbox" name="language" id="Deutsch-(Schweiz)" value="de-CH" />
+          Deutsch (Schweiz)
+        </label>
+        <label>
+          <input type="checkbox" name="language" id="English" value="en-US" />
           English
         </label>
         <label>
-          <input type="checkbox" name="language" value="es" />
-          Spanish
+          <input type="checkbox" name="language" id="English-(Australia)" value="en-AU" />
+          English (Australia)
         </label>
         <label>
-          <input type="checkbox" name="language" value="de" />
-          German
+          <input type="checkbox" name="language" id="English-(United Kingdom)" value="en-GB" />
+          English (United Kingdom)
         </label>
+        <label>
+          <input type="checkbox" name="language" id="Español-(España)" value="es-ES" />
+          Español (España)
+        </label>
+        <label>
+          <input type="checkbox" name="language" id="Español-(México)" value="es-MX" />
+          Español (México)
+        </label>
+        <label>
+          <input type="checkbox" name="language" id="Italiano" value="it-IT" />
+          Italiano
+        </label>
+        <label>
+          <input type="checkbox" name="language" id="Magyar" value="hu-HU" />
+          Magyar
+        </label>
+        <label>
+          <input type="checkbox" name="language" id="Nederlands" value="nl-NLU" />
+          Nederlands
+        </label>
+        <label>
+          <input type="checkbox" name="language" id="Norsk" value="no-NO" />
+          Norsk
+        </label>
+        <label>
+          <input type="checkbox" name="language" id="Polski" value="pl-PL" />
+          Polski
+        </label>
+        <label>
+          <input type="checkbox" name="language" id="Português-(Portugal)" value="pt-PT" />
+          Português (Portugal)
+        </label>
+        <label>
+          <input type="checkbox" name="language" id="Português-(Brasil)" value="pt-BR" />
+          Português (Brasil)
+        </label>
+        <label>
+          <input type="checkbox" name="language" id="Română" value="ro-RO" />
+          Română
+        </label>
+        <label>
+          <input type="checkbox" name="language" id="Suomi" value="fi-FI" />
+          Suomi
+        </label>
+        <label>
+          <input type="checkbox" name="language" id="Svenska" value="sv-SE" />
+          Svenska
+        </label>
+        <label>
+          <input type="checkbox" name="language" id="Ελληνικά" value="el-GR" />
+          Ελληνικά
+        </label>
+        <label>
+          <input type="checkbox" name="language" id="Русский" value="ru-RU" />
+          Русский
+        </label>
+        <label>
+          <input type="checkbox" name="language" id="日本語" value="ja-JP" />
+          日本語
+        </label>
+      
       </section>
 
       <section class="duration-card" id="durationCard" style="display: none">
@@ -261,8 +345,15 @@
     </form>
 
     <div
-      id="container"
-      style="display: flex; flex-wrap: wrap; gap: 1.5rem; padding-left: 12rem; padding-top: 5rem"
-    ></div>
+      id="container">
+    </div>
+    <section class="pagination">
+      <div id="results"></div>
+      <div id="pagination"></div>
+      <button class="button-pagination-left">  <span class="fa fa-chevron-left"></span> </button>
+      <button class="button-pagination-right">  <span class="fa fa-chevron-right"></span> </button>
+      
+    </section>
+ 
   </body>
 </html>

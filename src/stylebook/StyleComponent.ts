@@ -10,6 +10,7 @@ export interface StyleComponentProps<K extends keyof HTMLElementTagNameMap> {
    variants: StyleVariantProps<K>[];
 }
 
+
 export class StyleComponent extends HTMLElement {
   constructor() {
     super();

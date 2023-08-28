@@ -113,7 +113,7 @@ h1 {
 
 .language-card {
   margin-left: 5.9rem;
-  width: 9rem;
+  width: 28rem; /* Ajustez la largeur si nécessaire */
   padding: 10px;
   background-color: #ffffff;
   border-radius: 4px;
@@ -123,20 +123,21 @@ h1 {
   left: 5.8rem;
   position: absolute;
   z-index: 2;
+  column-count: 2; /* Afficher les langues en deux colonnes */
+  column-gap: 1rem; /* Espace entre les colonnes */
 }
 
 .language-card label {
   display: block;
   margin-bottom: 1rem;
-  margin-left: 1.5rem;
-  margin-top: 1rem;
-  margin-right: 1.5rem;
   font-weight: bold;
 }
 
 .language-card input[type='checkbox'] {
   margin-right: 5px;
 }
+
+
 
 /* duration */
 
@@ -242,7 +243,7 @@ h1 {
 .filter-card button:hover {
   background-color: #45a049;
 }
-/**Enlever les "-" */
+
 #filter-overlay {
   position: fixed;
   top: 0;
@@ -351,4 +352,22 @@ h1 {
   margin-bottom: 1rem;
   margin-top: 1rem;
   font-weight: bold;
+}
+
+#container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 90vw;
+  margin: auto;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.read {
+  /* color: var(--tf-sys-read-more); */
+  color: #e76b2d;
+  text-decoration: underline;
+  font-weight: 700;font-family: nunito;
 }

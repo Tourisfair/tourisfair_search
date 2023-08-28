@@ -168,4 +168,5 @@ styleTfCardDetails(styleBook);
 styleTfCardHeaderImage(styleBook);
 styleTfChip(styleBook);
 styleTfFavorite(styleBook);
+styleTfSearchpagination(styleBook);
 document.body.appendChild(styleBook);

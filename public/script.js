@@ -4,12 +4,7 @@ function obtenirActivite() {
 }
 
 style = `
-.read {
-  /* color: var(--tf-sys-read-more); */
-  color: #e76b2d;
-  text-decoration: underline;
-  font-weight: 700;font-family: nunito;
-}
+
 `;
 
 // Exécuter la recherche
@@ -25,23 +20,29 @@ function loadElements(query = '') {
   const minPrice = document.querySelector('#min-price');
   const maxPrice = document.querySelector('#max-price');
   const selectedRating = document.querySelector('input[name="rating-option"]:checked');
+  const elemLanguages = document.querySelectorAll('input[name="language"]:checked');
+  const languages = [...elemLanguages].map((elem) => elem.value);
 
-  search(query)
+  const durationCheckboxes = document.querySelectorAll('input[name="duration"]:checked');
+  const selectedDurations = [...durationCheckboxes].map((checkbox) => checkbox.value);
+
+  search(query, languages)
     .then(filter('price', minPrice, maxPrice))
     .then(filter('rating', selectedRating))
-    // .then(filter('language', null))
-    .then(filter('duration', null))
+    .then(filter('duration', selectedDurations))
     .then(filter('timeframe', null))
     .then(afficher);
 }
 
 // Envoyer la requête
-async function search(query = '') {
+async function search(query = '', languages = [], page) {
+  page = page || 1; // Mettez 1 comme valeur par défaut pour la première page
   let url =
     'https://travelers-api.getyourguide.com/search/v2/search?' +
     (query === '' ? '' : `q=${query}&`) +
-    'searchcontext=TRIP_ITEM_SORT_LOCATIONS&size=15';
-  //?q=Paris&searchcontext=TRIP_ITEM_SORT_LOCATIONS&size=100&tcId=27`;
+    (languages.length > 0 ? `languages=${languages.join('%7C')}&` : '') +
+    'searchcontext=TRIP_ITEM_SORT_LOCATIONS&size=15' + 
+    (page !== null ? `&offset=${15 * (page - 1)}` : ''); // Ajustez l'offset pour la pagination
   let headers = {
     'content-type': 'application/json',
     'accept-currency': 'EUR',
@@ -51,16 +52,22 @@ async function search(query = '') {
   return await genericSearch(url, headers)
     .then((response) => response.json())
     .then((json) => {
-      console.log(json.items);
-      return json.items;
+      console.dir(json);
+return json.items;
+      // return {
+      //   items: json.items,
+      //   totalPages: Math.ceil(json.total / 15), // Calcul du nombre total de pages
+      // };
     });
 }
+
 
 async function genericSearch(url, headers) {
   return await fetch(url, {
     headers,
   });
 }
+
 
 // Main filter monad
 function filter(type, ...params) {
@@ -115,6 +122,14 @@ function closeFilterModal(target) {
   filterCard.style.display = 'none';
 }
 
+ 
+
+function pathFromUrl(url) {
+  var parser = document.createElement('a');
+  parser.href = url;
+  return 'https://www.getyourguide.com' + parser.pathname;
+}
+
 /**
  * Filter by language
  * To fetch the activity languages, use the following API:
@@ -155,10 +170,33 @@ function closeFilterModal(target) {
 //   }
 // }
 
-// Filter by duration
-function durationFilter(...params) {
+function languageFilter(...params) {
   return (activity) => {
     return true;
+  };
+}
+
+// Filter by duration
+function durationFilter(selectedDurations) {
+  return (activity) => {
+    if (selectedDurations.length === 0) {
+      return true;
+    }
+
+    if (activity.attributes && activity.attributes.length > 0) {
+      const durationAttribute = activity.attributes.find((attr) => attr.type === 'duration');
+
+      if (
+        durationAttribute &&
+        selectedDurations.some((selectedDuration) =>
+          durationAttribute.label.includes(selectedDuration)
+        )
+      ) {
+        return true;
+      }
+    }
+
+    return false;
   };
 }
 
@@ -243,49 +281,30 @@ function afficher(activities) {
   let container = document.querySelector('#container');
   container.innerHTML = '';
   activities.forEach((activity) => {
-    const activityElement = document.createElement('div');
-    activityElement.innerHTML = `
-        <style>
-          ${style}
-        </style>
-        <section class="container">
-          <tf-search-activity-card title="${
-            activity.title.length > 26 ? activity.title.substring(0, 26) + '...' : activity.title
-          }" 
-            subtitle="${
-              activity.primaryLocation.name.length > 28
-                ? activity.primaryLocation.name.substring(0, 28) + '...'
-                : activity.primaryLocation.name
-            }">
-
-           <tf-search-card-header-image slot="image" src="${
-             activity.photos[0].urls[2].url
-           }" class="header-img">
-             <tf-search-badge class="badge no"></tf-search-badge>
-              <tf-search-favorite class="favorite" enabled=""></tf-search-favorite>
-            </tf-search-card-header-image>
-            
-            <tf-search-budget level="${assignLevel(
-              activity.price.basePrice
-            )}" slot="budget"></tf-search-budget>
-            <tf-search-chip type="activity" slot="chip">Churches</tf-search-chip>
-            <tf-search-chip type="poi" slot="chip">History</tf-search-chip>
-            <tf-search-chip type="activity" slot="chip">${activity.reviewStatistics.rating.toFixed(
-              1
-            )}</tf-search-chip>
-            <p slot="description">
-            ${
-              activity.abstract.length > 205
-                ? activity.abstract.substring(0, 205) + ' <span class="read"> Read more...</span>'
-                : activity.abstract
-            }
-            
-            </p>
-            <tf-search-button variant="primary" slot="actions">Book Now</tf-search-button>
-          </tf-search-activity-card>
-        </section>
+    container.innerHTML += `
+      <tf-search-activity-card>
+        <tf-search-card-header-image src="${
+          activity.photos[0].urls[2].url
+        }" slot="image"></tf-search-card-header-image>
+        <span slot="title">${
+          activity.title.length > 26 ? activity.title.substring(0, 26) + '...' : activity.title
+        }</span>
+        <span slot="subtitle">${
+          activity.primaryLocation.name.length > 28
+            ? activity.primaryLocation.name.substring(0, 28) + '...'
+            : activity.primaryLocation.name
+        }</span>
+        <tf-budget level="${assignLevel(activity.price.basePrice)}" slot="budget"></tf-budget>
+        <tf-chip type="activity" active="" slot="chip">${activity.activityType.label}</tf-chip>
+        <p slot="description">
+        ${activity.abstract.substring(0, 150)} 
+        <span class="read">Read more...</span>
+        </p>
+        <tf-button variant="secondary" text="" active=""
+        onclick="window.open('${pathFromUrl(activity.url)}','_blank')"
+        slot="actions">Book Now</tf-button>
+      </tf-search-activity-card>
       `;
-    container.appendChild(activityElement);
   });
 }
 
@@ -324,3 +343,103 @@ function clearSelection() {
 
   loadElements();
 }
+
+////////////////////////////////////////
+
+// Supposons que vous ayez récupéré les activités de l'API dans un tableau appelé 'activites'
+const activites = [
+  {
+    nom: 'Activité 1',
+    attribute: [
+      {
+        label: '3 heures',
+        metadata: {},
+        type: 'duration',
+      },
+    ],
+  },
+  {
+    nom: 'Activité 2',
+    attribute: [
+      {
+        label: 'valide',
+        metadata: {},
+        type: 'validity',
+      },
+    ],
+  },
+  {
+    nom: 'Activité 3',
+    attribute: [
+      {
+        label: '2 heures',
+        metadata: {},
+        type: 'duration',
+      },
+    ],
+  },
+  {
+    nom: 'Activité 4',
+    attribute: [
+      {
+        label: 'valide',
+        metadata: {},
+        type: 'validity',
+      },
+    ],
+  },
+  {
+    nom: 'Activité 5',
+    attribute: [
+      {
+        label: '12 heures',
+        metadata: {},
+        type: 'duration',
+      },
+    ],
+  },
+  {
+    nom: 'Activité 6',
+    attribute: [
+      {
+        label: 'valide',
+        metadata: {},
+        type: 'validity',
+      },
+    ],
+  },
+  {
+    nom: 'Activité 7',
+    attribute: [
+      {
+        label: '20 heures',
+        metadata: {},
+        type: 'duration',
+      },
+    ],
+  },
+];
+
+// Filtrer les activités qui ont l'attribut 'duration'
+const activitesAvecDuration = activites.filter((activite) => {
+  // Vérifier si l'activité a l'attribut 'attribute' et qu'il y a au moins un élément dans 'attribute'
+  if (activite.attribute && activite.attribute.length > 0) {
+    // Trouver l'élément avec 'type' égal à 'duration'
+    const durationAttribute = activite.attribute.find((attr) => attr.type === 'duration');
+
+    // Vérifier si un élément 'duration' a été trouvé
+    if (durationAttribute) {
+      // Récupérer la durée en heures depuis 'label' (assumant que c'est sous forme de chaîne de caractères "X heures")
+      const dureeEnHeures = parseFloat(durationAttribute.label);
+      if (!isNaN(dureeEnHeures) && dureeEnHeures > 0) {
+        return true; // La durée est valide, l'activité est incluse dans le résultat
+      }
+    }
+  }
+  return false; // L'activité n'a pas de durée valide ou n'a pas l'attribut 'duration'
+});
+
+// Maintenant, 'activitesAvecDuration' contient uniquement les activités avec l'attribut 'duration' valide
+console.log(activitesAvecDuration);
+
+

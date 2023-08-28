@@ -110,10 +110,4 @@ declare global {
    }
 }
 
-declare global {
-   interface HTMLElementTagNameMap {
-      'tf-button': TfButton;
-   }
-}
-
 customElements.define('tf-button', TfButton);
